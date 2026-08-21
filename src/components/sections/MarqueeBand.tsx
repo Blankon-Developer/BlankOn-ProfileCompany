@@ -1,6 +1,6 @@
 "use client";
 
-import { MONO, LIME, DARK } from "@/lib/utils";
+import { HEADING } from "@/lib/utils";
 
 export default function MarqueeBand() {
   const items = [
@@ -10,19 +10,20 @@ export default function MarqueeBand() {
     "Free Maintenance",
     "Semua Platform",
   ];
-  const full = [...items, ...items, ...items].join("  ·  ");
+  const full = [...items, ...items, ...items].join("  |  ");
 
   return (
     <div
-      className="overflow-hidden border-t border-b border-black/10 py-3"
-      style={{ backgroundColor: LIME }}
+      className="overflow-hidden py-3"
+      style={{ backgroundColor: "var(--accent-color)" }}
     >
       <p
-        className="whitespace-nowrap text-[11px] font-semibold animate-[marquee_28s_linear_infinite]"
-        style={{ ...MONO, color: DARK }}
+        className="whitespace-nowrap text-[14px] font-bold uppercase tracking-widest text-white dark:text-black animate-[marquee_28s_linear_infinite]"
+        style={HEADING}
       >
-        {full} · {full}
+        {full} | {full}
       </p>
+
       <style>{`
         @keyframes marquee {
           from { transform: translateX(0); }

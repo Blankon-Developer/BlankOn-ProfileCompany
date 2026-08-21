@@ -1,193 +1,404 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DISPLAY, BODY, MONO, LIME } from "@/lib/utils";
+import {
+  Monitor,
+  Smartphone,
+  Cloud,
+  Brain,
+  BarChart3,
+  Cpu,
+  Blocks,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
-import { ArrowRight, Globe, Smartphone, Monitor, Server } from "lucide-react";
-import { cn, DISPLAY, BODY, MONO, LIME, DARK } from "@/lib/utils";
 
-type ServiceTab = "web" | "mobile" | "enterprise" | "backend";
-
-const serviceData: Record<
-  ServiceTab,
-  {
-    icon: typeof Globe;
-    label: string;
-    title: string;
-    desc: string;
-    img: string;
-    tags: string[];
-  }
-> = {
-  web: {
-    icon: Globe,
-    label: "Website & Web App",
-    title: "Tampilan yang memukau, performa yang solid.",
-    desc: "Landing page, portal bisnis, SaaS platform, e-commerce mulai dari sederhana hingga kompleks, kami bangun dengan standar terbaik yang siap scale.",
-    img: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?w=900&h=560&fit=crop&auto=format",
-    tags: ["Next.js", "React", "Laravel", "SEO-ready"],
-  },
-  mobile: {
-    icon: Smartphone,
-    label: "Mobile App",
-    title: "Native di semua platform, mulus di genggaman.",
-    desc: "Aplikasi iOS dan Android dengan pengalaman pengguna yang intuitif, cepat, dan terasa native di setiap perangkat.",
-    img: "https://images.unsplash.com/photo-1476357471311-43c0db9fb2b4?w=900&h=560&fit=crop&auto=format",
-    tags: ["React Native", "Flutter", "Swift", "Kotlin"],
-  },
-  enterprise: {
-    icon: Monitor,
-    label: "Sistem Enterprise",
-    title: "Infrastruktur digital untuk kebutuhan skala besar.",
-    desc: "ERP, CRM, sistem manajemen internal, dan dashboard analytics yang dirancang khusus untuk kebutuhan operasional enterprise.",
-    img: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=900&h=560&fit=crop&auto=format",
-    tags: ["Custom Build", "Scalable", "Secure", "Multi-user"],
-  },
-  backend: {
-    icon: Server,
-    label: "Backend & API",
-    title: "Fondasi yang kuat untuk produk yang hebat.",
-    desc: "REST & GraphQL API, integrasi sistem pihak ketiga, optimasi database, dan arsitektur yang siap menangani traffic skala besar.",
-    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&h=560&fit=crop&auto=format",
-    tags: ["Node.js", "Python", "PostgreSQL", "AWS"],
-  },
-};
-
-const tabOrder: ServiceTab[] = ["web", "mobile", "enterprise", "backend"];
 
 export default function Services() {
-  const [active, setActive] = useState<ServiceTab>("web");
-  const s = serviceData[active];
-  const Icon = s.icon;
+  const services = [
+    {
+      id: "01",
+      title: "Blockchain",
+      headline: "Solusi blockchain untuk kebutuhan yang memang membutuhkannya.",
+      desc: "Mengembangkan aplikasi dan sistem berbasis blockchain dengan mempertimbangkan kebutuhan bisnis, model data, serta karakteristik transaksi yang digunakan. Fokus pada penerapan yang memiliki kebutuhan nyata terhadap transparansi, verifikasi, atau pencatatan data yang terdistribusi.",
+      tags: ["Blockchain", "Smart Contract", "Web3", "dApp"],
+      icon: <Blocks size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "02",
+      title: "Cloud Computing",
+      headline: "Infrastruktur digital yang siap mendukung kebutuhan produk.",
+      desc: "Membantu perusahaan membangun dan mengelola infrastruktur berbasis cloud untuk aplikasi, data, dan layanan digital. Solusi dirancang berdasarkan kebutuhan produk, mulai dari deployment dan penyimpanan hingga pengelolaan resource, keamanan, dan skalabilitas sistem.",
+      tags: ["AWS", "Cloud", "DevOps", "Infrastructure"],
+      icon: <Cloud size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "03",
+      title: "Data Science",
+      headline: "Mengubah data menjadi informasi yang dapat digunakan.",
+      desc: "Membantu perusahaan mengolah dan menganalisis data untuk memahami pola, mengukur performa, serta mendukung pengambilan keputusan. Solusi dapat mencakup data processing, dashboard, analisis statistik, hingga pengembangan model prediktif sesuai kebutuhan bisnis.",
+      tags: ["Data Analytics", "Python", "Dashboard", "Predictive"],
+      icon: <BarChart3 size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "04",
+      title: "Internet of Things",
+      headline: "Menghubungkan perangkat, data, dan sistem dalam satu alur.",
+      desc: "Membangun solusi IoT yang menghubungkan perangkat fisik dengan sistem digital untuk mengumpulkan, memantau, dan mengelola data. Cocok untuk kebutuhan monitoring, otomasi, tracking, maupun sistem yang membutuhkan interaksi antara perangkat dan aplikasi.",
+      tags: ["IoT", "Sensors", "Monitoring", "Automation"],
+      icon: <Cpu size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "05",
+      title: "Machine Learning / AI",
+      headline: "AI yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
+      desc: "Mengembangkan solusi berbasis machine learning dan AI untuk kebutuhan seperti automasi proses, klasifikasi data, pencarian informasi, rekomendasi, hingga pengolahan konten. Pendekatan dimulai dari permasalahan yang ingin diselesaikan, kemudian menentukan penerapan AI yang sesuai.",
+      tags: ["AI", "Machine Learning", "Automation", "LLM"],
+      icon: <Brain size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "06",
+      title: "Mobile Development",
+      headline: "Aplikasi mobile yang dirancang mengikuti kebutuhan pengguna.",
+      desc: "Membangun aplikasi mobile untuk iOS dan Android dengan fokus pada alur penggunaan, kebutuhan fitur, serta integrasi dengan sistem yang sudah dimiliki bisnis. Pengembangan dilakukan secara bertahap agar produk dapat diuji, digunakan, dan dikembangkan sesuai kebutuhan.",
+      tags: ["React Native", "Flutter", "iOS", "Android"],
+      icon: <Smartphone size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "07",
+      title: "Web Development",
+      headline: "Website dan aplikasi web yang dibangun untuk kebutuhan bisnis nyata.",
+      desc: "Merancang dan membangun website, web application, hingga platform digital dengan mempertimbangkan kebutuhan bisnis, pengguna, dan proses yang berjalan di dalamnya. Mulai dari company profile, customer portal, hingga sistem berbasis web yang membutuhkan integrasi dan pengembangan lebih lanjut.",
+      tags: ["React", "Next.js", "Laravel", "API"],
+      icon: <Monitor size={20} />,
+      image:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+    },
+  ];
+
+  const [activeService, setActiveService] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextService = () => {
+    setActiveService((current) => (current + 1) % services.length);
+  };
+
+  const prevService = () => {
+    setActiveService(
+      (current) => (current - 1 + services.length) % services.length
+    );
+  };
+
+  // Auto slide
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      nextService();
+    }, 6500);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
 
   return (
-    <section
-      id="layanan"
-      className="py-24 md:py-32 bg-[#F7F7F4] border-t border-black/8"
-    >
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
-          <div>
-            <p
-              className="text-[10px] uppercase tracking-widest mb-4"
-              style={{ ...MONO, color: "#6b7a00" }}
-            >
-              — Layanan Kami
-            </p>
-            <h2
-              className="text-4xl md:text-5xl font-900 leading-[1.05] tracking-tight text-[#0F0F0D]"
-              style={{ ...DISPLAY, fontWeight: 900 }}
-            >
-              Semua platform,
-              <br />
-              satu tim.
+    <section id="layanan" className="py-20 md:py-32 bg-foreground text-background">
+      <div className="max-w-8xl mx-auto px-6 md:px-10">
+        <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-6xl mx-auto">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-6 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: LIME }} />
+              <span className="text-[11px] opacity-60 uppercase tracking-widest font-semibold" style={MONO}>
+                APA YANG KAMI KERJAKAN
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6" style={DISPLAY}>
+              Dari kebutuhan bisnis hingga produk digital yang siap digunakan.
             </h2>
+            <p className="opacity-70 text-lg leading-relaxed max-w-xl" style={BODY}>
+              Kami menangani proses pengembangan digital product dari tahap awal hingga implementasi, dengan pendekatan yang disesuaikan dengan kebutuhan masing-masing proyek.
+            </p>
           </div>
-          <p
-            className="text-base text-[#5a5a58] max-w-sm leading-relaxed text-justify"
-            style={BODY}
-          >
-            Apapun kebutuhan digital Anda, kami punya keahlian untuk
-            mewujudkannya dari konsep hingga production.
-          </p>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tabOrder.map((key) => (
-            <button
-              key={key}
-              onClick={() => setActive(key)}
-              className={cn(
-                "px-4 py-2 text-[11px] font-semibold uppercase tracking-widest border transition-all duration-200",
-                active === key
-                  ? "border-transparent text-[#0F0F0D]"
-                  : "border-black/10 text-muted-foreground hover:border-black/20 hover:text-foreground bg-white"
-              )}
-              style={{
-                ...MONO,
-                ...(active === key ? { backgroundColor: LIME } : {}),
-              }}
-            >
-              {serviceData[key].label}
-            </button>
-          ))}
-        </div>
-
-        {/* Panel */}
-        <div className="grid md:grid-cols-5 border border-black/10 overflow-hidden bg-white shadow-sm">
-          {/* Image — 3 cols */}
-          <div
-            className="md:col-span-3 relative overflow-hidden bg-[#e0e0dc]"
-            style={{ minHeight: "320px" }}
-          >
-            <Image
-              key={active}
-              src={s.img}
-              alt={s.label}
-              fill
-              className="object-cover"
-              style={{ filter: "brightness(0.92)" }}
-              sizes="(max-width: 768px) 100vw, 60vw"
-            />
+        {/* Services Carousel */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Carousel viewport */}
+          <div className="overflow-hidden">
             <div
-              className="absolute top-4 left-4 text-[9px] px-2.5 py-1 font-600 tracking-widest z-10"
+              className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
               style={{
-                ...MONO,
-                fontWeight: 600,
-                backgroundColor: LIME,
-                color: DARK,
+                transform: `translateX(-${activeService * 100}%)`,
               }}
             >
-              {s.label}
+              {services.map((s, index) => (
+                <div
+                  key={s.id}
+                  className="w-full shrink-0 px-0.5"
+                >
+                  <article
+                    className="relative overflow-hidden border border-white/10 dark:border-black/10 bg-background/[0.025] min-h-[560px] lg:min-h-[600px]"
+                  >
+                    <div className="grid lg:grid-cols-[1.15fr_0.85fr] h-full min-h-[560px] lg:min-h-[600px]">
+
+                      {/* IMAGE */}
+                      <div className="relative min-h-[300px] lg:min-h-full overflow-hidden">
+                        <Image
+                          src={s.image}
+                          alt={s.title}
+                          fill
+                          priority={index === 0}
+                          className={`object-cover transition-all duration-[1200ms] ease-out ${activeService === index
+                            ? "scale-100 opacity-100"
+                            : "scale-105 opacity-80"
+                            }`}
+                        />
+
+                        {/* Minimal overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+
+                        {/* Number */}
+                        <div className="absolute top-7 left-7 md:top-10 md:left-10">
+                          <span
+                            className="text-xs tracking-[0.25em] text-white/70"
+                            style={MONO}
+                          >
+                            {s.id}
+                          </span>
+                        </div>
+
+                        {/* Image label */}
+                        <div className="absolute bottom-7 left-7 md:bottom-10 md:left-10 flex items-center gap-3">
+                          <span
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: LIME }}
+                          />
+                          <span
+                            className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-white font-semibold"
+                            style={MONO}
+                          >
+                            {s.title}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="relative flex flex-col justify-between p-7 sm:p-10 md:p-12 lg:p-14">
+                        {/* Top */}
+                        <div>
+                          <div className="flex items-center justify-between mb-10">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 flex items-center justify-center border border-background/15">
+                                {s.icon}
+                              </div>
+                              <span
+                                className="text-[10px] uppercase tracking-[0.2em] text-background/40"
+                                style={MONO}
+                              >
+                                Service
+                              </span>
+                            </div>
+                            <span
+                              className="text-[10px] uppercase tracking-[0.2em] text-background/30"
+                              style={MONO}
+                            >
+                              {String(index + 1).padStart(2, "0")} /{" "}
+                              {String(services.length).padStart(2, "0")}
+                            </span>
+                          </div>
+                          {/* Headline */}
+                          <div
+                            key={s.id}
+                            className="animate-[serviceContent_700ms_cubic-bezier(0.22,1,0.36,1)]"
+                          >
+                            <h3
+                              className="text-3xl md:text-4xl lg:text-[2.75rem] font-black tracking-tight leading-[1.05] max-w-xl mb-7"
+                              style={DISPLAY}
+                            >
+                              {s.headline}
+                            </h3>
+                            <p
+                              className="text-sm md:text-base leading-[1.8] text-background/60 max-w-xl mb-8"
+                              style={BODY}
+                            >
+                              {s.desc}
+                            </p>
+
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-2">
+                              {s.tags.map((tag) => (
+                                <span
+                                  key={tag}
+                                  className="px-2.5 py-1.5 border border-background/10 text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-background/50"
+                                  style={MONO}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom */}
+                        <div className="pt-10 mt-10 border-t border-background/10 flex items-center justify-between gap-6">
+
+                          <a
+                            href="mailto:hello@blankon.id"
+                            className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] group/link"
+                            style={MONO}
+                          >
+                            <span className="relative">
+                              Konsultasi Gratis
+
+                              <span
+                                className="absolute left-0 -bottom-1 w-full h-px bg-background/30 origin-left transition-transform duration-300 group-hover/link:scale-x-0"
+                              />
+                            </span>
+
+                            <ArrowUpRight
+                              size={15}
+                              className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
+                            />
+                          </a>
+
+                          {/* Navigation */}
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={prevService}
+                              aria-label="Previous service"
+                              className="w-10 h-10 flex items-center justify-center border border-background/15 text-background/60 hover:border-background/40 hover:text-background transition-colors"
+                            >
+                              <ChevronLeft size={17} />
+                            </button>
+
+                            <button
+                              onClick={nextService}
+                              aria-label="Next service"
+                              className="w-10 h-10 flex items-center justify-center border border-background/15 text-background/60 hover:border-background/40 hover:text-background transition-colors"
+                            >
+                              <ChevronRight size={17} />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Decorative large number */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute -right-8 -bottom-14 text-[12rem] md:text-[16rem] font-black leading-none text-background/[0.025] pointer-events-none select-none"
+                          style={DISPLAY}
+                        >
+                          {s.id}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Active lime line */}
+                    <div
+                      className="absolute bottom-0 left-0 h-[2px] transition-all duration-700"
+                      style={{
+                        width: `${((index + 1) / services.length) * 100}%`,
+                        backgroundColor: LIME,
+                      }}
+                    />
+                  </article>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Copy — 2 cols */}
-          <div className="md:col-span-2 p-8 md:p-10 flex flex-col justify-between gap-8 border-t md:border-t-0 md:border-l border-black/8">
-            <div>
-              <div className="w-10 h-10 flex items-center justify-center border border-black/10 text-[#5a5a58] mb-6">
-                <Icon size={18} />
-              </div>
-              <h3
-                className="text-xl font-800 text-[#0F0F0D] mb-4 leading-snug"
-                style={{ ...DISPLAY, fontWeight: 800 }}
+          {/* Bottom navigation */}
+          <div className="mt-7 flex items-center justify-between">
+
+            {/* Progress */}
+            <div className="flex items-center gap-5">
+              <span
+                className="text-[10px] tracking-[0.2em] text-background/40"
+                style={MONO}
               >
-                {s.title}
-              </h3>
-              <p
-                className="text-sm text-[#5a5a58] leading-relaxed text-justify"
-                style={BODY}
-              >
-                {s.desc}
-              </p>
-            </div>
-            <div>
-              <div className="flex flex-wrap gap-1.5 mb-7">
-                {s.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[9px] border border-black/10 px-2 py-1 text-muted-foreground bg-[#F7F7F4]"
-                    style={MONO}
+                SERVICES
+              </span>
+
+              <div className="hidden sm:flex items-center gap-1">
+                {services.map((service, index) => (
+                  <button
+                    key={service.id}
+                    onClick={() => setActiveService(index)}
+                    aria-label={`Go to ${service.title}`}
+                    className="group py-2"
                   >
-                    {t}
-                  </span>
+                    <span
+                      className={`block h-[2px] transition-all duration-500 ${activeService === index
+                        ? "w-10"
+                        : "w-4 bg-background/15 group-hover:bg-background/40"
+                        }`}
+                      style={
+                        activeService === index
+                          ? { backgroundColor: LIME }
+                          : undefined
+                      }
+                    />
+                  </button>
                 ))}
               </div>
-              <a
-                href="#penawaran"
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold group transition-opacity hover:opacity-85"
-                style={{ ...DISPLAY, backgroundColor: DARK, color: "#fff" }}
+            </div>
+
+            {/* Current counter */}
+            <div className="flex items-center gap-2">
+              <span
+                className="text-sm font-bold"
+                style={MONO}
               >
-                Konsultasi Gratis
-                <ArrowRight
-                  size={13}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </a>
+                {String(activeService + 1).padStart(2, "0")}
+              </span>
+
+              <span className="text-background/20">—</span>
+
+              <span
+                className="text-sm text-background/30"
+                style={MONO}
+              >
+                {String(services.length).padStart(2, "0")}
+              </span>
             </div>
           </div>
         </div>
+
       </div>
+      <style jsx>{`
+        @keyframes serviceContent {
+          0% {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}
+      </style>
+
     </section>
+
+
   );
 }

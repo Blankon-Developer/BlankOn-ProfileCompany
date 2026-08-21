@@ -3,9 +3,9 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { DISPLAY, BODY, MONO, LIME, DARK } from "@/lib/utils";
 
-export default function CTA() {
+export default function AboutCTA() {
   return (
-    <section className="bg-foreground text-background py-24 md:py-36 overflow-hidden relative border-t border-background/5">
+    <section className="bg-foreground py-24 md:py-36 overflow-hidden relative border-t border-background/5 text-background">
       {/* Lime glow */}
       <div
         className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
