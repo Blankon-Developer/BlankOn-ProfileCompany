@@ -16,3 +16,4 @@ export const LIME = "#84c803";
 export const YELLOW = "#F5C700";
 export const BLACK = "#000000";
 export const WHITE = "#FFFFFF";
+export const DARK = "#0F0F0D";

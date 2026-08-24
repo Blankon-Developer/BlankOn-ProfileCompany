@@ -5,11 +5,9 @@ import { LuBotMessageSquare } from "react-icons/lu";
 import { TbCurrencyDollarOff } from "react-icons/tb";
 import { GiCheckedShield } from "react-icons/gi";
 import { PiGearSix } from "react-icons/pi";
-
 import {
   ArrowUpRight,
 } from "lucide-react";
-
 import { cn, DISPLAY, BODY, MONO } from "@/lib/utils";
 
 const offers = [

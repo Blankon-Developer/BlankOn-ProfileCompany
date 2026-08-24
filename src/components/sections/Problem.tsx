@@ -1,6 +1,6 @@
 "use client";
 
-import { DISPLAY, BODY, MONO, LIME } from "@/lib/utils";
+import { DISPLAY, BODY, MONO } from "@/lib/utils";
 
 export default function Problem() {
   return (
