@@ -20,7 +20,7 @@ export default function ContactPage() {
           description="Punya ide besar yang belum tahu harus mulai dari mana? Atau sistem perusahaan yang butuh peremajaan? Tim ahli kami siap membantu Anda."
         />
 
-        <section className="py-12 md:py-24 px-6 md:px-10 max-w-6xl mx-auto">
+        <section className="py-12 md:py-24 px-6 md:px-0 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
             {/* Contact Info */}

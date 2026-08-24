@@ -15,7 +15,7 @@ export default function SolusiPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black/50">
       <Navbar />
-      <main>
+      <main>  
         <PageHeader 
           tag="Solusi Kami"
           title="Teknologi untuk Setiap Skala"
@@ -23,6 +23,8 @@ export default function SolusiPage() {
         />
         <Problem />
         <WhoWeWorkWith />
+        {/* separate the sections with lime color */}
+        <div className="border-t border-lime-500" />
         <Testimonials />
       </main>
       <CTA />

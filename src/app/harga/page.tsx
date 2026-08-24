@@ -270,7 +270,7 @@ export default function PricingPage() {
 
         {/* CUSTOMER CATEGORY */}
         <section className="px-6 md:px-10 pt-12 md:pt-20">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="max-w-2xl mb-10">
               <p
                 className="text-xs uppercase tracking-widest font-semibold mb-3"
@@ -335,7 +335,7 @@ export default function PricingPage() {
 
         {/* PRICING */}
         <section className="py-16 md:py-24 px-6 md:px-10">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-8xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <p
                 className="text-xs uppercase tracking-widest font-semibold mb-3"

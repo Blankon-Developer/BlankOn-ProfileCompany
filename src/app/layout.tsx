@@ -2,18 +2,30 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BaraCode Tech Solution",
+  metadataBase: new URL("https://www.blankon.tech"),
+  title: {
+    default: "BlankOn Tech | We Together, Deploy The Future",
+    template: "%s | BlankOn Tech",
+  },
   description:
-    "BlankOn membangun website dan aplikasi dari skala startup hingga enterprise — dengan konsultasi gratis, tanpa biaya di muka, dan garansi perbaikan penuh.",
+    "Kami membangun solusi website, aplikasi mobile, AI, dan sistem terintegrasi dari skala startup hingga enterprise dengan pendekatan bisnis, keamanan, dan skalabilitas tinggi.",
   keywords: [
-    "web development",
-    "app development",
-    "software house",
-    "blankon",
-    "konsultasi gratis",
-    "website",
-    "aplikasi",
+    "Software House",
+    "Web Development",
+    "Mobile App Development",
+    "IT Consultant",
+    "Digital Transformation",
+    "Enterprise Software",
+    "BlankOn",
   ],
+  authors: [{ name: "BlankOn Tech Team" }],
+  creator: "BlankOn Tech",
+  publisher: "BlankOn Tech",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
       {
@@ -26,12 +38,40 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   openGraph: {
-    title: "Blankon Tech",
+    title: "BlankOn Tech | Inovasi Digital Enterprise",
     description:
-      "Konsultasi gratis, tanpa biaya di muka, garansi perbaikan penuh. BlankOn membangun website dan aplikasi untuk bisnis Anda.",
+      "Mitra teknologi Anda untuk transformasi digital. Kami merancang arsitektur sistem berskala besar yang aman, andal, dan inovatif.",
+    url: "https://www.blankon.tech",
+    siteName: "BlankOn Tech",
+    locale: "en_US, id_ID",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // Pastikan Anda menambahkan file og-image.jpg di folder public/
+        width: 1200,
+        height: 630,
+        alt: "BlankOn Tech",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BlankOn Tech",
+    description: "Inovasi digital untuk skala enterprise.",
+    images: ["/og-image.jpg"],
+    creator: "@blankon_tech",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -72,7 +112,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${ubuntu.variable} font-sans min-h-screen bg-background text-foreground`}>
+      <body className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${ubuntu.variable} font-sans min-h-screen bg-white dark:bg-black text-foreground`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

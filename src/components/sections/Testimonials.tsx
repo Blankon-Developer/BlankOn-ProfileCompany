@@ -31,7 +31,7 @@ export default function Testimonials() {
   return (
     <section
       id="tentang"
-      className="py-24 md:py-32 bg-[#F7F7F4] border-t border-black/8"
+      className="py-24 md:py-32 bg-white dark:bg-black"
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">

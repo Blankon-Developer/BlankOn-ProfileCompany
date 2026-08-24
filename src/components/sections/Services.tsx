@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { DISPLAY, BODY, MONO, LIME } from "@/lib/utils";
 import {
   Monitor,
   Smartphone,
@@ -16,81 +15,89 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+import { DISPLAY, BODY, MONO } from "@/lib/utils";
+
+const services = [
+  {
+    id: "01",
+    title: "Blockchain",
+    eyebrow: "Blockchain",
+    headline: "Solusi blockchain untuk kebutuhan yang memang membutuhkannya.",
+    desc: "Mengembangkan aplikasi dan sistem berbasis blockchain dengan mempertimbangkan kebutuhan bisnis, model data, serta karakteristik transaksi yang digunakan. Fokus pada penerapan yang memiliki kebutuhan nyata terhadap transparansi, verifikasi, atau pencatatan data yang terdistribusi.",
+    tags: ["Blockchain", "Smart Contract", "Web3", "dApp"],
+    icon: <Blocks size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "02",
+    title: "Cloud Computing",
+    eyebrow: "Cloud Computing",
+    headline: "Infrastruktur digital yang siap mendukung kebutuhan produk.",
+    desc: "Membantu perusahaan membangun dan mengelola infrastruktur berbasis cloud untuk aplikasi, data, dan layanan digital. Solusi dirancang berdasarkan kebutuhan produk, mulai dari deployment dan penyimpanan hingga pengelolaan resource, keamanan, dan skalabilitas sistem.",
+    tags: ["AWS", "Cloud", "DevOps", "Infrastructure"],
+    icon: <Cloud size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "03",
+    title: "Data Science",
+    eyebrow: "Data Science",
+    headline: "Mengubah data menjadi informasi yang dapat digunakan.",
+    desc: "Membantu perusahaan mengolah dan menganalisis data untuk memahami pola, mengukur performa, serta mendukung pengambilan keputusan. Solusi dapat mencakup data processing, dashboard, analisis statistik, hingga pengembangan model prediktif sesuai kebutuhan bisnis.",
+    tags: ["Data Analytics", "Python", "Dashboard", "Predictive"],
+    icon: <BarChart3 size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "04",
+    title: "Internet of Things",
+    eyebrow: "Internet of Things",
+    headline: "Menghubungkan perangkat, data, dan sistem dalam satu alur.",
+    desc: "Membangun solusi IoT yang menghubungkan perangkat fisik dengan sistem digital untuk mengumpulkan, memantau, dan mengelola data. Cocok untuk kebutuhan monitoring, otomasi, tracking, maupun sistem yang membutuhkan interaksi antara perangkat dan aplikasi.",
+    tags: ["IoT", "Sensors", "Monitoring", "Automation"],
+    icon: <Cpu size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "05",
+    title: "Machine Learning / AI",
+    eyebrow: "Machine Learning / AI",
+    headline: "AI yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
+    desc: "Mengembangkan solusi berbasis machine learning dan AI untuk kebutuhan seperti automasi proses, klasifikasi data, pencarian informasi, rekomendasi, hingga pengolahan konten. Pendekatan dimulai dari permasalahan yang ingin diselesaikan, kemudian menentukan penerapan AI yang sesuai.",
+    tags: ["AI", "Machine Learning", "Automation", "LLM"],
+    icon: <Brain size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "06",
+    title: "Mobile Development",
+    eyebrow: "Mobile Development",
+    headline: "Aplikasi mobile yang dirancang mengikuti kebutuhan pengguna.",
+    desc: "Membangun aplikasi mobile untuk iOS dan Android dengan fokus pada alur penggunaan, kebutuhan fitur, serta integrasi dengan sistem yang sudah dimiliki bisnis. Pengembangan dilakukan secara bertahap agar produk dapat diuji, digunakan, dan dikembangkan sesuai kebutuhan.",
+    tags: ["React Native", "Flutter", "iOS", "Android"],
+    icon: <Smartphone size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "07",
+    title: "Web Development",
+    eyebrow: "Web Development",
+    headline: "Website dan aplikasi web yang dibangun untuk kebutuhan bisnis nyata.",
+    desc: "Merancang dan membangun website, web application, hingga platform digital dengan mempertimbangkan kebutuhan bisnis, pengguna, dan proses yang berjalan di dalamnya. Mulai dari company profile, customer portal, hingga sistem berbasis web yang membutuhkan integrasi dan pengembangan lebih lanjut.",
+    tags: ["React", "Next.js", "Laravel", "API"],
+    icon: <Monitor size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=85",
+  },
+];
 
 export default function Services() {
-  const services = [
-    {
-      id: "01",
-      title: "Blockchain",
-      headline: "Solusi blockchain untuk kebutuhan yang memang membutuhkannya.",
-      desc: "Mengembangkan aplikasi dan sistem berbasis blockchain dengan mempertimbangkan kebutuhan bisnis, model data, serta karakteristik transaksi yang digunakan. Fokus pada penerapan yang memiliki kebutuhan nyata terhadap transparansi, verifikasi, atau pencatatan data yang terdistribusi.",
-      tags: ["Blockchain", "Smart Contract", "Web3", "dApp"],
-      icon: <Blocks size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "02",
-      title: "Cloud Computing",
-      headline: "Infrastruktur digital yang siap mendukung kebutuhan produk.",
-      desc: "Membantu perusahaan membangun dan mengelola infrastruktur berbasis cloud untuk aplikasi, data, dan layanan digital. Solusi dirancang berdasarkan kebutuhan produk, mulai dari deployment dan penyimpanan hingga pengelolaan resource, keamanan, dan skalabilitas sistem.",
-      tags: ["AWS", "Cloud", "DevOps", "Infrastructure"],
-      icon: <Cloud size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "03",
-      title: "Data Science",
-      headline: "Mengubah data menjadi informasi yang dapat digunakan.",
-      desc: "Membantu perusahaan mengolah dan menganalisis data untuk memahami pola, mengukur performa, serta mendukung pengambilan keputusan. Solusi dapat mencakup data processing, dashboard, analisis statistik, hingga pengembangan model prediktif sesuai kebutuhan bisnis.",
-      tags: ["Data Analytics", "Python", "Dashboard", "Predictive"],
-      icon: <BarChart3 size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "04",
-      title: "Internet of Things",
-      headline: "Menghubungkan perangkat, data, dan sistem dalam satu alur.",
-      desc: "Membangun solusi IoT yang menghubungkan perangkat fisik dengan sistem digital untuk mengumpulkan, memantau, dan mengelola data. Cocok untuk kebutuhan monitoring, otomasi, tracking, maupun sistem yang membutuhkan interaksi antara perangkat dan aplikasi.",
-      tags: ["IoT", "Sensors", "Monitoring", "Automation"],
-      icon: <Cpu size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "05",
-      title: "Machine Learning / AI",
-      headline: "AI yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
-      desc: "Mengembangkan solusi berbasis machine learning dan AI untuk kebutuhan seperti automasi proses, klasifikasi data, pencarian informasi, rekomendasi, hingga pengolahan konten. Pendekatan dimulai dari permasalahan yang ingin diselesaikan, kemudian menentukan penerapan AI yang sesuai.",
-      tags: ["AI", "Machine Learning", "Automation", "LLM"],
-      icon: <Brain size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "06",
-      title: "Mobile Development",
-      headline: "Aplikasi mobile yang dirancang mengikuti kebutuhan pengguna.",
-      desc: "Membangun aplikasi mobile untuk iOS dan Android dengan fokus pada alur penggunaan, kebutuhan fitur, serta integrasi dengan sistem yang sudah dimiliki bisnis. Pengembangan dilakukan secara bertahap agar produk dapat diuji, digunakan, dan dikembangkan sesuai kebutuhan.",
-      tags: ["React Native", "Flutter", "iOS", "Android"],
-      icon: <Smartphone size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: "07",
-      title: "Web Development",
-      headline: "Website dan aplikasi web yang dibangun untuk kebutuhan bisnis nyata.",
-      desc: "Merancang dan membangun website, web application, hingga platform digital dengan mempertimbangkan kebutuhan bisnis, pengguna, dan proses yang berjalan di dalamnya. Mulai dari company profile, customer portal, hingga sistem berbasis web yang membutuhkan integrasi dan pengembangan lebih lanjut.",
-      tags: ["React", "Next.js", "Laravel", "API"],
-      icon: <Monitor size={20} />,
-      image:
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-    },
-  ];
-
   const [activeService, setActiveService] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -104,301 +111,312 @@ export default function Services() {
     );
   };
 
-  // Auto slide
   useEffect(() => {
     if (isPaused) return;
 
-    const interval = setInterval(() => {
-      nextService();
-    }, 6500);
+    const interval = setInterval(nextService, 7000);
 
     return () => clearInterval(interval);
   }, [isPaused]);
 
+  const active = services[activeService];
 
   return (
-    <section id="layanan" className="py-20 md:py-32 bg-foreground text-background">
-      <div className="max-w-8xl mx-auto px-6 md:px-10">
-        <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-6xl mx-auto">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-6 w-fit">
-              <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: LIME }} />
-              <span className="text-[11px] opacity-60 uppercase tracking-widest font-semibold" style={MONO}>
-                APA YANG KAMI KERJAKAN
+    <section
+      id="layanan"
+      className="relative overflow-hidden bg-white py-24 dark:bg-black md:py-24"
+    >
+      <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+
+        {/* SECTION INTRO */}
+        <header className="mb-16 grid gap-10 md:mb-24 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="max-w-3xl">
+            <div className="mb-7 flex items-center gap-3">
+              <span
+                className="h-[5px] w-[5px] rounded-full"
+                style={{ backgroundColor: "var(--accent-color)" }}
+              />
+
+              <span
+                className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/50 dark:text-white/50"
+                style={MONO}
+              >
+                What we do
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6" style={DISPLAY}>
-              Dari kebutuhan bisnis hingga produk digital yang siap digunakan.
+
+            <h2
+              className="max-w-3xl text-[2.8rem] font-semibold leading-[0.98] tracking-[-0.055em] text-black dark:text-white md:text-6xl lg:text-[5.2rem]"
+              style={DISPLAY}
+            >
+              Dari kebutuhan bisnis menjadi produk digital yang nyata.
             </h2>
-            <p className="opacity-70 text-lg leading-relaxed max-w-xl" style={BODY}>
-              Kami menangani proses pengembangan digital product dari tahap awal hingga implementasi, dengan pendekatan yang disesuaikan dengan kebutuhan masing-masing proyek.
+          </div>
+
+          <div className="max-w-xs pb-1 md:text-right">
+            <p
+              className="text-sm leading-7 text-black/55 dark:text-white/50"
+              style={BODY}
+            >
+              Kami membangun digital product dengan pendekatan yang
+              mempertimbangkan kebutuhan bisnis, pengguna, dan teknologi yang
+              benar-benar dibutuhkan.
             </p>
           </div>
-        </div>
+        </header>
 
-        {/* Services Carousel */}
+        {/* SERVICE */}
         <div
-          className="relative"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          className="relative"
         >
-          {/* Carousel viewport */}
-          <div className="overflow-hidden">
+          <div className="relative overflow-hidden">
             <div
-              className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               style={{
                 transform: `translateX(-${activeService * 100}%)`,
               }}
             >
-              {services.map((s, index) => (
-                <div
-                  key={s.id}
-                  className="w-full shrink-0 px-0.5"
+              {services.map((service, index) => (
+                <article
+                  key={service.id}
+                  className="w-full shrink-0"
                 >
-                  <article
-                    className="relative overflow-hidden border border-white/10 dark:border-black/10 bg-background/[0.025] min-h-[560px] lg:min-h-[600px]"
-                  >
-                    <div className="grid lg:grid-cols-[1.15fr_0.85fr] h-full min-h-[560px] lg:min-h-[600px]">
+                  <div className="grid h-full min-h-[700px] overflow-hidden bg-white dark:bg-[#111111] lg:grid-cols-[1.15fr_0.85fr]">
 
-                      {/* IMAGE */}
-                      <div className="relative min-h-[300px] lg:min-h-full overflow-hidden">
+                    {/* IMAGE */}
+                    <div className="group relative min-h-[380px] overflow-hidden lg:min-h-[680px]">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        priority={index === 0}
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        className={`object-cover transition-all duration-[1400ms] ease-out ${activeService === index
+                          ? "scale-100 opacity-100"
+                          : "scale-[1.04] opacity-70"
+                          }`}
+                      />
+
+                      {/* subtle image treatment */}
+                      <div className="absolute inset-0 bg-black/10" />
+
+                      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+
+                      {/* BRAND */}
+                      <div className="absolute left-7 top-7 flex items-center gap-3 md:left-10 md:top-10">
                         <Image
-                          src={s.image}
-                          alt={s.title}
-                          fill
-                          priority={index === 0}
-                          className={`object-cover transition-all duration-[1200ms] ease-out ${activeService === index
-                            ? "scale-100 opacity-100"
-                            : "scale-105 opacity-80"
-                            }`}
+                          src="/BlankOn Logo.svg"
+                          alt="BlankOn"
+                          width={20}
+                          height={20}
+                          className="dark:hidden"
                         />
 
-                        {/* Minimal overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+                        <Image
+                          src="/BlankOn Logo Dark-Mode.svg"
+                          alt="BlankOn"
+                          width={20}
+                          height={20}
+                          className="hidden dark:block"
+                        />
 
-                        {/* Number */}
-                        <div className="absolute top-7 left-7 md:top-10 md:left-10">
-                          <span
-                            className="text-xs tracking-[0.25em] text-white/70"
-                            style={MONO}
-                          >
-                            {s.id}
-                          </span>
-                        </div>
-
-                        {/* Image label */}
-                        <div className="absolute bottom-7 left-7 md:bottom-10 md:left-10 flex items-center gap-3">
-                          <span
-                            className="w-2 h-2 rounded-full"
-                            style={{ backgroundColor: LIME }}
-                          />
-                          <span
-                            className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-white font-semibold"
-                            style={MONO}
-                          >
-                            {s.title}
-                          </span>
-                        </div>
+                        <span
+                          className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/80"
+                          style={MONO}
+                        >
+                          BlankOn Tech
+                        </span>
                       </div>
 
-                      {/* CONTENT */}
-                      <div className="relative flex flex-col justify-between p-7 sm:p-10 md:p-12 lg:p-14">
-                        {/* Top */}
+                      {/* IMAGE META */}
+                      <div className="absolute bottom-8 left-7 right-7 flex items-end justify-between md:bottom-10 md:left-10 md:right-10">
                         <div>
-                          <div className="flex items-center justify-between mb-10">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 flex items-center justify-center border border-background/15">
-                                {s.icon}
-                              </div>
-                              <span
-                                className="text-[10px] uppercase tracking-[0.2em] text-background/40"
-                                style={MONO}
-                              >
-                                Service
-                              </span>
-                            </div>
-                            <span
-                              className="text-[10px] uppercase tracking-[0.2em] text-background/30"
-                              style={MONO}
-                            >
-                              {String(index + 1).padStart(2, "0")} /{" "}
-                              {String(services.length).padStart(2, "0")}
-                            </span>
-                          </div>
-                          {/* Headline */}
                           <div
-                            key={s.id}
-                            className="animate-[serviceContent_700ms_cubic-bezier(0.22,1,0.36,1)]"
-                          >
-                            <h3
-                              className="text-3xl md:text-4xl lg:text-[2.75rem] font-black tracking-tight leading-[1.05] max-w-xl mb-7"
-                              style={DISPLAY}
-                            >
-                              {s.headline}
-                            </h3>
-                            <p
-                              className="text-sm md:text-base leading-[1.8] text-background/60 max-w-xl mb-8"
-                              style={BODY}
-                            >
-                              {s.desc}
-                            </p>
-
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2">
-                              {s.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="px-2.5 py-1.5 border border-background/10 text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-background/50"
-                                  style={MONO}
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Bottom */}
-                        <div className="pt-10 mt-10 border-t border-background/10 flex items-center justify-between gap-6">
-
-                          <a
-                            href="mailto:hello@blankon.id"
-                            className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] group/link"
+                            className="mb-3 text-[10px] uppercase tracking-[0.2em] text-white/50"
                             style={MONO}
                           >
-                            <span className="relative">
-                              Konsultasi Gratis
+                            Layanan
+                          </div>
 
-                              <span
-                                className="absolute left-0 -bottom-1 w-full h-px bg-background/30 origin-left transition-transform duration-300 group-hover/link:scale-x-0"
-                              />
-                            </span>
-
-                            <ArrowUpRight
-                              size={15}
-                              className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1"
-                            />
-                          </a>
-
-                          {/* Navigation */}
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={prevService}
-                              aria-label="Previous service"
-                              className="w-10 h-10 flex items-center justify-center border border-background/15 text-background/60 hover:border-background/40 hover:text-background transition-colors"
-                            >
-                              <ChevronLeft size={17} />
-                            </button>
-
-                            <button
-                              onClick={nextService}
-                              aria-label="Next service"
-                              className="w-10 h-10 flex items-center justify-center border border-background/15 text-background/60 hover:border-background/40 hover:text-background transition-colors"
-                            >
-                              <ChevronRight size={17} />
-                            </button>
+                          <div
+                            className="text-2xl font-medium tracking-tight text-white md:text-3xl group-hover:text-[var(--accent-color)] transition-all duration-300"
+                            style={DISPLAY}
+                          >
+                            {service.title}
                           </div>
                         </div>
-
-                        {/* Decorative large number */}
-                        <span
-                          aria-hidden="true"
-                          className="absolute -right-8 -bottom-14 text-[12rem] md:text-[16rem] font-black leading-none text-background/[0.025] pointer-events-none select-none"
-                          style={DISPLAY}
-                        >
-                          {s.id}
-                        </span>
                       </div>
                     </div>
 
-                    {/* Active lime line */}
-                    <div
-                      className="absolute bottom-0 left-0 h-[2px] transition-all duration-700"
-                      style={{
-                        width: `${((index + 1) / services.length) * 100}%`,
-                        backgroundColor: LIME,
-                      }}
-                    />
-                  </article>
-                </div>
+                    {/* CONTENT */}
+                    <div className="relative flex flex-col bg-white dark:bg-black justify-between px-7 py-8 md:px-0 md:pl-12 md:py-0">
+                      <div className="p-6 border border-black/20 dark:border-white/20">
+                        {/* TOP META */}
+                        <div className="mb-10 flex items-center justify-center rounded-md border border-[var(--accent-color)] dark:border-[var(--accent-color)]">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="flex h-9 w-9 items-center justify-center text-black/50 dark:text-white/50"
+                            >
+                              {service.icon}
+                            </div>
+
+                            <span
+                              className="text-[14px] uppercase tracking-[0.2em] text-[var(--accent-color)] font-semibold text-balance"
+                              style={MONO}
+                            >
+                              {service.eyebrow}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* CONTENT */}
+                        <div
+                          key={service.id}
+                          className="animate-[serviceContent_800ms_cubic-bezier(0.22,1,0.36,1)]"
+                        >
+                          <h3
+                            className="max-w-[700px] text-[2.5rem] font-semibold leading-[1.3] tracking-[-0.045em] text-black dark:text-white md:text-[2rem] text-balence"
+                            style={DISPLAY}
+                          >
+                            {service.headline}
+                          </h3>
+
+                          <div className="my-9 h-px w-full bg-black/20 dark:bg-white/20" />
+
+                          <p
+                            className="max-w-[600px] text-[15px] leading-7 text-black/55 dark:text-white/50 text-justify"
+                            style={BODY}
+                          >
+                            {service.desc}
+                          </p>
+
+                          {/* TAGS */}
+                          <div className="mt-9 flex flex-wrap gap-x-5 gap-y-3">
+                            {service.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-[9px] uppercase tracking-[0.17em] text-black/45 dark:text-white/40"
+                                style={MONO}
+                              >
+                                / {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* BOTTOM */}
+                      <div className="mt-14 md:mt-0 flex items-center justify-between border-t border-black/10 pt-7 dark:border-white/10">
+                        <a
+                          href="mailto:hello@blankon.id"
+                          className="group inline-flex items-center gap-3"
+                        >
+                          <span
+                            className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black transition-colors duration-300 dark:text-white group-hover:text-[var(--accent-color)] dark:group-hover:text-[var(--accent-color)]"
+                            style={MONO}
+                          >
+                            Konsultasi Gratis
+                          </span>
+
+                          <ArrowUpRight
+                            size={15}
+                            strokeWidth={1.5}
+                            className="text-black transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 dark:text-white group-hover:text-[var(--accent-color)] dark:group-hover:text-[var(--accent-color)]"
+                          />
+                        </a>
+
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={prevService}
+                            aria-label="Previous service"
+                            className="flex h-10 w-10 items-center justify-center border border-black/15 text-black transition-colors hover:border-black hover:bg-black hover:text-white dark:border-white/15 dark:text-white dark:hover:border-white dark:hover:bg-[var(--accent-color)]"
+                          >
+                            <ChevronLeft size={16} strokeWidth={1.5} />
+                          </button>
+
+                          <button
+                            onClick={nextService}
+                            aria-label="Next service"
+                            className="flex h-10 w-10 items-center justify-center border border-black/15 text-black transition-colors hover:border-black hover:bg-black hover:text-white dark:border-white/15 dark:text-white dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
+                          >
+                            <ChevronRight size={16} strokeWidth={1.5} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
 
-          {/* Bottom navigation */}
-          <div className="mt-7 flex items-center justify-between">
-
-            {/* Progress */}
+          {/* PROGRESS */}
+          <div className="mt-6 flex items-center justify-between">
             <div className="flex items-center gap-5">
               <span
-                className="text-[10px] tracking-[0.2em] text-background/40"
+                className="text-[9px] uppercase tracking-[0.22em] text-black/40 dark:text-white/40"
                 style={MONO}
               >
-                SERVICES
+                Layanan Kami
               </span>
 
-              <div className="hidden sm:flex items-center gap-1">
+              <div className="hidden items-center gap-1 sm:flex">
                 {services.map((service, index) => (
                   <button
                     key={service.id}
                     onClick={() => setActiveService(index)}
                     aria-label={`Go to ${service.title}`}
-                    className="group py-2"
+                    className="group flex h-5 items-center"
                   >
                     <span
-                      className={`block h-[2px] transition-all duration-500 ${activeService === index
-                        ? "w-10"
-                        : "w-4 bg-background/15 group-hover:bg-background/40"
+                      className={`block h-[2px] transition-all duration-500 ${activeService === index ? "w-12" : "w-5"
                         }`}
-                      style={
-                        activeService === index
-                          ? { backgroundColor: LIME }
-                          : undefined
-                      }
+                      style={{
+                        backgroundColor:
+                          activeService === index
+                            ? "var(--accent-color)"
+                            : "rgba(0,0,0,0.12)",
+                      }}
                     />
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Current counter */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-baseline gap-2">
               <span
-                className="text-sm font-bold"
+                className="text-sm font-semibold text-black dark:text-white"
                 style={MONO}
               >
                 {String(activeService + 1).padStart(2, "0")}
               </span>
 
-              <span className="text-background/20">—</span>
-
               <span
-                className="text-sm text-background/30"
+                className="text-[10px] text-black/25 dark:text-white/25"
                 style={MONO}
               >
-                {String(services.length).padStart(2, "0")}
+                / {String(services.length).padStart(2, "0")}
               </span>
             </div>
           </div>
         </div>
-
       </div>
+
       <style jsx>{`
         @keyframes serviceContent {
           0% {
             opacity: 0;
-            transform: translateY(18px);
+            transform: translateY(24px);
           }
+
           100% {
             opacity: 1;
             transform: translateY(0);
           }
         }
-      `}
-      </style>
-
+      `}</style>
     </section>
-
-
   );
 }

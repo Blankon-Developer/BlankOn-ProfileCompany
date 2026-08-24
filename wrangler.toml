@@ -1,0 +1,8 @@
+name = "blankon-profile-company"
+compatibility_date = "2024-08-24"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# Jika Anda memiliki environment variables (seperti Token Web3Forms), Anda dapat menambahkannya di bawah ini saat dev lokal:
+# [vars]
+# NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY = "your-key"

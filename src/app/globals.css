@@ -15,6 +15,7 @@
   --animate-bounce: bounce 1s infinite;
 
   @keyframes bounce {
+
     0%,
     20%,
     50%,
@@ -281,5 +282,31 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+}
+
+@keyframes scan {
+
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.08;
+  }
+
+  50% {
+    opacity: 0.18;
+  }
+
+  85% {
+    opacity: 0.08;
+  }
+
+  100% {
+    transform: translateX(310px);
+    opacity: 0;
   }
 }
