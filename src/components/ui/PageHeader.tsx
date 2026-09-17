@@ -21,20 +21,7 @@ function HeaderVisual({
   return (
     <div
       aria-hidden="true"
-      className={`
-        pointer-events-none
-        absolute
-        top-1/2
-        -translate-y-1/2
-        ${reverse ? "right-[-120px] xl:right-[-0px]" : "left-[-120px] xl:left-[-0px]"}
-        hidden lg:block
-        w-[360px]
-        h-[360px]
-        xl:w-[430px]
-        xl:h-[430px]
-        opacity-[0.9]
-        select-none
-      `}
+      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 ${reverse ? "right-[-120px] xl:right-[-0px]" : "left-[-120px] xl:left-[-0px]"} hidden lg:block w-[360px] h-[360px] xl:w-[430px] xl:h-[430px] opacity-[0.9] select-none`}
     >
       <svg
         viewBox="0 0 430 430"
@@ -447,25 +434,15 @@ export function PageHeader({
         >
           {/* Brand */}
           <span
-            className="
-      text-[14px]
-      font-semibold
-      leading-none
-      tracking-[-0.02em]
-      text-[var(--accent-color)]
-    "
+            className="text-[14px] font-semibold leading-none tracking-[-0.02em] text-[var(--accent-color)]"
             style={MONO}
           >
-            BlankOn Tech
+            BlankOn Digital Tech
           </span>
 
           {/* Tagline */}
           <div
-            className="
-      flex items-center
-      justify-center
-      mt-1
-    "
+            className="flex items-center justify-center mt-1"
           >
             <span
               className="

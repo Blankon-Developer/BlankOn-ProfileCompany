@@ -50,7 +50,7 @@ export default function Offers() {
       id="penawaran"
       className="bg-white py-12 dark:bg-black md:py-12"
     >
-      <div className="mx-auto max-w-7xl px-6 md:px-0">
+      <div className="mx-auto max-w-8xl px-6 lg:px-28">
         {/* Header */}
         <div className="mb-16 grid gap-12 md:grid-cols-2">
           <div>
@@ -71,9 +71,7 @@ export default function Offers() {
                 fontWeight: 900,
               }}
             >
-              Kolaborasi
-              <br />
-              tanpa risiko.
+              Kolaborasi tanpa risiko.
             </h2>
           </div>
 
@@ -190,7 +188,7 @@ export default function Offers() {
                   {/* Description */}
                   <p
                     className={cn(
-                      "mt-5 max-w-[46ch]",
+                      "mt-5 max-w-full text-justify",
                       "text-[13px] leading-[1.75] md:text-sm",
                       "transition-colors duration-300",
                       isActive

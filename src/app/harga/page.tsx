@@ -18,7 +18,11 @@ import {
   Brain,
   Cpu,
   Blocks,
+  Video,
+  Verified,
 } from "lucide-react";
+import { IoIosGitMerge } from "react-icons/io";
+import { IoGameControllerOutline } from "react-icons/io5";
 import Link from "next/link";
 
 export const metadata = {
@@ -269,9 +273,9 @@ export default function PricingPage() {
         />
 
         {/* CUSTOMER CATEGORY */}
-        <section className="px-6 md:px-10 pt-12 md:pt-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="max-w-2xl mb-10">
+        <section className="px-6 md:px-28 pt-12 md:py-12">
+          <div className="max-w-8xl mx-auto">
+            <div className="max-w-full mb-10">
               <p
                 className="text-xs uppercase tracking-widest font-semibold mb-3"
                 style={MONO}
@@ -332,9 +336,9 @@ export default function PricingPage() {
             </div>
           </div>
         </section>
-
+<span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         {/* PRICING */}
-        <section className="py-16 md:py-24 px-6 md:px-10">
+        <section className="py-16 md:py-12 px-6 md:px-10">
           <div className="max-w-8xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <p
@@ -348,7 +352,7 @@ export default function PricingPage() {
                 className="text-3xl md:text-5xl font-black mb-4"
                 style={DISPLAY}
               >
-                Pilih tingkat solusi
+                Pilih Tingkat Solusi
               </h2>
 
               <p
@@ -366,11 +370,11 @@ export default function PricingPage() {
                 <div
                   key={tier.id}
                   className={`
-                    relative flex flex-col p-7 rounded-2xl border
+                    relative flex flex-col p-7 border
                     transition-all duration-300 hover:shadow-xl
                     ${tier.popular
-                      ? "border-foreground shadow-lg bg-foreground text-background xl:-translate-y-4"
-                      : "border-border bg-white/50 dark:bg-black/20 hover:border-foreground/50"
+                      ? "border-foreground shadow-lg bg-foreground/70 text-background xl:-translate-y-4"
+                      : "border-border bg-accent/30 dark:bg-accent/40 hover:border-foreground/50"
                     }
                   `}
                 >
@@ -404,7 +408,7 @@ export default function PricingPage() {
 
                   <p
                     className={`text-sm leading-relaxed mb-6 ${tier.popular
-                        ? "text-background/80"
+                        ? "text-background"
                         : "text-muted-foreground"
                       }`}
                     style={BODY}
@@ -414,7 +418,7 @@ export default function PricingPage() {
 
                   <div
                     className={`mb-6 pb-6 border-b ${tier.popular
-                        ? "border-background/20"
+                        ? "border-background"
                         : "border-border/40"
                       }`}
                   >
@@ -532,10 +536,10 @@ export default function PricingPage() {
             </div>
           </div>
         </section>
-
+<span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         {/* SERVICE SPECIALIZATION */}
-        <section className="py-16 md:py-24 px-6 md:px-10 border-t border-border">
-          <div className="max-w-[1400px] mx-auto">
+        <section className="py-16 md:py-12 px-6 md:px-28">
+          <div className="max-w-8xl mx-auto">
             <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-start">
               <div>
                 <p
@@ -563,8 +567,13 @@ export default function PricingPage() {
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-4 gap-4">
                 {[
+                  {
+                    title: "API Management & System Integration",
+                    icon: <IoIosGitMerge size={20} />,
+                    desc: "Desain, fitur, dan integrasi sistem.",
+                  },
                   {
                     title: "Blockchain",
                     icon: <Blocks size={20} />,
@@ -576,17 +585,27 @@ export default function PricingPage() {
                     desc: "Deployment, infrastructure, dan DevOps.",
                   },
                   {
+                    title: "Creative Content & Digital Media",
+                    icon: <Video size={20} />,
+                    desc: "Visual storytelling dan content strategy.",
+                  },
+                  {
                     title: "Data Science",
                     icon: <BarChart3 size={20} />,
                     desc: "Analytics, dashboard, dan predictive model.",
                   },
                   {
-                    title: "IoT",
+                    title: "Game Development",
+                    icon: <IoGameControllerOutline size={20} />,
+                    desc: "Pengembangan game dan aplikasi interaktif.",
+                  },
+                  {
+                    title: "Internet of Things",
                     icon: <Cpu size={20} />,
                     desc: "Sensor, monitoring, tracking, dan automation.",
                   },
                   {
-                    title: "AI / Machine Learning",
+                    title: "Machine Learning / AI",
                     icon: <Brain size={20} />,
                     desc: "AI, LLM, classification, recommendation.",
                   },
@@ -595,10 +614,20 @@ export default function PricingPage() {
                     icon: <Smartphone size={20} />,
                     desc: "Aplikasi iOS dan Android.",
                   },
+                  {
+                    title: "Quality Assurance (QA) / Testing",
+                    icon: <Verified size={20} />,
+                    desc: "Functional, performance, automation testing.",
+                  },
+                  {
+                    title: "Web Development",
+                    icon: <Monitor size={20} />,
+                    desc: "Sistem, portal, dan website bisnis.",
+                  },
                 ].map((service) => (
                   <div
                     key={service.title}
-                    className="flex gap-4 p-5 rounded-xl border border-border bg-white/50 dark:bg-black/20"
+                    className="flex gap-4 p-5 border border-border bg-white/50 dark:bg-black/20"
                   >
                     <div className="flex-shrink-0">
                       {service.icon}
@@ -627,11 +656,11 @@ export default function PricingPage() {
         </section>
 
         {/* CUSTOM PROJECT */}
-        <section className="py-16 md:py-24 px-6 md:px-10">
-          <div className="max-w-[1000px] mx-auto">
-            <div className="rounded-3xl bg-foreground text-background p-8 md:p-12 text-center">
+        <section className="py-16 md:py-12 px-6 md:px-28">
+          <div className="max-w-8xl mx-auto">
+            <div className="bg-accent text-background p-8 md:p-12 text-center">
               <p
-                className="text-xs uppercase tracking-widest font-semibold mb-4 opacity-60"
+                className="text-xs uppercase tracking-widest font-semibold mb-4 opacity-90"
                 style={MONO}
               >
                 Tidak menemukan paket yang sesuai?
@@ -645,7 +674,7 @@ export default function PricingPage() {
               </h2>
 
               <p
-                className="max-w-2xl mx-auto text-background/70 leading-relaxed mb-8"
+                className="max-w-2xl mx-auto text-background/80 leading-relaxed mb-8"
                 style={BODY}
               >
                 Setiap proyek memiliki kebutuhan yang berbeda.
@@ -656,7 +685,7 @@ export default function PricingPage() {
 
               <Link
                 href="/kontak"
-                className="inline-flex items-center gap-2 px-6 py-4 bg-background text-foreground rounded-md font-bold text-sm hover:bg-background/90 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-4 text-foreground bg-white dark:bg-black rounded-md font-bold text-sm hover:bg-background/90 transition-colors"
                 style={DISPLAY}
               >
                 Konsultasi Proyek

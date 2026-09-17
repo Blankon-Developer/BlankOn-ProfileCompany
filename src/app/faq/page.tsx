@@ -17,7 +17,7 @@ export default function FAQPage() {
         <PageHeader 
           tag="Pusat Bantuan (Support)"
           title="Sebelum kita mulai, mungkin Anda ingin tahu beberapa hal."
-          description="Segala hal yang perlu Anda ketahui tentang layanan, proses pengerjaan, garansi, hingga skema biaya di BlankOn Tech."
+          description="Segala hal yang perlu Anda ketahui tentang layanan, proses pengerjaan, garansi, hingga skema biaya di BlankOn Digital Tech."
         />
         <FAQ />
       </main>

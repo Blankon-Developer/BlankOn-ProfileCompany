@@ -7,7 +7,7 @@ import { ChevronDown, Twitter, Linkedin, Globe } from "lucide-react";
 
 const founders = [
   {
-    name: "Galang Arsandy Moverdan P",
+    name: "Galang Arsandy Noverdan P",
     role: "Co-Founder & Tech Lead",
     initials: "GA",
     desc: "Memimpin sisi teknologi dan development, dengan fokus pada bagaimana produk dibangun secara terstruktur, stabil, dan dapat dikembangkan sesuai kebutuhan.",
@@ -29,49 +29,81 @@ const founders = [
   },
 ];
 
-const teamDepartments = [
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const serviceTeams = [
   {
-    id: "web",
-    name: "Web Development",
-    members: [
-      { name: "Amélie Laurent", role: "Frontend Developer", desc: "Membangun antarmuka interaktif dan memastikan pengalaman pengguna yang responsif.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&q=80" },
-      { name: "Nikolas Gibbons", role: "Backend Developer", desc: "Mengelola arsitektur server, basis data, dan performa API aplikasi.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80" },
-      { name: "Zahra Christensen", role: "Fullstack Developer", desc: "Menghubungkan integrasi frontend dan backend untuk solusi digital yang lengkap.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80" },
-      { name: "Marco Kelly", role: "QA Engineer", desc: "Melakukan pengujian ketat untuk memastikan kualitas dan keamanan sistem.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80" },
-    ]
+    id: "api-management-system-integration",
+    name: "API Management & System Integration",
+    desc: "Tim arsitek dan engineer kami membangun fondasi integrasi sistem yang stabil dan aman untuk kebutuhan bisnis Anda.",
   },
   {
-    id: "mobile",
+    id: "blockchain",
+    name: "Blockchain",
+    desc: "Tim spesialis web3 dan smart contract yang siap membantu penerapan teknologi blockchain secara efisien.",
+  },
+  {
+    id: "cloud-computing",
+    name: "Cloud Computing",
+    desc: "Tim DevOps dan Cloud Engineer kami merancang infrastruktur digital yang skalabel dan aman.",
+  },
+  {
+    id: "creative-content-digital-media",
+    name: "Creative Content & Digital Media",
+    desc: "Tim desainer dan content strategist yang menciptakan narasi visual yang kuat dan berdampak.",
+  },
+  {
+    id: "data-science",
+    name: "Data Science",
+    desc: "Tim data scientist dan analis yang membantu mengubah data mentah menjadi keputusan bisnis yang berharga.",
+  },
+  {
+    id: "game-development",
+    name: "Game Development",
+    desc: "Tim desainer dan developer game yang menggabungkan hiburan dan interaksi yang imersif.",
+  },
+  {
+    id: "internet-of-things",
+    name: "Internet of Things",
+    desc: "Tim hardware engineer yang menghubungkan perangkat keras dengan sistem cerdas.",
+  },
+  {
+    id: "machine-learning-ai",
+    name: "Machine Learning / AI",
+    desc: "Tim peneliti dan engineer AI yang melatih model cerdas untuk memecahkan masalah yang kompleks.",
+  },
+  {
+    id: "mobile-development",
     name: "Mobile Development",
-    members: [
-      { name: "Sienna Hewitt", role: "iOS Developer", desc: "Fokus pada pengembangan aplikasi native untuk ekosistem Apple.", image: "https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?w=400&h=400&fit=crop&q=80" },
-      { name: "Lily-Rose Chedjou", role: "Android Developer", desc: "Membangun aplikasi mobile performa tinggi untuk pengguna Android.", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&q=80" },
-      { name: "Zaid Schwartz", role: "Mobile UI Engineer", desc: "Menerjemahkan desain mobile ke dalam interaksi yang presisi.", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&q=80" },
-    ]
+    desc: "Tim developer iOS dan Android yang membangun aplikasi performa tinggi untuk pengguna Anda.",
   },
   {
-    id: "design",
-    name: "UI/UX Design",
-    members: [
-      { name: "Caitlyn King", role: "Product Designer", desc: "Merancang antarmuka produk yang selaras dengan tujuan bisnis perusahaan.", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&q=80" },
-    ]
-  }
+    id: "quality-assurance-qa-testing",
+    name: "Quality Assurance (QA)",
+    desc: "Tim penguji kualitas dan engineer automasi yang memastikan aplikasi berjalan tanpa celah.",
+  },
+  {
+    id: "web-development",
+    name: "Web Development",
+    desc: "Tim frontend dan backend engineer yang mengembangkan aplikasi web handal dan responsif.",
+  },
 ];
 
 export default function Founders() {
   const [openDepts, setOpenDepts] = useState<Record<string, boolean>>({});
-  
+
   const toggleDept = (id: string) => {
     setOpenDepts(prev => ({
       ...prev,
       [id]: !prev[id],
     }));
   };
-  
+
 
   return (
-    <section className="px-5 py-20 md:px-8 md:py-28 lg:py-32">
-      <div className="mx-auto max-w-6xl">
+    <section className="px-5 py-20 md:px-8 md:py-28 lg:py-12">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mx-auto mb-12 max-w-4xl text-center md:mb-14">
           {/* Eyebrow */}
@@ -83,7 +115,7 @@ export default function Founders() {
                 color: LIME,
               }}
             >
-              TIM INTI
+              BACKGROUND OF BLANKON DIGITAL TECH
             </span>
           </div>
 
@@ -92,7 +124,7 @@ export default function Founders() {
             className="mb-5 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-[52px]"
             style={DISPLAY}
           >
-            Orang-orang di balik Blankon Tech.
+            Founder's of Blankon Digital Tech.
           </h2>
 
           {/* Description */}
@@ -100,7 +132,7 @@ export default function Founders() {
             className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground md:text-lg"
             style={BODY}
           >
-            Blankon Tech dibangun oleh tim dengan latar belakang teknologi,
+            Blankon Digital Tech dibangun oleh tim dengan latar belakang teknologi,
             desain, dan product management. Peran yang berbeda ini memungkinkan
             kami melihat sebuah proyek tidak hanya dari sisi teknis, tetapi juga
             dari sisi pengguna dan kebutuhan bisnis.
@@ -130,7 +162,7 @@ export default function Founders() {
         </div>
 
         {/* Team Grid (Founders) */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 mb-24">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 mb-12">
           {founders.map((founder) => (
             <article
               key={founder.name}
@@ -214,27 +246,26 @@ export default function Founders() {
         </div>
 
         {/* Executive Team */}
-        <section className="border-t border-border pt-20 md:pt-28">
+        <section className="border-t border-border pt-20 md:pt-12">
           {/* Intro */}
-          <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end mb-16 md:mb-24">
+          <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end mb-16 md:mb-0">
             <div>
               <span
                 className="mb-5 block text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground"
                 style={BODY}
               >
-                BlankOn Team
+                BlankOn Digital Tech | Team
               </span>
               <h3
-                className="max-w-3xl text-[clamp(2.75rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-[-0.055em] text-foreground"
+                className="max-w-full text-[clamp(2.75rem,6vw,2rem)] font-medium leading-[0.92] tracking-[-0.055em] text-foreground"
                 style={DISPLAY}
               >
-                Orang-orang yang
-                <br />
-                menggerakkan ide.
+                Beberapa orang dibalik layar <br />
+                dari BlankOn Digital Tech.
               </h3>
             </div>
             <p
-              className="max-w-md text-sm leading-7 text-muted-foreground lg:justify-self-end pb-2"
+              className="max-w-full text-sm leading-7 text-muted-foreground lg:justify-self-end pb-2 text-justify"
               style={BODY}
             >
               Dibangun dari berbagai disiplin, pengalaman, dan perspektif
@@ -245,13 +276,13 @@ export default function Founders() {
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
             {/* Mobile Accordion View */}
             <div className="w-full border-t border-border lg:hidden mt-10">
-              {teamDepartments.map((dept, index) => {
-                const isOpen = !!openDepts[dept.id];
+              {serviceTeams.map((team, index) => {
+                const isOpen = !!openDepts[team.id];
                 return (
-                  <div key={dept.id} className="border-b border-border">
+                  <div key={team.id} className="border-b border-border">
                     <button
                       type="button"
-                      onClick={() => toggleDept(dept.id)}
+                      onClick={() => toggleDept(team.id)}
                       aria-expanded={isOpen}
                       className="group relative flex w-full items-center gap-4 py-6 text-left focus-visible:outline-none"
                     >
@@ -260,42 +291,28 @@ export default function Founders() {
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <div className="min-w-0 flex-1">
-                        <h4 className={cn("text-xl font-medium tracking-tight transition-transform duration-300", isOpen && "translate-x-1")} style={DISPLAY}>{dept.name}</h4>
+                        <h4 className={cn("text-xl font-medium tracking-tight transition-transform duration-300", isOpen && "translate-x-1")} style={DISPLAY}>{team.name}</h4>
                       </div>
                       <span className="relative flex h-8 w-8 shrink-0 items-center justify-center">
                         <span className="absolute h-px w-3 bg-foreground transition-transform duration-300" />
                         <span className={cn("absolute h-px w-3 bg-foreground transition-transform duration-300", isOpen ? "rotate-0" : "rotate-90")} />
                       </span>
                     </button>
-                    
+
                     <div className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
                       <div className="overflow-hidden">
                         <div className="pb-10 pt-2 pl-2">
-                           <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 gap-x-6">
-                              {dept.members.map((member, mIndex) => (
-                                <article key={member.name} className="group/member flex flex-col">
-                                  <div className="relative mb-5 aspect-[4/5] overflow-hidden bg-muted">
-                                    <Image src={member.image} alt={member.name} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover grayscale transition-all duration-700 ease-out group-hover/member:scale-[1.025] group-hover/member:grayscale-0" />
-                                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/30 to-transparent p-4">
-                                      <span className="text-[10px] text-white/90 font-medium" style={MONO}>{String(mIndex + 1).padStart(2, "0")}</span>
-                                    </div>
-                                  </div>
-                                  <div className="flex flex-col flex-1">
-                                    <div className="flex items-start justify-between gap-4">
-                                      <div>
-                                        <h5 className="text-lg font-medium tracking-tight" style={DISPLAY}>{member.name}</h5>
-                                        <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground" style={BODY}>{member.role}</p>
-                                      </div>
-                                      <div className="flex gap-2 pt-1 shrink-0">
-                                        <a href="#" className="text-muted-foreground hover:text-foreground"><Linkedin size={14} strokeWidth={1.5}/></a>
-                                        <a href="#" className="text-muted-foreground hover:text-foreground"><Globe size={14} strokeWidth={1.5}/></a>
-                                      </div>
-                                    </div>
-                                    <p className="mt-4 text-sm leading-6 text-muted-foreground flex-1" style={BODY}>{member.desc}</p>
-                                  </div>
-                                </article>
-                              ))}
-                           </div>
+                          <div className="flex flex-col gap-6">
+                            <p className="text-sm leading-6 text-muted-foreground" style={BODY}>{team.desc}</p>
+                            <Link
+                              href={`/team/${team.id}`}
+                              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-muted-foreground w-fit"
+                              style={MONO}
+                            >
+                              Lihat Tim {team.name}
+                              <ArrowUpRight className="h-4 w-4" />
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -305,22 +322,22 @@ export default function Founders() {
             </div>
 
             {/* Desktop Split View */}
-            <div className="w-full mt-20 hidden lg:flex items-start">
+            <div className="w-full mt-12 hidden lg:flex items-start">
               {/* Left */}
-              <div 
+              <div
                 className={cn(
                   "border-t border-border relative max-w-8xl mx-auto transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)]",
-                  Object.values(openDepts).some(Boolean) ? "w-[380px] shrink-0" : "w-[1280px] mx-auto shrink-0"
+                  Object.values(openDepts).some(Boolean) ? "w-[450px] shrink-0" : "w-[1280px] mx-auto shrink-0"
                 )}
               >
                 <div className="sticky top-32 w-full">
-                  {teamDepartments.map((dept, index) => {
-                    const isOpen = !!openDepts[dept.id];
+                  {serviceTeams.map((team, index) => {
+                    const isOpen = !!openDepts[team.id];
                     return (
                       <button
-                        key={dept.id}
+                        key={team.id}
                         type="button"
-                        onClick={() => toggleDept(dept.id)}
+                        onClick={() => toggleDept(team.id)}
                         aria-expanded={isOpen}
                         className={cn("group relative flex w-full items-start gap-4 border-b border-border py-6 text-left transition-colors duration-200 cursor-pointer", isOpen ? "bg-muted/30" : "hover:bg-muted/10")}
                       >
@@ -331,10 +348,10 @@ export default function Founders() {
                         <div className="min-w-0 flex-1 pr-6">
                           <div className="flex items-baseline justify-between gap-3">
                             <h4 className={cn("text-lg font-medium tracking-tight transition-transform duration-300", isOpen ? "translate-x-1 text-foreground" : "text-muted-foreground group-hover:text-foreground")} style={DISPLAY}>
-                              {dept.name}
+                              {team.name}
                             </h4>
                             <span className="text-[10px] tabular-nums text-muted-foreground" style={MONO}>
-                              {String(dept.members.length).padStart(1, "0")} People
+                              Lihat Detail ↗
                             </span>
                           </div>
                         </div>
@@ -345,58 +362,38 @@ export default function Founders() {
               </div>
 
               {/* Right */}
-              <div 
+              <div
                 className={cn(
-                  "border-border min-h-[600px] transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] overflow-hidden",
-                  Object.values(openDepts).some(Boolean) ? "flex-1 border-l opacity-100 pl-4 lg:pl-10" : "w-0 opacity-0 border-l-0 pl-0 flex-none"
+                  "border-border min-h-[250px] transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] overflow-hidden",
+                  Object.values(openDepts).some(Boolean) ? "flex-1 opacity-100 pl-4 lg:pl-10" : "w-0 opacity-0 border-l-0 pl-0 flex-none"
                 )}
               >
-                <div className="min-w-[650px] w-full">
-                  {teamDepartments.map((dept) => {
-                  const isOpen = !!openDepts[dept.id];
-                  return (
-                    <div key={dept.id} className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
-                      <div className="overflow-hidden">
-                        <div className="px-10 pb-16">
-                          <div className="flex items-end justify-between border-b border-border py-6 mb-10">
-                            <div>
-                              <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Team</p>
-                              <h4 className="text-2xl font-medium tracking-tight" style={DISPLAY}>{dept.name}</h4>
+                <div className="min-w-[400px] w-full sticky top-32">
+                  {serviceTeams.map((team) => {
+                    const isOpen = !!openDepts[team.id];
+                    return (
+                      <div key={team.id} className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
+                        <div className="overflow-hidden">
+                          <div className="px-10 py-6 h-full flex flex-col justify-center">
+                            <div className="border-b border-border pb-8 mb-8">
+                              <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Team Overview</p>
+                              <h4 className="text-3xl font-medium tracking-tight mb-4" style={DISPLAY}>{team.name}</h4>
+                              <p className="text-base leading-7 text-muted-foreground" style={BODY}>{team.desc}</p>
                             </div>
-                            <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground" style={MONO}>
-                              {String(dept.members.length).padStart(2, "0")} People
-                            </span>
-                          </div>
-                          <div className="grid grid-cols-2 gap-x-10 gap-y-16">
-                            {dept.members.map((member, index) => (
-                              <article key={member.name} className="group/member flex flex-col h-full">
-                                <div className="relative mb-6 aspect-[4/5] overflow-hidden bg-muted">
-                                  <Image src={member.image} alt={member.name} fill sizes="33vw" className="object-cover grayscale transition-all duration-700 ease-out group-hover/member:scale-[1.025] group-hover/member:grayscale-0" />
-                                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/40 to-transparent p-5">
-                                    <span className="text-[10px] font-medium text-white/90" style={MONO}>{String(index + 1).padStart(2, "0")}</span>
-                                  </div>
-                                </div>
-                                <div className="flex flex-col flex-1">
-                                  <div className="flex items-start justify-between gap-4">
-                                    <div>
-                                      <h5 className="text-lg font-medium tracking-[-0.02em]" style={DISPLAY}>{member.name}</h5>
-                                      <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground" style={BODY}>{member.role}</p>
-                                    </div>
-                                    <div className="flex gap-2 pt-1 shrink-0">
-                                      <a href="#" className="text-muted-foreground transition-colors hover:text-foreground"><Linkedin size={14} strokeWidth={1.5} /></a>
-                                      <a href="#" className="text-muted-foreground transition-colors hover:text-foreground"><Globe size={14} strokeWidth={1.5} /></a>
-                                    </div>
-                                  </div>
-                                  <p className="mt-4 text-sm leading-6 text-muted-foreground flex-1" style={BODY}>{member.desc}</p>
-                                </div>
-                              </article>
-                            ))}
+
+                            <Link
+                              href={`/team/${team.id}`}
+                              className="inline-flex items-center justify-center gap-3 bg-[var(--accent-color)] text-background px-8 py-4 text-sm font-semibold transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg w-fit"
+                              style={DISPLAY}
+                            >
+                              Jelajahi Tim {team.name}
+                              <ArrowUpRight className="h-5 w-5" />
+                            </Link>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
                 </div>
               </div>
             </div>

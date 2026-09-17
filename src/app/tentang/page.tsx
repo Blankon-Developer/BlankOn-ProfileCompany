@@ -7,7 +7,7 @@ import VisionMission from "@/components/sections/about/VisionMission";
 import Founders from "@/components/sections/about/Founders";
 import USP from "@/components/sections/about/USP";
 import SocialProof from "@/components/sections/about/SocialProof";
-import AboutCTA from "@/components/sections/about/AboutCTA";
+import CTA from "@/components/sections/CTA";
 
 export const metadata = {
   title: "Tentang Kami | BlankOn-Tech",
@@ -22,12 +22,14 @@ export default function AboutPage() {
         <AboutHero />
         <MarqueeBand />
         <BrandStory />
+        <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         <USP />
+        <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         <Founders />
         <VisionMission />
         <SocialProof />
       </main>
-      <AboutCTA />
+      <CTA />
       <Footer />
     </div>
   );

@@ -12,14 +12,30 @@ import {
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
+  Video,
+  Verified,
+  Gamepad2,
 } from "lucide-react";
+import { IoIosGitMerge } from "react-icons/io"
 import Image from "next/image";
+import Link from "next/link";
 
 import { DISPLAY, BODY, MONO } from "@/lib/utils";
 
 const services = [
   {
     id: "01",
+    title: "API Management & System Integration",
+    eyebrow: "API Management & System Integration",
+    headline: "Solusi API management dan system integration yang dirancang untuk kebutuhan bisnis Anda.",
+    desc: "Membangun platform API management dan system integration yang disesuaikan dengan kebutuhan bisnis Anda, mulai dari desain, fitur, hingga integrasi dengan sistem yang sudah ada.",
+    tags: ["API", "System Integration", "Web Development", "Microservices"],
+    icon: <IoIosGitMerge size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "02",
     title: "Blockchain",
     eyebrow: "Blockchain",
     headline: "Solusi blockchain untuk kebutuhan yang memang membutuhkannya.",
@@ -30,7 +46,7 @@ const services = [
       "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "02",
+    id: "03",
     title: "Cloud Computing",
     eyebrow: "Cloud Computing",
     headline: "Infrastruktur digital yang siap mendukung kebutuhan produk.",
@@ -41,7 +57,18 @@ const services = [
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "03",
+    id: "04",
+    title: "Creative Content & Digital Media",
+    eyebrow: "Creative Content & Digital Media",
+    headline: "Transformasi konten menjadi aset bisnis yang strategis dan terukur.",
+    desc: "Kami menciptakan narasi visual dan digital yang tidak hanya estetis, tapi juga dibangun untuk mencapai tujuan bisnis — mulai dari peningkatan engagement, brand authority, hingga konversi.",
+    tags: ["Visual Storytelling", "Content Strategy", "UI/UX Design", "Digital Campaigns"],
+    icon: <Video size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "05",
     title: "Data Science",
     eyebrow: "Data Science",
     headline: "Mengubah data menjadi informasi yang dapat digunakan.",
@@ -52,7 +79,18 @@ const services = [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "04",
+    id: "06",
+    title: "Game Development",
+    eyebrow: "Game Development",
+    headline: "Pengalaman interaktif yang menggabungkan hiburan dan teknologi.",
+    desc: "Membangun dan mengembangkan permainan video untuk berbagai platform. Dari ide awal, desain mekanik permainan, hingga implementasi grafis dan pemrograman interaktif.",
+    tags: ["Unity", "Unreal Engine", "2D/3D", "Interactive"],
+    icon: <Gamepad2 size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "07",
     title: "Internet of Things",
     eyebrow: "Internet of Things",
     headline: "Menghubungkan perangkat, data, dan sistem dalam satu alur.",
@@ -63,10 +101,10 @@ const services = [
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "05",
-    title: "Machine Learning / AI",
-    eyebrow: "Machine Learning / AI",
-    headline: "AI yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
+    id: "08",
+    title: "Machine Learning / Artificial Intelligence",
+    eyebrow: "Machine Learning / Artificial Intelligence",
+    headline: "Machine Learning / Artificial Intelligence yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
     desc: "Mengembangkan solusi berbasis machine learning dan AI untuk kebutuhan seperti automasi proses, klasifikasi data, pencarian informasi, rekomendasi, hingga pengolahan konten. Pendekatan dimulai dari permasalahan yang ingin diselesaikan, kemudian menentukan penerapan AI yang sesuai.",
     tags: ["AI", "Machine Learning", "Automation", "LLM"],
     icon: <Brain size={18} strokeWidth={1.5} />,
@@ -74,7 +112,7 @@ const services = [
       "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "06",
+    id: "09",
     title: "Mobile Development",
     eyebrow: "Mobile Development",
     headline: "Aplikasi mobile yang dirancang mengikuti kebutuhan pengguna.",
@@ -85,7 +123,18 @@ const services = [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1600&q=85",
   },
   {
-    id: "07",
+    id: "10",
+    title: "Quality Assurance (QA) / Testing",
+    eyebrow: "Quality Assurance (QA) / Testing",
+    headline: "Quality Assurance (QA) / Testing sebagai bagian dari pengembangan produk.",
+    desc: "Quality Assurance (QA) & Testing. Memastikan setiap produk digital yang kami bangun berjalan optimal, konsisten, dan bebas dari masalah melalui proses testing yang terstruktur, validasi fungsionalitas, hingga implementasi automated testing untuk efisiensi jangka panjang.",
+    tags: ["Quality Assurance", "QA", "Automated Testing", "Testing"],
+    icon: <Verified size={18} strokeWidth={1.5} />,
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=85",
+  },
+  {
+    id: "11",
     title: "Web Development",
     eyebrow: "Web Development",
     headline: "Website dan aplikasi web yang dibangun untuk kebutuhan bisnis nyata.",
@@ -124,13 +173,13 @@ export default function Services() {
   return (
     <section
       id="layanan"
-      className="relative overflow-hidden bg-white py-24 dark:bg-black md:py-24"
+      className="relative overflow-hidden bg-white py-24 dark:bg-black md:py-12"
     >
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+      <div className="mx-auto max-w-8xl px-6 md:px-28">
 
         {/* SECTION INTRO */}
         <header className="mb-16 grid gap-10 md:mb-24 md:grid-cols-[1fr_auto] md:items-end">
-          <div className="max-w-3xl">
+          <div className="max-w-7xl">
             <div className="mb-7 flex items-center gap-3">
               <span
                 className="h-[5px] w-[5px] rounded-full"
@@ -141,12 +190,12 @@ export default function Services() {
                 className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/50 dark:text-white/50"
                 style={MONO}
               >
-                What we do
+                Apa yang kami kerjakan
               </span>
             </div>
 
             <h2
-              className="max-w-3xl text-[2.8rem] font-semibold leading-[0.98] tracking-[-0.055em] text-black dark:text-white md:text-6xl lg:text-[5.2rem]"
+              className="max-w-full text-[2.8rem] font-semibold leading-[0.98] tracking-[-0.055em] text-black dark:text-white md:text-6xl lg:text-[4rem]"
               style={DISPLAY}
             >
               Dari kebutuhan bisnis menjadi produk digital yang nyata.
@@ -226,7 +275,7 @@ export default function Services() {
                           className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/80"
                           style={MONO}
                         >
-                          BlankOn Tech
+                          BlankOn Digital Tech
                         </span>
                       </div>
 
@@ -277,7 +326,7 @@ export default function Services() {
                           className="animate-[serviceContent_800ms_cubic-bezier(0.22,1,0.36,1)]"
                         >
                           <h3
-                            className="max-w-[700px] text-[2.5rem] font-semibold leading-[1.3] tracking-[-0.045em] text-black dark:text-white md:text-[2rem] text-balence"
+                            className="max-w-[1080px] text-[2.5rem] font-semibold leading-[1.3] tracking-[-0.045em] text-black dark:text-white md:text-[2rem] text-balence"
                             style={DISPLAY}
                           >
                             {service.headline}
@@ -286,7 +335,7 @@ export default function Services() {
                           <div className="my-9 h-px w-full bg-black/20 dark:bg-white/20" />
 
                           <p
-                            className="max-w-[600px] text-[15px] leading-7 text-black/55 dark:text-white/50 text-justify"
+                            className="max-w-full text-[15px] leading-7 text-black/55 dark:text-white/50 text-justify"
                             style={BODY}
                           >
                             {service.desc}
@@ -309,8 +358,8 @@ export default function Services() {
 
                       {/* BOTTOM */}
                       <div className="mt-14 md:mt-0 flex items-center justify-between border-t border-black/10 pt-7 dark:border-white/10">
-                        <a
-                          href="mailto:hello@blankon.id"
+                        <Link
+                          href="/kontak"
                           className="group inline-flex items-center gap-3"
                         >
                           <span
@@ -325,7 +374,7 @@ export default function Services() {
                             strokeWidth={1.5}
                             className="text-black transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 dark:text-white group-hover:text-[var(--accent-color)] dark:group-hover:text-[var(--accent-color)]"
                           />
-                        </a>
+                        </Link>
 
                         <div className="flex items-center gap-2">
                           <button

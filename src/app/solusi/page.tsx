@@ -22,9 +22,10 @@ export default function SolusiPage() {
           description="Dari startup tahap awal yang membutuhkan kelincahan hingga enterprise yang menuntut skalabilitas tingkat tinggi, kami memiliki solusi yang tepat untuk menunjang pertumbuhan Anda."
         />
         <Problem />
+        <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         <WhoWeWorkWith />
         {/* separate the sections with lime color */}
-        <div className="border-t border-lime-500" />
+        <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         <Testimonials />
       </main>
       <CTA />

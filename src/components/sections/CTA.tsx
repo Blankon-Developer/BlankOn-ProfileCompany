@@ -1,7 +1,9 @@
 "use client";
 
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { DISPLAY, BODY, MONO, LIME, YELLOW, BLACK } from "@/lib/utils";
+import Link from "next/link";
 
 export default function CTA() {
   return (
@@ -15,7 +17,7 @@ export default function CTA() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-0 relative z-10">
+      <div className="max-w-8xl mx-auto px-6 md:px-28 relative z-10">
         <div className="grid md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7">
             <div className="inline-flex items-center gap-2 mb-6 w-fit">
@@ -30,10 +32,11 @@ export default function CTA() {
               style={DISPLAY}
             >
               Punya kebutuhan digital?
-              <br />Mari bicarakan sebelum memutuskan apa yang harus dibangun.
+              <br />
+              <span className="text-3xl md:text-2xl font-black leading-[1.1] tracking-tight mb-6 text-balance opacity-60" style={DISPLAY}>Mari bicarakan sebelum memutuskan apa yang harus dibangun.</span>
             </h2>
             <p
-              className="opacity-60 text-md leading-relaxed max-w-full md:max-lg text-justify"
+              className="opacity-60 text-md leading-relaxed max-w-full md:max-w-full text-justify"
               style={BODY}
             >
               Ceritakan bisnis Anda, masalah yang sedang dihadapi, atau produk yang ingin Anda bangun. Tidak perlu datang dengan requirement yang sempurna. Kami akan membantu memahami kebutuhan tersebut dan menentukan langkah berikutnya.
@@ -41,8 +44,8 @@ export default function CTA() {
           </div>
 
           <div className="md:col-span-4 md:col-start-9 flex flex-col gap-4">
-            <a
-              href="mailto:hello@blankon.id"
+            <Link
+              href="/kontak"
               className="inline-flex items-center justify-between gap-4 px-7 py-4 font-bold text-sm group transition-opacity hover:opacity-90 cursor-pointer"
               style={{ ...DISPLAY, backgroundColor: "var(--accent-color)" }}
             >
@@ -51,15 +54,15 @@ export default function CTA() {
                 size={16}
                 className="group-hover:translate-x-3 transition-transform text-white dark:text-black"
               />
-            </a>
+            </Link>
             <a
               href="https://wa.me/6281234567890"
               className="inline-flex items-center justify-between gap-4 border border-transparent hover:border-[var(--accent-color)] px-7 py-4 font-bold text-sm group transition-all"
               style={DISPLAY}
             >
               <span>Chat via WhatsApp</span>
-              <MessageCircle
-                size={16}
+              <FaWhatsapp
+                size={24}
                 className="opacity-70 group-hover:opacity-100 transition-all"
               />
             </a>

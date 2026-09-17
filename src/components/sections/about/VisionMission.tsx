@@ -4,20 +4,20 @@ import { cn, DISPLAY, BODY, MONO, LIME, DARK } from "@/lib/utils";
 
 export default function VisionMission() {
   return (
-    <section className="py-20 md:py-32 bg-foreground text-background">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+    <section className="py-20 md:py-32 bg-black/5 dark:bg-white/10">
+      <div className="max-w-8xl mx-auto px-6 md:px-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           
           {/* Visi */}
           <div className="flex flex-col gap-6">
             <div className="inline-flex items-center gap-2 w-fit">
-              <span className="w-2 h-2 rounded-none inline-block" style={{ backgroundColor: LIME }} />
+              <span className="w-2 h-2 rounded-none inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
               <span className="text-[11px] opacity-60 uppercase tracking-widest" style={MONO}>
                 Visi
               </span>
             </div>
             <h3 className="text-4xl md:text-5xl font-bold leading-tight" style={DISPLAY}>
-              Menjadi pionir solusi digital yang <span style={{ color: LIME }}>mendefinisikan ulang</span> standar industri.
+              Menjadi pionir solusi digital yang <span style={{ color: "var(--accent-color)" }}>mendefinisikan ulang</span> standar industri.
             </h3>
             <p className="opacity-70 text-lg leading-relaxed mt-4" style={BODY}>
               Kami membayangkan dunia di mana teknologi dapat diakses, dinikmati, dan memberdayakan semua lapisan bisnis tanpa batasan kompleksitas teknis.
@@ -27,7 +27,7 @@ export default function VisionMission() {
           {/* Misi */}
           <div className="flex flex-col gap-6">
             <div className="inline-flex items-center gap-2 w-fit">
-              <span className="w-2 h-2 rounded-none inline-block" style={{ backgroundColor: LIME }} />
+              <span className="w-2 h-2 rounded-none inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
               <span className="text-[11px] opacity-60 uppercase tracking-widest" style={MONO}>
                 Misi
               </span>

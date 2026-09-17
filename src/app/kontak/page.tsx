@@ -3,131 +3,146 @@ import Footer from "@/components/sections/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BODY, DISPLAY, MONO } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
+import ContactForm from "./ContactForm";
 
 export const metadata = {
-  title: "Hubungi Kami | Baracode Tech Solution",
+  title: "Hubungi Kami | BlankOn Digital Tech",
   description: "Mari diskusikan kebutuhan teknologi Anda bersama tim ahli kami.",
 };
-
+const contactDetails = [
+  {
+    icon: Mail,
+    label: "Email Resmi Kami",
+    value: "blankondev@hotmail.com",
+  },
+  {
+    icon: Phone,
+    label: "No. Telepon / WhatsApp",
+    value: "+62 812-3456-7890",
+  },
+  {
+    icon: MapPin,
+    label: "Alamat",
+    value:
+      "Jl. Ringin Tirto No. 42, Purwokerto Utara, Banyumas, Jawa Tengah 53121",
+  },
+];
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black/50">
       <Navbar />
       <main>
-        <PageHeader 
+        <PageHeader
           tag="Hubungi Kami"
           title="Mari Berkolaborasi"
           description="Punya ide besar yang belum tahu harus mulai dari mana? Atau sistem perusahaan yang butuh peremajaan? Tim ahli kami siap membantu Anda."
         />
 
-        <section className="py-12 md:py-24 px-6 md:px-0 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            {/* Contact Info */}
-            <div className="flex flex-col gap-12">
-              <div>
-                <h2 className="text-3xl font-black mb-6" style={DISPLAY}>Informasi Kontak</h2>
-                <p className="text-muted-foreground text-lg mb-8" style={BODY}>
-                  Konsultasi awal dengan tim kami 100% gratis. Kami akan dengan senang hati mendengarkan kebutuhan dan tantangan bisnis Anda.
+        {/* Contact */}
+        <section>
+          <div className="mx-auto grid max-w-8xl px-6 lg:px-28 grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] pt-0 pb-12">
+            {/* Information */}
+            <aside className="border-b border-border px-6 py-14 md:px-8 lg:border-b-0 lg:border-r lg:py-6">
+              <div className="max-w-full">
+                <p
+                  className="mb-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                  style={MONO}
+                >
+                  Informasi Kontak Kami
                 </p>
-                
-                <div className="flex flex-col gap-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-muted rounded-full">
-                      <Mail className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg" style={DISPLAY}>Email</h3>
-                      <p className="text-muted-foreground mt-1" style={BODY}>hello@baracode.id</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-muted rounded-full">
-                      <Phone className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg" style={DISPLAY}>Telepon / WhatsApp</h3>
-                      <p className="text-muted-foreground mt-1" style={BODY}>+62 812-3456-7890</p>
-                    </div>
-                  </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-muted rounded-full">
-                      <MapPin className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg" style={DISPLAY}>Alamat Kantor</h3>
-                      <p className="text-muted-foreground mt-1 leading-relaxed max-w-xs" style={BODY}>
-                        Jl. Ringin Tirto No. 42, Purwokerto Utara, Banyumas, Jawa Tengah 53121
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <div className="space-y-9">
+                  {contactDetails.map((item) => {
+                    const Icon = item.icon;
 
-            {/* Contact Form */}
-            <div className="bg-white/50 dark:bg-black/20 border border-border p-8 md:p-10 rounded-xl">
-              <h3 className="text-2xl font-black mb-6" style={DISPLAY}>Kirim Pesan</h3>
-              <form className="flex flex-col gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold" style={MONO}>Nama Lengkap</label>
-                  <input 
-                    type="text" 
-                    placeholder="John Doe"
-                    className="px-4 py-3 bg-background border border-border focus:border-foreground outline-none transition-colors rounded-md"
-                    style={BODY}
-                  />
-                </div>
-                
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold" style={MONO}>Alamat Email</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@perusahaan.com"
-                    className="px-4 py-3 bg-background border border-border focus:border-foreground outline-none transition-colors rounded-md"
-                    style={BODY}
-                  />
+                    return (
+                      <div key={item.label} className="flex gap-4">
+                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+
+                        <div className="w-full">
+                          <p
+                            className="mb-1 text-sm font-semibold"
+                            style={DISPLAY}
+                          >
+                            {item.label}
+                          </p>
+
+                          <p
+                            className="text-sm leading-6 text-muted-foreground text-justify"
+                            style={BODY}
+                          >
+                            {item.value}
+                          </p>
+
+                          {item.label === "Alamat" && (
+                            <div className="mt-6 w-full h-[320px] rounded-lg overflow-hidden border border-border opacity-90 hover:opacity-100 transition-opacity">
+                              <iframe
+                                src="https://maps.google.com/maps?q=Jl.%20Ringin%20Tirto%20No.%2042,%20Purwokerto%20Utara,%20Banyumas,%20Jawa%20Tengah%2053121&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen={false}
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Google Maps - Alamat BlankOn Digital Tech"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold" style={MONO}>Topik</label>
-                  <select 
-                    className="px-4 py-3 bg-background border border-border focus:border-foreground outline-none transition-colors rounded-md appearance-none"
+                <div className="mt-16 border-t border-border pt-6">
+                  <p
+                    className="text-sm leading-6 text-muted-foreground"
                     style={BODY}
                   >
-                    <option>Konsultasi Proyek Baru</option>
-                    <option>Maintenance Sistem Lama</option>
-                    <option>Partnership</option>
-                    <option>Lainnya</option>
-                  </select>
+                    Kami biasanya merespons dalam satu hari kerja.
+                  </p>
+                </div>
+              </div>
+            </aside>
+
+            {/* Form */}
+            <div className="px-6 py-14 md:px-8 lg:px-16 lg:py-2">
+              <div className="max-w-full">
+                <div className="mb-10">
+                  <p
+                    className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                    style={MONO}
+                  >
+                    Mulai Percakapan Di Sini
+                  </p>
+
+                  <h2
+                    className="text-3xl font-black tracking-tight md:text-4xl"
+                    style={DISPLAY}
+                  >
+                    Ceritakan kebutuhan Anda.
+                  </h2>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold" style={MONO}>Pesan</label>
-                  <textarea 
-                    rows={5}
-                    placeholder="Ceritakan sedikit tentang proyek atau tantangan Anda..."
-                    className="px-4 py-3 bg-background border border-border focus:border-foreground outline-none transition-colors rounded-md resize-none"
-                    style={BODY}
-                  />
-                </div>
-
-                <button 
-                  type="button"
-                  className="mt-4 px-8 py-4 bg-foreground text-background font-bold hover:opacity-90 transition-opacity rounded-md"
-                  style={DISPLAY}
-                >
-                  Kirim Pesan
-                </button>
-              </form>
+                <ContactForm />
+                  </div>
+              </div>
             </div>
-
-          </div>
         </section>
       </main>
-      <Footer />
+      <div className="relative w-full">
+        <div
+          className="absolute hidden md:block top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] max-w-7xl h-[100px] pointer-events-none z-0"
+          style={{
+            background: `radial-gradient(ellipse at center, var(--accent-color) 0%, transparent 68%)`,
+            filter: "blur(5px)",
+            opacity: 0.35,
+          }}
+        />
+        <div className="relative z-10">
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 }

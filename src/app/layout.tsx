@@ -4,8 +4,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.blankon.tech"),
   title: {
-    default: "BlankOn Tech | We Together, Deploy The Future",
-    template: "%s | BlankOn Tech",
+    default: "BlankOn Digital Tech | We Together, Deploy The Future",
+    template: "%s | BlankOn Digital Tech",
   },
   description:
     "Kami membangun solusi website, aplikasi mobile, AI, dan sistem terintegrasi dari skala startup hingga enterprise dengan pendekatan bisnis, keamanan, dan skalabilitas tinggi.",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     "Enterprise Software",
     "BlankOn",
   ],
-  authors: [{ name: "BlankOn Tech Team" }],
-  creator: "BlankOn Tech",
-  publisher: "BlankOn Tech",
+  authors: [{ name: "BlankOn Digital Tech Team" }],
+  creator: "BlankOn Digital Tech",
+  publisher: "BlankOn Digital Tech",
   formatDetection: {
     email: false,
     address: false,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "BlankOn Tech | Inovasi Digital Enterprise",
+    title: "BlankOn Digital Tech | Inovasi Digital Enterprise",
     description:
       "Mitra teknologi Anda untuk transformasi digital. Kami merancang arsitektur sistem berskala besar yang aman, andal, dan inovatif.",
     url: "https://www.blankon.tech",

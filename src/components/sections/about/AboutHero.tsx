@@ -4,11 +4,11 @@ import { cn, DISPLAY, BODY, MONO, LIME } from "@/lib/utils";
 
 export default function AboutHero() {
   return (
-    <section className="pt-[140px] md:pt-[180px] pb-12 md:pb-20 px-6 md:px-10 max-w-6xl mx-auto">
-      <div className="flex flex-col gap-6 max-w-5xl">
+    <section className="pt-[140px] md:pt-[180px] pb-12 md:pb-20 px-6 md:px-28 max-w-8xl mx-auto">
+      <div className="flex flex-col gap-6">
         {/* Tag */}
         <div
-          className="inline-flex items-center gap-2 mb-4 w-fit opacity-0 animate-fade-up"
+          className="inline-flex items-center gap-2 mb-4 w-fit opacity-0 animate-fade-up justify-end"
           style={{ animationDelay: "100ms" }}
         >
           <span
@@ -16,15 +16,15 @@ export default function AboutHero() {
             style={{ backgroundColor: "var(--accent-color)" }}
           />
           <span
-            className="text-[11px] text-muted-foreground uppercase tracking-widest"
+            className="text-[11px] text-muted-foreground uppercase tracking-widest items-center justify-center"
             style={MONO}
           >
-            TENTANG BLANKON TECH
+            Tentang BlankOn Digital Tech
           </span>
         </div>
 
         <h1
-          className="text-[clamp(36px,5vw,64px)] font-black leading-[1.1] tracking-[-1.5px] text-foreground opacity-0 animate-fade-up"
+          className="text-[clamp(30px,5vw,46px)] text-end font-black leading-[1.1] tracking-[-1.5px] text-foreground opacity-0 animate-fade-up"
           style={{ ...DISPLAY, animationDelay: "200ms" }}
         >
           Kami percaya produk digital yang baik dimulai dari{" "}

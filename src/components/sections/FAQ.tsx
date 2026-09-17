@@ -33,8 +33,8 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="py-20 md:py-32 px-6 md:px-4 max-w-7xl mx-auto bg-white dark:bg-black">
-      <div className="text-center mb-16 md:mb-20 flex flex-col items-center">
+    <section className="py-20 md:py-12 px-6 md:px-28 max-w-8xl mx-auto bg-white dark:bg-black">
+      <div className="text-center mb-16 md:mb-12 flex flex-col items-center">
         <div className="inline-flex items-center gap-2 mb-6 w-fit">
           <span className="w-1.5 h-1.5 rounded-full inline-block bg-foreground" style={{ backgroundColor: "var(--accent-color)" }} />
           <span className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold" style={MONO}>
@@ -55,11 +55,11 @@ export default function FAQ() {
           >
             <Accordion.Header className="flex">
               <Accordion.Trigger 
-                className="flex flex-1 items-center justify-between py-6 text-left font-bold text-lg hover:text-[#84c803] transition-colors group [&[data-state=open]>svg]:rotate-45 text-foreground"
+                className="flex flex-1 items-center justify-between py-6 text-left font-bold text-lg hover:text-[#84c803] dark:hover:text-[#F5C700] transition-colors group [&[data-state=open]>svg]:rotate-45 text-foreground"
                 style={DISPLAY}
               >
                 {faq.q}
-                <Plus size={20} className="text-muted-foreground group-hover:text-[#84c803] transition-transform duration-300" />
+                <Plus size={20} className="text-muted-foreground group-hover:text-[#84c803] dark:group-hover:text-[#F5C700] transition-transform duration-300" />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="overflow-hidden text-muted-foreground data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">

@@ -21,6 +21,7 @@ export default function LayananPage() {
                     description="Dari pengembangan aplikasi fungsional hingga integrasi ekosistem AI dan IoT, kami merancang dan membangun teknologi yang menyelesaikan masalah nyata bisnis Anda."
                 />
                 <Services />
+                <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
                 <Offers />
             </main>
             <CTA />

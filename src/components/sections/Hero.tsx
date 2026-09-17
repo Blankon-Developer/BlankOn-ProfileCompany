@@ -71,7 +71,7 @@ export default function Hero() {
           style={DISPLAY}
         >
           <span className="headline-text relative inline-block">
-            {"BlankOn Tech".split("").map((char, index) => (
+            {"BlankOn Digital Tech".split("").map((char, index) => (
               <span
                 key={index}
                 className={
@@ -107,18 +107,18 @@ export default function Hero() {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row items-center gap-6 mt-8 opacity-0 animate-fade-up"
+          className="flex flex-col sm:flex-row items-center gap-6 mt-8 opacity-0 animate-fade-up justify-end w-full"
           style={{ animationDelay: "400ms" }}
         >
-          <a
-            href="mailto:hello@blankon.id"
+          <Link
+            href="/kontak"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-sm transition-all hover:scale-105 bg-foreground text-background"
             style={DISPLAY}
           >
             Diskusikan Proyek Anda <ArrowRight size={16} />
-          </a>
+          </Link>
           <Link
-            href="#layanan"
+            href="/layanan"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 font-bold text-sm border-2 border-border hover:border-foreground transition-all group"
             style={DISPLAY}
           >

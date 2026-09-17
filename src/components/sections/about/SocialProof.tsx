@@ -4,8 +4,8 @@ import { DISPLAY, BODY, MONO, DARK, LIME } from "@/lib/utils";
 
 export default function SocialProof() {
   return (
-    <section className="py-20 md:py-32 px-6 md:px-10 bg-lime-700 text-background">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 md:py-12 px-6 md:px-28 bg-white dark:bg-black">
+      <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
           {/* Text Area */}
