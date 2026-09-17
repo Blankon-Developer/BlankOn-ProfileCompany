@@ -10,20 +10,21 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { service: string } }) {
-  const serviceName = serviceNames[params.service] || "Tim BlankOn";
+export async function generateMetadata({ params }: { params: Promise<{ service: string }> }) {
+  const { service } = await params;
+  const serviceName = serviceNames[service] || "Tim BlankOn";
   return {
     title: `Tim ${serviceName} | BlankOn Digital Tech`,
     description: `Mengenal lebih dekat tim profesional kami di bidang ${serviceName}.`,
   };
 }
 
-export default function TeamServicePage({
+export default async function TeamServicePage({
   params,
 }: {
-  params: { service: string };
+  params: Promise<{ service: string }>;
 }) {
-  const service = params.service;
+  const { service } = await params;
   const teamDepartments = servicesTeamData[service] || [];
   const serviceName = serviceNames[service] || "Layanan Tidak Ditemukan";
 
