@@ -165,7 +165,7 @@ export default function BlogClient() {
               <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent-color)] mb-4 bg-[var(--accent-color)]/10 px-2 py-1 rounded-sm" style={MONO}>
                 {blog.category}
               </span>
-              <h3 className={cn("font-bold tracking-tight mb-3 text-foreground transition-colors group-hover:text-foreground/80 text-center", layout === 'grid' ? "text-xl" : "text-xl sm:text-2xl")} style={DISPLAY}>
+              <h3 className={cn("font-bold tracking-tight mb-3 text-foreground transition-colors group-hover:text-foreground/80 grdi", layout === 'grid' ? "text-xl text-center" : "text-xl sm:text-2xl")} style={DISPLAY}>
                 {blog.title}
               </h3>
               <p className={cn("text-muted-foreground text-sm leading-relaxed text-justify", layout === 'grid' ? "line-clamp-3 mb-8" : "line-clamp-2")} style={BODY}>

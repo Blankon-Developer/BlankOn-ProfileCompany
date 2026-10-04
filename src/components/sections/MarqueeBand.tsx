@@ -14,7 +14,7 @@ export default function MarqueeBand() {
 
   return (
     <div
-      className="overflow-hidden py-3"
+      className="overflow-hidden py-2"
       style={{ backgroundColor: "var(--accent-color)" }}
     >
       <p

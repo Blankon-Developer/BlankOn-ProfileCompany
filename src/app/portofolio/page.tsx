@@ -1,6 +1,6 @@
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
-import Projects from "@/components/sections/Projects";
+import PortfolioClient from "./PortfolioClient";
 import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
 
@@ -19,7 +19,7 @@ export default function PortfolioPage() {
           title="Bukti Nyata Dampak Teknologi"
           description="Eksplorasi kumpulan studi kasus dan karya terbaik kami dalam membantu klien mencapai tujuan bisnis mereka melalui inovasi digital."
         />
-        <Projects />
+        <PortfolioClient />
       </main>
       <CTA />
       <Footer />

@@ -71,15 +71,15 @@ export default function Process() {
     { left: "23%", top: "22%" },   // 1. Understand (Top-Left)
     { left: "6.5%", top: "50%" },  // 2. Plan (Left Edge)
     { left: "23%", top: "78%" },   // 3. Design (Bottom-Left)
-    { left: "42%", top: "62%" },   // 4. Develop (Center approach from bottom-left)
-    { left: "58%", top: "38%" },   // 5. Test (Center leaving to top-right)
+    { left: "40%", top: "68%" },   // 4. Develop (Center approach from bottom-left)
+    { left: "60%", top: "32%" },   // 5. Test (Center leaving to top-right)
     { left: "77%", top: "22%" },   // 6. Deploy (Top-Right)
     { left: "93.5%", top: "50%" }, // 7. Operate (Right Edge)
     { left: "77%", top: "78%" },   // 8. Improve (Bottom-Right)
   ];
 
   return (
-    <section id="proses" className="py-20 md:py-32 px-6 md:px-10 max-w-6xl mx-auto border-t border-border">
+    <section id="proses" className="py-20 md:py-12 px-6 md:px-28 max-w-8xl mx-auto border-t border-border">
       <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 mb-6 w-fit">
@@ -89,7 +89,7 @@ export default function Process() {
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6 text-foreground" style={DISPLAY}>
-            Kami tidak langsung membuat. Kami mulai dengan memahami.
+            Kami tidak langsung membuat tetapi kami mulai dengan memahami.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-xl" style={BODY}>
             Proyek digital yang baik biasanya dimulai dari pertanyaan yang tepat. Karena itu, proses kami dibuat sederhana dan transparan agar Anda memahami apa yang sedang dibangun, mengapa hal tersebut dibutuhkan, dan bagaimana prosesnya berjalan.
@@ -133,8 +133,8 @@ export default function Process() {
       </div>
 
       {/* Desktop Layout (Infinity Loop) */}
-      <div className="hidden md:flex flex-col items-center w-full mt-10">
-        <div className="relative w-full max-w-8xl aspect-[2/1] mx-auto mb-16">
+      <div className="hidden md:flex flex-col items-center w-full mt-4 md:mt-0">
+        <div className="relative w-full max-w-8xl aspect-[2/1] mx-auto mb-16 md:mb-0">
           {/* Background SVG Path */}
           <svg viewBox="0 0 800 400" className="absolute inset-0 w-full h-full drop-shadow-sm">
             <path
@@ -195,7 +195,7 @@ export default function Process() {
         </div>
 
         {/* Content Box below the loop */}
-        <div className="w-full max-w-4xl mt-2">
+        <div className="w-full max-w-8xl mt-2">
           <div className="relative overflow-hidden border border-border bg-background rounded-2xl">
             {/* Active indicator */}
             <div

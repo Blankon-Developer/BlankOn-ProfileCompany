@@ -190,7 +190,7 @@ export default function ContactForm() {
 
       <div className="flex items-center justify-between gap-6 pt-4">
         <p
-          className="hidden max-w-md text-xs leading-5 text-muted-foreground sm:block"
+          className="hidden max-w-full text-xs leading-5 text-muted-foreground sm:block"
           style={BODY}
         >
           Dengan mengirim pesan, Anda memulai percakapan dengan

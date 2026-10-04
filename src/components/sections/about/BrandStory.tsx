@@ -1,6 +1,7 @@
 "use client";
 
 import { cn, DISPLAY, BODY, MONO, DARK } from "@/lib/utils";
+import Image from "next/image";
 
 export default function BrandStory() {
   return (
@@ -13,6 +14,20 @@ export default function BrandStory() {
           >
             Cerita Kami
           </h2>
+          <Image
+            src="/BlankOn Logo.svg"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="mb-6 h-[100px] w-auto dark:hidden"
+          />
+          <Image
+            src="/BlankOn Logo Dark-Mode.svg"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="mb-6 h-[100px] w-auto hidden dark:block"
+          />
           <p className="text-muted-foreground text-sm uppercase tracking-widest" style={MONO}>
             Pendekatan Blankon Digital Tech
           </p>

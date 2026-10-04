@@ -10,7 +10,6 @@ export default function Home() {
       <main>
         <Hero />
         <MarqueeBand />
-        
       </main>
       <Footer />
     </div>

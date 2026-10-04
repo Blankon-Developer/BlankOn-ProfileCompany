@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="bg-white dark:bg-black py-10 md:py-16 overflow-hidden relative border-t border-[var(--accent-color)]">
+    <section className="bg-white dark:bg-black py-10 md:py-20 md:pt-10 overflow-hidden relative border-t border-[var(--accent-color)]">
       {/* Lime glow */}
       <div
         className="absolute -bottom-70 left-1/2 -translate-x-1/2 w-full h-[350px] pointer-events-none"

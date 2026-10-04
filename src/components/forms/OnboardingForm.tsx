@@ -374,7 +374,7 @@ export default function OnboardingForm() {
 
       if (data.success) {
         setStatus("success");
-        setResultMessage("Pesan Anda telah berhasil terkirim. Tim kami akan segera menghubungi Anda dalam waktu 1x24 jam.");
+        setResultMessage("Pesan Anda telah berhasil terkirim. Tim BlankOn Digital Tech akan segera menghubungi Anda dalam waktu 1x24 jam.");
       } else {
         setStatus("error");
         setResultMessage(data.message || "Terjadi kesalahan sistem. Silakan coba lagi nanti.");
@@ -394,8 +394,8 @@ export default function OnboardingForm() {
 
   if (status === "success") {
     return (
-      <div className="max-w-xl mx-auto text-center py-20 px-6">
-        <div className="w-20 h-20 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+      <div className="max-w-8xl mx-auto text-center py-20 px-6">
+        <div className="w-20 h-20 bg-[var(--accent-color))] text-white dark:text-black rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 size={40} />
         </div>
         <h2 className="text-3xl font-black mb-4" style={DISPLAY}>Terima Kasih!</h2>
@@ -412,7 +412,7 @@ export default function OnboardingForm() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-6">
+    <div className="max-w-8xl mx-auto px-6 md:px-28">
       <div className="text-center mb-12 animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-foreground" style={DISPLAY}>
           Ceritakan Kebutuhan Anda
@@ -423,7 +423,7 @@ export default function OnboardingForm() {
       </div>
 
       {/* Category Selector */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-14">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
         {categories.map((c, index) => {
           const isActive = category === c.id
 
@@ -433,22 +433,22 @@ export default function OnboardingForm() {
               type="button"
               onClick={() => setCategory(c.id as Category)}
               className={cn(
-                "group relative min-h-[180px] overflow-hidden rounded-[20px]",
+                "group relative min-h-[180px] overflow-hidden rounded-[20px] max-w-8xl w-full",
                 "border p-6 text-left",
                 "transition-all duration-300 ease-out",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
                 isActive
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border/60 bg-background text-foreground hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_12px_40px_-20px_rgba(0,0,0,0.25)]"
+                  ? "border-[var(--accent-color)] bg-foreground text-background"
+                  : "border-border/60 bg-white dark:bg-black text-foreground hover:-translate-y-1 hover:border-[var(--accent-color)] hover:shadow-[0_12px_40px_-20px_rgba(0,0,0,0.25)]"
               )}
             >
               {/* Decorative glow */}
               <div
                 className={cn(
                   "pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full",
-                  "bg-foreground/[0.04] blur-2xl transition-all duration-500",
+                  "bg-[var(--accent-color)]/80 blur-2xl transition-all duration-500",
                   "group-hover:scale-150",
-                  isActive && "bg-background/[0.08]"
+                  isActive && "bg-[var(--accent-color)]/80"
                 )}
               />
 
@@ -459,7 +459,7 @@ export default function OnboardingForm() {
                     "text-[11px] font-medium tracking-[0.18em] uppercase",
                     isActive
                       ? "text-background/50"
-                      : "text-muted-foreground/60"
+                      : "text-[var(--text-foreground)]"
                   )}
                 >
                   0{index + 1}
@@ -471,7 +471,7 @@ export default function OnboardingForm() {
                     "group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
                     isActive
                       ? "text-background"
-                      : "text-muted-foreground"
+                      : "text-[var(--text-foreground)]"
                   )}
                 >
                   {c.icon}
@@ -550,6 +550,7 @@ export default function OnboardingForm() {
               <p className="text-xs text-muted-foreground max-w-xs" style={MONO}>
                 Data Anda aman dan hanya akan digunakan untuk keperluan komunikasi proyek.
               </p>
+              <p style={MONO} className="text-[10px]"> © 2026 BlankOn Digital Tech | All rights reserved. </p>
               <button
                 type="submit"
                 disabled={status === "submitting"}

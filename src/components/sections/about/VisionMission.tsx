@@ -4,7 +4,7 @@ import { cn, DISPLAY, BODY, MONO, LIME, DARK } from "@/lib/utils";
 
 export default function VisionMission() {
   return (
-    <section className="py-20 md:py-32 bg-black/5 dark:bg-white/10">
+    <section className="py-20 md:py-12 bg-black/5 dark:bg-white/10">
       <div className="max-w-8xl mx-auto px-6 md:px-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           

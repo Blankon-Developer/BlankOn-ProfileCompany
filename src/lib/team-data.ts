@@ -3,6 +3,8 @@ export interface TeamMember {
   role: string;
   desc: string;
   image: string;
+  linkedln?: string;
+  website?: string;
 }
 
 export interface TeamDepartment {
@@ -17,8 +19,13 @@ export const servicesTeamData: Record<string, TeamDepartment[]> = {
       id: "architecture",
       name: "System Architecture & API",
       members: [
-        { name: "Nikolas Gibbons", role: "Backend Developer", desc: "Mengelola arsitektur server, basis data, dan performa API aplikasi.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80" },
-        { name: "Zahra Christensen", role: "Integration Specialist", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80" },
+        { name: "Nikolas Gibbons", role: "Backend Developer", desc: "Mengelola arsitektur server, basis data, dan performa API aplikasi.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.prastio-rifki.id' },
+        { name: "Zahra Christensen", role: "Integration Specialist", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.google.com' },
+        { name: "Zahra0", role: "0", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.google.com' },
+        { name: "Zahra1", role: "1", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.google.com' },
+        { name: "Zahra2", role: "2", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.google.com' },
+        { name: "Zahra3", role: "3", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80", linkedln: 'https://www.linkedin.com/in/pras-tio-rifki-wijaya-046166243', website: 'https://www.google.com' },
+        { name: "Zahra4", role: "4", desc: "Menghubungkan layanan pihak ketiga dan memastikan sinkronisasi data real-time.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80" },
       ]
     }
   ],

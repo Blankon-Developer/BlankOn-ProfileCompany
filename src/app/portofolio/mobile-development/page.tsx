@@ -2,6 +2,7 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
+import PortfolioClient from "@/app/portofolio/PortfolioClient";
 
 export const metadata = {
     title: "Portofolio Mobile Development | BlankOn Digital Tech",
@@ -18,9 +19,7 @@ export default function MobileDevPortfolioPage() {
                     title="Mobile Development"
                     description="Aplikasi mobile iOS dan Android yang dirancang sesuai kebutuhan pengguna."
                 />
-                <section className="py-20 px-6 max-w-7xl mx-auto">
-                    <p className="text-center text-muted-foreground">Konten portofolio sedang dipersiapkan.</p>
-                </section>
+                <PortfolioClient serviceFilter="mobile-development" />
             </main>
             <CTA />
             <Footer />

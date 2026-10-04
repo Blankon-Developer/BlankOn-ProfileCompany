@@ -5,7 +5,7 @@ import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata = {
-  title: "Proses Kerja | Baracode Tech Solution",
+  title: "Proses Kami Bekerja",
   description: "Metodologi pengembangan kami yang terstruktur untuk memastikan setiap produk digital dikirim tepat waktu dan tepat sasaran.",
 };
 

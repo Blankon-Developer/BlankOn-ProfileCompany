@@ -26,7 +26,7 @@ import { IoGameControllerOutline } from "react-icons/io5";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Harga & Layanan | Baracode Tech Solution",
+  title: "Harga & Layanan ",
   description:
     "Paket pengembangan solusi digital Baracode Tech Solution untuk personal, UMKM, startup, perusahaan, hingga kebutuhan enterprise dan pemerintahan.",
 };

@@ -6,7 +6,7 @@ import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata = {
-    title: "Layanan | Baracode Tech Solution",
+    title: "Layanan & Penawaran",
     description: "Layanan pengembangan website, aplikasi, dan produk digital untuk memenuhi kebutuhan bisnis Anda.",
 };
 

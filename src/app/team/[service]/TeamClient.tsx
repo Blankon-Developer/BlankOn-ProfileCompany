@@ -29,10 +29,17 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
   };
 
   return (
-    <section className="px-5 py-20 md:px-8 md:py-12 mx-auto max-w-7xl">
+    <section className="px-6 py-20 md:px-28 md:py-12 md:pb-30 mx-auto max-w-8xl relative overflow-hidden">
       {/* Intro */}
-      <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end mb-16 md:mb-0">
+      <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end mb-16 md:mb-0 ">
         <div>
+          <div
+          className="absolute -bottom-70 left-1/2 -translate-x-1/2 w-full h-[350px] pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse at center, var(--accent-color) 5% 0%, transparent 70%)`,
+            filter: "blur(40px)",
+          }}
+        />
           <span
             className="mb-5 block text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground"
             style={BODY}
@@ -123,7 +130,7 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
           <div
             className={cn(
               "border-t border-border relative max-w-8xl mx-auto transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)]",
-              Object.values(openDepts).some(Boolean) ? "w-[380px] shrink-0" : "w-[1280px] mx-auto shrink-0"
+              Object.values(openDepts).some(Boolean) ? "w-[450px] shrink-0" : "w-full mx-auto shrink-0"
             )}
           >
             <div className="sticky top-32 w-full">
@@ -164,13 +171,13 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
               Object.values(openDepts).some(Boolean) ? "flex-1 border-l opacity-100 pl-4 lg:pl-10" : "w-0 opacity-0 border-l-0 pl-0 flex-none"
             )}
           >
-            <div className="min-w-[650px] w-full">
+            <div className="min-w-0 w-full">
               {teamDepartments.map((dept) => {
                 const isOpen = !!openDepts[dept.id];
                 return (
                   <div key={dept.id} className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
                     <div className="overflow-hidden">
-                      <div className="px-10 pb-16">
+                      <div className="px-4 sm:px-10 lg:px-0 pb-16 lg:pb-0">
                         <div className="flex items-end justify-between border-b border-border py-6 mb-10">
                           <div>
                             <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Team</p>
@@ -180,7 +187,8 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
                             {String(dept.members.length).padStart(2, "0")} People
                           </span>
                         </div>
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-16">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+
                           {dept.members.map((member, index) => (
                             <article key={member.name} className="group/member flex flex-col h-full">
                               <div className="relative mb-6 aspect-[4/5] overflow-hidden bg-muted">
@@ -196,11 +204,11 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
                                     <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground" style={BODY}>{member.role}</p>
                                   </div>
                                   <div className="flex gap-2 pt-1 shrink-0">
-                                    <a href="#" className="text-muted-foreground transition-colors hover:text-foreground"><Linkedin size={14} strokeWidth={1.5} /></a>
-                                    <a href="#" className="text-muted-foreground transition-colors hover:text-foreground"><Globe size={14} strokeWidth={1.5} /></a>
+                                    <a href={member.linkedln || "#"} className="text-muted-foreground transition-colors hover:text-foreground"><Linkedin size={14} strokeWidth={1.5} /></a>
+                                    <a href={member.website || "#"} className="text-muted-foreground transition-colors hover:text-foreground"><Globe size={14} strokeWidth={1.5} /></a>
                                   </div>
                                 </div>
-                                <p className="mt-4 text-sm leading-6 text-muted-foreground flex-1" style={BODY}>{member.desc}</p>
+                                <p className="mt-4 text-sm leading-6 text-justify text-muted-foreground flex-1" style={BODY}>{member.desc}</p>
                               </div>
                             </article>
                           ))}

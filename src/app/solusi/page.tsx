@@ -7,7 +7,7 @@ import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export const metadata = {
-  title: "Solusi Industri | Baracode Tech Solution",
+  title: "Solusi & Feedback",
   description: "Solusi spesifik yang dirancang khusus untuk memenuhi kebutuhan berbagai skala bisnis dan industri.",
 };
 

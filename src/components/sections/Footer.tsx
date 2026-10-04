@@ -113,7 +113,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
+                  <a href="https://www.linkedin.com/company/blankon-digital-tech" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
                     LinkedIn <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
@@ -128,12 +128,12 @@ export default function Footer() {
 
         </div>
 
-        <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-8 border-t border-t-accent flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="opacity-40 text-[11px] tracking-widest" style={MONO}>
             © 2026 BlankOn Digital Tech | <span className="uppercase">All rights reserved.</span>
           </p>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full inline-block animate-pulse" style={{ backgroundColor: LIME }} />
+            <span className="w-1 h-4 inline-block animate-pulse" style={{ backgroundColor: "var(--accent-color)" }} />
             <span className="opacity-40 text-[11px] uppercase tracking-widest" style={MONO}>
               Central Java, ID
             </span>

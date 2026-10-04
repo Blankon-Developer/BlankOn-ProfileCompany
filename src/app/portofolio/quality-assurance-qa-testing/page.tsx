@@ -2,6 +2,7 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
+import PortfolioClient from "@/app/portofolio/PortfolioClient";
 
 export const metadata = {
     title: "Portofolio Quality Assurance (QA) / Testing | BlankOn Digital Tech",
@@ -18,9 +19,7 @@ export default function QualityAssuranceQATestingPortfolioPage() {
                     title="Quality Assurance (QA) / Testing"
                     description="Quality Assurance (QA) / Testing sebagai bagian dari pengembangan produk digital yang kami bangun berjalan optimal, konsisten, dan bebas dari masalah melalui proses testing yang terstruktur — mencakup functional testing, performance testing, automation testing, hingga security and usability evaluation."
                 />
-                <section className="py-20 px-6 max-w-7xl mx-auto">
-                    <p className="text-center text-muted-foreground">Konten portofolio sedang dipersiapkan.</p>
-                </section>
+                <PortfolioClient serviceFilter="quality-assurance-qa-testing" />
             </main>
             <CTA />
             <Footer />

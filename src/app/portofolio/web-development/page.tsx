@@ -2,6 +2,7 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import CTA from "@/components/sections/CTA";
 import { PageHeader } from "@/components/ui/PageHeader";
+import PortfolioClient from "@/app/portofolio/PortfolioClient";
 
 export const metadata = {
     title: "Portofolio Web Development | BlankOn Digital Tech",
@@ -18,9 +19,7 @@ export default function WebDevPortfolioPage() {
                     title="Web Development"
                     description="Platform digital, aplikasi web, dan website yang scalable dan interaktif."
                 />
-                <section className="py-20 px-6 max-w-7xl mx-auto">
-                    <p className="text-center text-muted-foreground">Konten portofolio sedang dipersiapkan.</p>
-                </section>
+                <PortfolioClient serviceFilter="web-development" />
             </main>
             <CTA />
             <Footer />
