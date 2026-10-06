@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn, DISPLAY, BODY, MONO } from "@/lib/utils";
 import { User, Building2, Store, Landmark, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 type Category = "pribadi" | "company" | "umkm" | "pemerintahan" | null;
 
@@ -351,18 +352,33 @@ export default function OnboardingForm() {
   const [category, setCategory] = useState<Category>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [resultMessage, setResultMessage] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!captchaToken) {
+      setStatus("error");
+      setResultMessage("Mohon selesaikan Captcha terlebih dahulu.");
+      return;
+    }
+
     setStatus("submitting");
     const formData = new FormData(event.currentTarget);
+    // HCaptcha otomatis menyisipkan field g-recaptcha-response untuk kompatibilitas mundur.
+    // Kita hapus field ini agar Web3Forms tidak mengira kita menggunakan reCaptcha (fitur berbayar).
+    formData.delete("g-recaptcha-response");
 
     // Required Web3Forms fields
-    // IMPORTANT: Replace this with your actual Web3Forms access key
-    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
     formData.append("subject", `Onboarding Baru: ${category?.toUpperCase()}`);
-    formData.append("from_name", "BlankOn Tech Onboarding");
+    formData.append("from_name", "BlankOn Digital Tech - Onboarding");
     formData.append("Persona", category || "Unknown");
+
+    // Menambahkan replyto secara eksplisit karena input bernama "Email" (huruf besar)
+    const userEmail = formData.get("Email");
+    if (userEmail) {
+      formData.append("replyto", userEmail as string);
+    }
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -402,7 +418,7 @@ export default function OnboardingForm() {
         <p className="text-muted-foreground leading-relaxed mb-8" style={BODY}>{resultMessage}</p>
         <button
           onClick={() => { setStatus("idle"); setCategory(null); }}
-          className="bg-foreground text-background font-semibold px-8 py-3 hover:opacity-90 transition-opacity"
+          className="bg-foreground text-background font-semibold px-8 py-3 hover:opacity-90 transition-opacity cursor-pointer"
           style={DISPLAY}
         >
           Kembali ke Awal
@@ -546,6 +562,13 @@ export default function OnboardingForm() {
               </div>
             )}
 
+            <div className="mb-6 flex justify-center sm:justify-start">
+              <HCaptcha
+                sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                onVerify={(token) => setCaptchaToken(token)}
+              />
+            </div>
+
             <div className="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-6">
               <p className="text-xs text-muted-foreground max-w-xs" style={MONO}>
                 Data Anda aman dan hanya akan digunakan untuk keperluan komunikasi proyek.
@@ -554,7 +577,7 @@ export default function OnboardingForm() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-foreground text-background font-bold px-10 py-4 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed rounded-xl"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-foreground text-background font-bold px-10 py-4 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed rounded-xl cursor-pointer"
                 style={DISPLAY}
               >
                 {status === "submitting" ? (

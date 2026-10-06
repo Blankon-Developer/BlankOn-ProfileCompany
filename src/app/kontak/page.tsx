@@ -13,12 +13,13 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email Resmi Kami",
-    value: "blankondev@hotmail.com",
+    value1: "blankondev@hotmail.com",
+    value2: "blankondigitaltech@gmail.com",
   },
   {
     icon: Phone,
     label: "No. Telepon / WhatsApp",
-    value: "+62 812-3456-7890",
+    value: "+62 851-7415-5704",
   },
   {
     icon: MapPin,
@@ -72,6 +73,9 @@ export default function ContactPage() {
                             style={BODY}
                           >
                             {item.value}
+                            {item.value1 && item.value1}
+                            <br />
+                            {item.value2 && item.value2}
                           </p>
 
                           {item.label === "Alamat" && (
