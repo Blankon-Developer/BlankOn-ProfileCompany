@@ -115,7 +115,10 @@ export default function RootLayout({
 
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${ubuntu.variable} font-sans min-h-screen bg-white dark:bg-black text-foreground`}>
+      <body
+        suppressHydrationWarning
+        className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${ubuntu.variable} font-sans min-h-screen bg-white dark:bg-black text-foreground`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

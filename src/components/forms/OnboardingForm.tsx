@@ -384,18 +384,25 @@ export default function OnboardingForm() {
         body: JSON.stringify(payload)
       });
 
-      const data = await res.json();
+      let data: any = {};
+      try {
+        data = await res.json();
+      } catch {
+        const text = await res.text();
+        data = { success: false, message: text || `HTTP ${res.status}: Gagal memproses permintaan` };
+      }
 
-      if (data.success) {
+      if (res.ok && data.success) {
         setStatus("success");
         setResultMessage("Pesan Anda telah berhasil terkirim. Tim BlankOn Digital Tech akan segera menghubungi Anda dalam waktu 1x24 jam.");
       } else {
         setStatus("error");
-        setResultMessage(data.message || "Terjadi kesalahan sistem. Silakan coba lagi nanti.");
+        setResultMessage(data.message || `Terjadi kesalahan sistem (Kode: ${res.status}). Silakan coba lagi nanti.`);
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Submission error:", error);
       setStatus("error");
-      setResultMessage("Koneksi gagal. Silakan periksa jaringan internet Anda dan coba lagi.");
+      setResultMessage(error?.message || "Koneksi gagal. Silakan periksa jaringan internet Anda dan coba lagi.");
     }
   };
 
