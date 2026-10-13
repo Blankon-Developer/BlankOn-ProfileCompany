@@ -118,7 +118,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
+                  <a href="https://www.instagram.com/blankondigitaltech" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
                     Instagram <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>

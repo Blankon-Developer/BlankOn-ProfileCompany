@@ -364,26 +364,24 @@ export default function OnboardingForm() {
 
     setStatus("submitting");
     const formData = new FormData(event.currentTarget);
-    // HCaptcha otomatis menyisipkan field g-recaptcha-response untuk kompatibilitas mundur.
-    // Kita hapus field ini agar Web3Forms tidak mengira kita menggunakan reCaptcha (fitur berbayar).
-    formData.delete("g-recaptcha-response");
-
-    // Required Web3Forms fields
-    formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
-    formData.append("subject", `Onboarding Baru: ${category?.toUpperCase()}`);
-    formData.append("from_name", "BlankOn Digital Tech - Onboarding");
-    formData.append("Persona", category || "Unknown");
-
-    // Menambahkan replyto secara eksplisit karena input bernama "Email" (huruf besar)
-    const userEmail = formData.get("Email");
-    if (userEmail) {
-      formData.append("replyto", userEmail as string);
-    }
+    
+    // Konversi FormData ke JSON Object
+    const payload: Record<string, any> = {};
+    formData.forEach((value, key) => {
+      payload[key] = value;
+    });
+    
+    // Tambahkan field khusus
+    payload.Persona = category || "Unknown";
+    payload["h-captcha-response"] = captchaToken; // Optional: untuk validasi masa depan
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/onboarding", {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
       });
 
       const data = await res.json();

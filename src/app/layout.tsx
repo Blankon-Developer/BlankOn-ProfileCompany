@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -110,6 +111,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const googleTagId = process.env.NEXT_PUBLIC_GOOGLE_TAG_ID || "G-RXQK1PCGCB";
+
   return (
     <html lang="id" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${ubuntu.variable} font-sans min-h-screen bg-white dark:bg-black text-foreground`}>
@@ -121,7 +124,30 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+
+        {/* Google Tag (gtag.js) for Google Ads & Analytics */}
+        {googleTagId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+            />
+            <Script
+              id="google-tag-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${googleTagId}');
+                `,
+              }}
+            />
+          </>
+        )}
       </body>
     </html>
   );
 }
+
