@@ -56,7 +56,7 @@ export default function CTA() {
               />
             </Link>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6285174155704"
               className="inline-flex items-center justify-between gap-4 border border-transparent hover:border-[var(--accent-color)] px-7 py-4 font-bold text-sm group transition-all"
               style={DISPLAY}
             >

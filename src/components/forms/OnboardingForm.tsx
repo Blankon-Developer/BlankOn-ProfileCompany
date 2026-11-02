@@ -24,7 +24,7 @@ const Input = ({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) => (
   <input
     {...props}
     className={cn(
-      "w-full bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-foreground transition-colors text-foreground",
+      "w-full bg-background border border-border px-4 py-3 focus:outline-none focus:border-foreground transition-colors text-foreground",
       props.className
     )}
   />
@@ -34,7 +34,7 @@ const Select = ({ children, ...props }: React.SelectHTMLAttributes<HTMLSelectEle
   <select
     {...props}
     className={cn(
-      "w-full bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-foreground transition-colors appearance-none text-foreground cursor-pointer",
+      "w-full bg-background border border-border px-4 py-3 focus:outline-none focus:border-foreground transition-colors appearance-none text-foreground cursor-pointer",
       props.className
     )}
   >
@@ -46,7 +46,7 @@ const Textarea = ({ ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement
   <textarea
     {...props}
     className={cn(
-      "w-full bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-foreground transition-colors resize-none text-foreground",
+      "w-full bg-background border border-border px-4 py-3 focus:outline-none focus:border-foreground transition-colors resize-none text-foreground",
       props.className
     )}
   />
@@ -79,10 +79,10 @@ const RadioGroupHorizontal = ({ name, options }: { name: string, options: string
 const PersonalForm = () => (
   <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required /></FormField>
-      <FormField label="Email" required><Input type="email" name="Email" required /></FormField>
+      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required placeholder="Masukkan nama lengkap" /></FormField>
+      <FormField label="Email" required><Input type="email" name="Email" required placeholder="Masukkan email pribadi anda" /></FormField>
     </div>
-    <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required /></FormField>
+    <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required placeholder="Masukkan nomor whatsapp (+62) XXX-XXX-XXX" /></FormField>
     <FormField label="Apa tujuan utama Anda menggunakan layanan ini?" required>
       <Select name="Tujuan Utama" required>
         <option value="">Pilih tujuan utama...</option>
@@ -111,15 +111,15 @@ const PersonalForm = () => (
 const CompanyForm = () => (
   <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required /></FormField>
-      <FormField label="Jabatan/Posisi Anda" required><Input type="text" name="Jabatan" required /></FormField>
+      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required placeholder="Masukkan nama lengkap Anda" /></FormField>
+      <FormField label="Jabatan/Posisi Anda" required><Input type="text" name="Jabatan" required placeholder="Masukkan jabatan/posisi Anda" /></FormField>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Email Perusahaan" required><Input type="email" name="Email" required /></FormField>
-      <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required /></FormField>
+      <FormField label="Email Perusahaan" required><Input type="email" name="Email" required placeholder="Masukkan email perusahaan" /></FormField>
+      <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required placeholder="Masukkan nomor whatsapp (+62) XXX-XXX-XXX" /></FormField>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Perusahaan" required><Input type="text" name="Nama Perusahaan" required /></FormField>
+      <FormField label="Nama Perusahaan" required><Input type="text" name="Nama Perusahaan" required placeholder="Masukkan nama perusahaan" /></FormField>
       <FormField label="Industri/Bidang Perusahaan" required><Input type="text" name="Industri" required placeholder="Misal: Teknologi, F&B, Keuangan..." /></FormField>
     </div>
 
@@ -176,12 +176,12 @@ const CompanyForm = () => (
 const UmkmForm = () => (
   <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required /></FormField>
-      <FormField label="Nama Usaha" required><Input type="text" name="Nama Usaha" required /></FormField>
+      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required placeholder="Masukkan nama Anda" /></FormField>
+      <FormField label="Nama Usaha" required><Input type="text" name="Nama Usaha" required placeholder="Masukkan nama usaha Anda" /></FormField>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Email" required><Input type="email" name="Email" required /></FormField>
-      <FormField label="Nomor WhatsApp" required><Input type="tel" name="No WhatsApp" required /></FormField>
+      <FormField label="Email" required><Input type="email" name="Email" required placeholder="Masukkan email bisnis Anda" /></FormField>
+      <FormField label="Nomor WhatsApp" required><Input type="tel" name="No WhatsApp" required placeholder="Masukkan nomor whatsapp Anda" /></FormField>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
@@ -254,16 +254,16 @@ const UmkmForm = () => (
 const PemerintahForm = () => (
   <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required /></FormField>
-      <FormField label="Jabatan/Posisi" required><Input type="text" name="Jabatan" required /></FormField>
+      <FormField label="Nama Lengkap" required><Input type="text" name="Nama Lengkap" required placeholder="Masukkan nama Anda" /></FormField>
+      <FormField label="Jabatan/Posisi" required><Input type="text" name="Jabatan" required placeholder="Masukkan jabatan/posisi Anda" /></FormField>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Email Resmi Instansi" required><Input type="email" name="Email" required placeholder="email@instansi.go.id" /></FormField>
-      <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required /></FormField>
+      <FormField label="Email Resmi Instansi" required><Input type="email" name="Email" required placeholder="Masukkan email Instansi" /></FormField>
+      <FormField label="Nomor WhatsApp/Telepon" required><Input type="tel" name="No WhatsApp" required placeholder="Masukkan nomor whatsapp Anda" /></FormField>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-      <FormField label="Nama Instansi/Lembaga" required><Input type="text" name="Nama Instansi" required /></FormField>
+      <FormField label="Nama Instansi/Lembaga" required><Input type="text" name="Nama Instansi" required placeholder="Masukkan nama instansi Anda" /></FormField>
       <FormField label="Tingkat Pemerintahan" required>
         <Select name="Tingkat Pemerintahan" required>
           <option value="">Pilih tingkat...</option>
@@ -279,7 +279,7 @@ const PemerintahForm = () => (
     </div>
 
     <FormField label="Nama unit kerja/bidang/bagian" required>
-      <Input type="text" name="Unit Kerja" required />
+      <Input type="text" name="Unit Kerja" required placeholder="Masukkan nama unit kerja/bidang/bagian" />
     </FormField>
 
     <FormField label="Apa tujuan utama instansi menggunakan layanan ini?" required>
@@ -364,13 +364,13 @@ export default function OnboardingForm() {
 
     setStatus("submitting");
     const formData = new FormData(event.currentTarget);
-    
+
     // Konversi FormData ke JSON Object
     const payload: Record<string, any> = {};
     formData.forEach((value, key) => {
       payload[key] = value;
     });
-    
+
     // Tambahkan field khusus
     payload.Persona = category || "Unknown";
     payload["h-captcha-response"] = captchaToken; // Optional: untuk validasi masa depan
@@ -433,18 +433,9 @@ export default function OnboardingForm() {
   }
 
   return (
-    <div className="max-w-8xl mx-auto px-6 md:px-28">
-      <div className="text-center mb-12 animate-fade-in">
-        <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-foreground" style={DISPLAY}>
-          Ceritakan Kebutuhan Anda
-        </h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto" style={BODY}>
-          Kami ingin memastikan solusi yang kami bangun benar-benar tepat sasaran. Silakan pilih profil yang paling mewakili Anda saat ini.
-        </p>
-      </div>
-
+    <div style={BODY} className="max-w-8xl mx-auto px-6 md:px-20 py-10 md:py-0">
       {/* Category Selector */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 md:mb-6 animate-fade-up">
         {categories.map((c, index) => {
           const isActive = category === c.id
 
@@ -454,10 +445,10 @@ export default function OnboardingForm() {
               type="button"
               onClick={() => setCategory(c.id as Category)}
               className={cn(
-                "group relative min-h-[180px] overflow-hidden rounded-[20px] max-w-8xl w-full",
+                "group relative min-h-[180px] overflow-hidden max-w-8xl w-full",
                 "border p-6 text-left",
                 "transition-all duration-300 ease-out",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 cursor-pointer",
                 isActive
                   ? "border-[var(--accent-color)] bg-foreground text-background"
                   : "border-border/60 bg-white dark:bg-black text-foreground hover:-translate-y-1 hover:border-[var(--accent-color)] hover:shadow-[0_12px_40px_-20px_rgba(0,0,0,0.25)]"
@@ -542,10 +533,9 @@ export default function OnboardingForm() {
         })}
       </div>
 
-
       {/* Dynamic Form */}
       {category && (
-        <div className="bg-muted/30 border border-border rounded-3xl p-8 md:p-12 animate-fade-up shadow-sm">
+        <div className="bg-muted/30 border border-foreground p-8 md:p-12 animate-fade-up shadow-sm">
           <form onSubmit={onSubmit}>
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2 text-foreground" style={DISPLAY}>
@@ -562,7 +552,7 @@ export default function OnboardingForm() {
             {category === "pemerintahan" && <PemerintahForm />}
 
             {status === "error" && (
-              <div className="bg-red-500/10 text-red-500 border border-red-500/20 p-4 rounded-xl mb-6 text-sm" style={BODY}>
+              <div className="bg-red-500/10 text-red-500 border border-red-500/20 p-4 mb-6 text-sm" style={BODY}>
                 {resultMessage}
               </div>
             )}
@@ -582,7 +572,7 @@ export default function OnboardingForm() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-foreground text-background font-bold px-10 py-4 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed rounded-xl cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-foreground text-background font-bold px-10 py-4 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 style={DISPLAY}
               >
                 {status === "submitting" ? (

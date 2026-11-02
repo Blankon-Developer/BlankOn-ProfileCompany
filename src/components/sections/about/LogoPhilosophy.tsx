@@ -162,7 +162,7 @@ export default function LogoPhilosophy() {
         </a>
         <Link
           href="/panduan-logo"
-          className="inline-flex items-center justify-center gap-2 px-8 py-3 w-full sm:w-auto text-white transition-opacity duration-300 font-semibold text-sm uppercase tracking-widest"
+          className="inline-flex items-center justify-center gap-2 px-8 py-3 w-full sm:w-auto text-white dark:text-black transition-opacity duration-300 font-semibold text-sm uppercase tracking-widest"
           style={{ ...MONO, backgroundColor: "var(--accent-color)" }}
         >
           <BookOpen size={16} />

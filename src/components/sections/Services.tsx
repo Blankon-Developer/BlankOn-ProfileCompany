@@ -25,6 +25,7 @@ import { DISPLAY, BODY, MONO } from "@/lib/utils";
 const services = [
   {
     id: "01",
+    slug: "api-management-system-integration",
     title: "API Management & System Integration",
     eyebrow: "API Management & System Integration",
     headline: "Solusi API management dan system integration yang dirancang untuk kebutuhan bisnis Anda.",
@@ -36,6 +37,7 @@ const services = [
   },
   {
     id: "02",
+    slug: "blockchain",
     title: "Blockchain",
     eyebrow: "Blockchain",
     headline: "Solusi blockchain untuk kebutuhan yang memang membutuhkannya.",
@@ -47,6 +49,7 @@ const services = [
   },
   {
     id: "03",
+    slug: "cloud-computing",
     title: "Cloud Computing",
     eyebrow: "Cloud Computing",
     headline: "Infrastruktur digital yang siap mendukung kebutuhan produk.",
@@ -58,6 +61,7 @@ const services = [
   },
   {
     id: "04",
+    slug: "creative-content-digital-media",
     title: "Creative Content & Digital Media",
     eyebrow: "Creative Content & Digital Media",
     headline: "Transformasi konten menjadi aset bisnis yang strategis dan terukur.",
@@ -69,6 +73,7 @@ const services = [
   },
   {
     id: "05",
+    slug: "data-science",
     title: "Data Science",
     eyebrow: "Data Science",
     headline: "Mengubah data menjadi informasi yang dapat digunakan.",
@@ -80,6 +85,7 @@ const services = [
   },
   {
     id: "06",
+    slug: "game-development",
     title: "Game Development",
     eyebrow: "Game Development",
     headline: "Pengalaman interaktif yang menggabungkan hiburan dan teknologi.",
@@ -91,6 +97,7 @@ const services = [
   },
   {
     id: "07",
+    slug: "internet-of-things",
     title: "Internet of Things",
     eyebrow: "Internet of Things",
     headline: "Menghubungkan perangkat, data, dan sistem dalam satu alur.",
@@ -102,6 +109,7 @@ const services = [
   },
   {
     id: "08",
+    slug: "machine-learning-ai",
     title: "Machine Learning / Artificial Intelligence",
     eyebrow: "Machine Learning / Artificial Intelligence",
     headline: "Machine Learning / Artificial Intelligence yang diterapkan pada kebutuhan dan proses bisnis yang jelas.",
@@ -113,6 +121,7 @@ const services = [
   },
   {
     id: "09",
+    slug: "mobile-development",
     title: "Mobile Development",
     eyebrow: "Mobile Development",
     headline: "Aplikasi mobile yang dirancang mengikuti kebutuhan pengguna.",
@@ -124,6 +133,7 @@ const services = [
   },
   {
     id: "10",
+    slug: "quality-assurance-qa-testing",
     title: "Quality Assurance (QA) / Testing",
     eyebrow: "Quality Assurance (QA) / Testing",
     headline: "Quality Assurance (QA) / Testing sebagai bagian dari pengembangan produk.",
@@ -135,6 +145,7 @@ const services = [
   },
   {
     id: "11",
+    slug: "web-development",
     title: "Web Development",
     eyebrow: "Web Development",
     headline: "Website dan aplikasi web yang dibangun untuk kebutuhan bisnis nyata.",
@@ -354,6 +365,22 @@ export default function Services() {
                             ))}
                           </div>
                         </div>
+                        <Link
+                          href={`/layanan/${service.slug}`}
+                          className="mt-9 inline-flex items-center gap-2 group/more cursor-pointer"
+                        >
+                          <span
+                            className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black transition-colors duration-300 dark:text-white group-hover/more:text-[var(--accent-color)] dark:group-hover/more:text-[var(--accent-color)]"
+                            style={MONO}
+                          >
+                            Selengkapnya
+                          </span>
+                          <ArrowUpRight
+                            size={14}
+                            strokeWidth={1.5}
+                            className="text-black transition-all duration-300 group-hover/more:translate-x-0.5 group-hover/more:-translate-y-0.5 group-hover/more:text-[var(--accent-color)] dark:text-white dark:group-hover/more:text-[var(--accent-color)]"
+                          />
+                        </Link>
                       </div>
 
                       {/* BOTTOM */}

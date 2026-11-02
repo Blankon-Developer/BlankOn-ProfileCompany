@@ -173,7 +173,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5"
+          className="group flex items-center gap-3 md:gap-4"
         >
           <div className="relative flex h-8 w-8 items-center justify-center">
             <Image
@@ -193,8 +193,7 @@ export default function Navbar() {
           </div>
 
           <span
-            className="text-[13px] font-black tracking-[-0.02em] text-foreground"
-            style={MONO}
+            className="text-[28px] md:text-[1.8em] font-black tracking-[-0.02em] md:tracking-[0.01em] text-transparent [-webkit-text-stroke:0.5px_black] dark:[-webkit-text-stroke:0.5px_white]" style={DISPLAY}
           >
             BlankOn Digital Tech
           </span>

@@ -12,19 +12,19 @@ interface TeamClientProps {
 }
 
 export default function TeamClient({ serviceName, teamDepartments }: TeamClientProps) {
-  const [openDepts, setOpenDepts] = useState<Record<string, boolean>>({});
+  const [openDepts, setOpenDepts] = useState<Record<number, boolean>>({});
 
   // Buka tab pertama secara otomatis jika di desktop
   useEffect(() => {
     if (teamDepartments.length > 0) {
-      setOpenDepts({ [teamDepartments[0].id]: true });
+      setOpenDepts({ 0: true });
     }
   }, [teamDepartments]);
 
-  const toggleDept = (id: string) => {
+  const toggleDept = (index: number) => {
     setOpenDepts(prev => ({
       ...prev,
-      [id]: !prev[id],
+      [index]: !prev[index],
     }));
   };
 
@@ -50,7 +50,7 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
             className="max-w-full text-[clamp(2rem,4vw,2rem)] font-medium leading-[0.92] tracking-[-0.055em] text-foreground"
             style={DISPLAY}
           >
-            Orang-orang yang berperan dalam <span className="text-[var(--accent-color)]">{serviceName}.</span>
+            Orang-orang yang berperan dalam Division <span className="text-[var(--accent-color)]">{serviceName}.</span>
           </h3>
         </div>
         <p
@@ -66,12 +66,12 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
         {/* Mobile Accordion View */}
         <div className="w-full border-t border-border lg:hidden mt-10">
           {teamDepartments.map((dept, index) => {
-            const isOpen = !!openDepts[dept.id];
+            const isOpen = !!openDepts[index];
             return (
-              <div key={dept.id} className="border-b border-border">
+              <div key={`${dept.name}-${index}`} className="border-b border-border">
                 <button
                   type="button"
-                  onClick={() => toggleDept(dept.id)}
+                  onClick={() => toggleDept(index)}
                   aria-expanded={isOpen}
                   className="group relative flex w-full items-center gap-4 py-6 text-left focus-visible:outline-none"
                 >
@@ -93,7 +93,7 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
                     <div className="pb-10 pt-2 pl-2">
                       <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 gap-x-6">
                         {dept.members.map((member, mIndex) => (
-                          <article key={member.name} className="group/member flex flex-col">
+                          <article key={`${member.name}-${mIndex}`} className="group/member flex flex-col">
                             <div className="relative mb-5 aspect-[4/5] overflow-hidden bg-muted">
                               <Image src={member.image} alt={member.name} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover grayscale transition-all duration-700 ease-out group-hover/member:scale-[1.025] group-hover/member:grayscale-0" />
                               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/30 to-transparent p-4">
@@ -135,12 +135,12 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
           >
             <div className="sticky top-32 w-full">
               {teamDepartments.map((dept, index) => {
-                const isOpen = !!openDepts[dept.id];
+                const isOpen = !!openDepts[index];
                 return (
                   <button
-                    key={dept.id}
+                    key={`${dept.name}-${index}`}
                     type="button"
-                    onClick={() => toggleDept(dept.id)}
+                    onClick={() => toggleDept(index)}
                     aria-expanded={isOpen}
                     className={cn("group relative flex w-full items-start gap-4 border-b border-border py-6 text-left transition-colors duration-200 cursor-pointer", isOpen ? "bg-muted/30" : "hover:bg-muted/10")}
                   >
@@ -154,7 +154,7 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
                           {dept.name}
                         </h4>
                         <span className="text-[10px] tabular-nums text-muted-foreground" style={MONO}>
-                          {String(dept.members.length).padStart(1, "0")} People
+                          {String(dept.members.length).padStart(1, "0")} Orang
                         </span>
                       </div>
                     </div>
@@ -172,40 +172,41 @@ export default function TeamClient({ serviceName, teamDepartments }: TeamClientP
             )}
           >
             <div className="min-w-0 w-full">
-              {teamDepartments.map((dept) => {
-                const isOpen = !!openDepts[dept.id];
+              {teamDepartments.map((dept, index) => {
+                const isOpen = !!openDepts[index];
                 return (
-                  <div key={dept.id} className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
+                  <div key={`${dept.name}-${index}`} className={cn("grid transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(.22,1,.36,1)]", isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0")}>
                     <div className="overflow-hidden">
                       <div className="px-4 sm:px-10 lg:px-0 pb-16 lg:pb-0">
                         <div className="flex items-end justify-between border-b border-border py-6 mb-10">
                           <div>
-                            <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Team</p>
+                            <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>{dept.id}</p>
                             <h4 className="text-2xl font-medium tracking-tight" style={DISPLAY}>{dept.name}</h4>
                           </div>
                           <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground" style={MONO}>
-                            {String(dept.members.length).padStart(2, "0")} People
+                            {String(dept.members.length).padStart(2, "0")} Orang
                           </span>
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
 
-                          {dept.members.map((member, index) => (
-                            <article key={member.name} className="group/member flex flex-col h-full">
+                          {dept.members.map((member, mIndex) => (
+                            <article key={`${member.name}-${mIndex}`} className="group/member flex flex-col h-full">
                               <div className="relative mb-6 aspect-[4/5] overflow-hidden bg-muted">
                                 <Image src={member.image} alt={member.name} fill sizes="33vw" className="object-cover grayscale transition-all duration-700 ease-out group-hover/member:scale-[1.025] group-hover/member:grayscale-0" />
                                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/40 to-transparent p-5">
-                                  <span className="text-[10px] font-medium text-white/90" style={MONO}>{String(index + 1).padStart(2, "0")}</span>
+                                  <span className="text-[10px] font-medium text-white/90" style={MONO}>{String(mIndex + 1).padStart(2, "0")}</span>
                                 </div>
                               </div>
                               <div className="flex flex-col flex-1">
-                                <div className="flex items-start justify-between gap-4">
+                                <div className="flex items-start justify-between gap-2">
                                   <div>
                                     <h5 className="text-lg font-medium tracking-[-0.02em]" style={DISPLAY}>{member.name}</h5>
-                                    <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground" style={BODY}>{member.role}</p>
+                                    <p className="mt-1 text-[10px] max-w-full font-semibold text-justify uppercase tracking-[0.15em] text-muted-foreground" style={BODY}>{member.role}</p>
                                   </div>
                                   <div className="flex gap-2 pt-1 shrink-0">
                                     <a href={member.linkedln || "#"} className="text-muted-foreground transition-colors hover:text-foreground"><Linkedin size={14} strokeWidth={1.5} /></a>
                                     <a href={member.website || "#"} className="text-muted-foreground transition-colors hover:text-foreground"><Globe size={14} strokeWidth={1.5} /></a>
+                                    
                                   </div>
                                 </div>
                                 <p className="mt-4 text-sm leading-6 text-justify text-muted-foreground flex-1" style={BODY}>{member.desc}</p>

@@ -7,39 +7,48 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-black text-black dark:text-white pt-20 md:pt-10 pb-8 px-6 md:px-0 border-t border-background/10">
+    <footer className="bg-white dark:bg-black text-black dark:text-white pt-5 md:pt-10 pb-8 px-6 md:px-0 border-t border-background/10">
       <div className="max-w-8xl mx-auto px-6 lg:px-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-5 md:mb-10">
 
-          <div className="md:col-span-12 lg:col-span-4">
-            {/* Footer has bg-foreground (inverted), so we swap the logos compared to Navbar */}
+
+          <div className="md:col-span-12 lg:col-span-4 text-center md:text-left">
+            {/* Logo */}
             <Image
               src="/BlankOn Logo.svg"
-              alt="Logo"
+              alt="BlankOn Digital Tech"
               width={200}
               height={200}
-              className="mb-6 h-[75px] w-auto dark:hidden"
+              className="mx-auto mb-6 h-[75px] w-auto dark:hidden md:mx-0"
             />
 
             <Image
               src="/BlankOn Logo Dark-Mode.svg"
-              alt="Logo"
+              alt="BlankOn Digital Tech"
               width={200}
               height={200}
-              className="mb-6 h-[75px] w-auto hidden dark:block"
+              className="mx-auto mb-6 hidden h-[75px] w-auto dark:block md:mx-0"
             />
 
-            <h2 className="text-2xl font-black mb-4 tracking-tight" style={DISPLAY}>
+            <h2
+              className="mb-4 text-3xl font-black tracking-tight text-transparent [-webkit-text-stroke:0.5px_black] dark:[-webkit-text-stroke:0.5px_white] md:text-5xl"
+              style={DISPLAY}
+            >
               BlankOn Digital Tech
             </h2>
-            <p className="opacity-60 text-sm leading-relaxed max-w-sm text-justify text-pretty" style={BODY}>
+
+            <p
+              className="mx-auto max-w-sm text-justify text-sm leading-relaxed opacity-60 text-pretty md:mx-0 md:max-w-md md:text-base"
+              style={BODY}
+            >
               Partner technologi untuk personal, instansi, UMKM, dan perusahaan yang ingin membangun, memperbaiki, atau mengembangkan kebutuhan digital.
             </p>
           </div>
 
+
           <div className="md:col-span-7 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xs font-bold opacity-40 uppercase tracking-widest mb-6" style={MONO}>
+              <h3 className="text-xs font-bold text-[var(--accent-color)] uppercase tracking-widest mb-6" style={MONO}>
                 Layanan & Solusi
               </h3>
               <ul className="flex flex-col gap-4">
@@ -59,7 +68,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="text-xs font-bold opacity-40 uppercase tracking-widest mb-6" style={MONO}>
+              <h3 className="text-xs font-bold text-[var(--accent-color)] uppercase tracking-widest mb-6" style={MONO}>
                 Perusahaan
               </h3>
               <ul className="flex flex-col gap-4">
@@ -82,7 +91,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h3 className="text-xs font-bold opacity-40 uppercase tracking-widest mb-6" style={MONO}>
+              <h3 className="text-xs font-bold text-[var(--accent-color)] uppercase tracking-widest mb-6" style={MONO}>
                 Bantuan
               </h3>
               <ul className="flex flex-col gap-4">
@@ -98,7 +107,7 @@ export default function Footer() {
 
           <div className="md:col-span-5 lg:col-span-3 flex flex-col gap-8">
             <div>
-              <h3 className="text-xs font-bold opacity-40 uppercase tracking-widest mb-6" style={MONO}>
+              <h3 className="text-xs font-bold text-[var(--accent-color)] uppercase tracking-widest mb-6" style={MONO}>
                 Contact
               </h3>
               <ul className="flex flex-col gap-4">
@@ -108,7 +117,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://wa.me/6281234567890" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
+                  <a href="https://wa.me/6285174155704" className="inline-flex items-center gap-1.5 opacity-70 hover:opacity-100 text-sm transition-opacity group" style={BODY}>
                     WhatsApp <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
@@ -125,20 +134,39 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-
         </div>
 
-        <div className="pt-8 border-t border-t-accent flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="opacity-40 text-[11px] tracking-widest" style={MONO}>
-            © 2026 BlankOn Digital Tech | <span className="uppercase">All rights reserved.</span>
-          </p>
-          <div className="flex items-center gap-2">
-            <span className="w-1 h-4 inline-block animate-pulse" style={{ backgroundColor: "var(--accent-color)" }} />
-            <span className="opacity-40 text-[11px] uppercase tracking-widest" style={MONO}>
-              Central Java, ID
-            </span>
+        <div className="border-t border-t-accent pt-5 md:pt-6">
+          <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-6">
+            {/* Copyright */}
+            <p
+              className="text-center text-[10px] leading-relaxed tracking-[0.15em] opacity-50 md:text-left md:text-[11px]"
+              style={MONO}
+            >
+              © 2026 BlankOn Digital Tech
+              <span className="mx-2 hidden md:inline opacity-100">|</span>
+              <span className="block uppercase md:inline">
+                All rights reserved
+              </span>
+            </p>
+
+            {/* Location */}
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 shrink-0 animate-pulse rounded-full md:animate-none md:h-3.5 md:w-1 md:rounded-none"
+                style={{ backgroundColor: "var(--accent-color)" }}
+              />
+
+              <span
+                className="text-[10px] uppercase tracking-[0.15em] opacity-50 md:text-[11px]"
+                style={MONO}
+              >
+                Central Java, ID
+              </span>
+            </div>
           </div>
         </div>
+
       </div>
     </footer>
   );

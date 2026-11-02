@@ -2,7 +2,8 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { BODY, DISPLAY, MONO } from "@/lib/utils";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import ContactForm from "./ContactForm";
 
 export const metadata = {
@@ -41,24 +42,24 @@ export default function ContactPage() {
 
         {/* Contact */}
         <section>
-          <div className="mx-auto grid max-w-8xl px-6 lg:px-28 grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] pt-0 pb-12">
+          <div className="mx-auto grid max-w-8xl px-6 lg:px-20 grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] pt-0 pb-12">
             {/* Information */}
-            <aside className="border-b border-border px-6 py-14 md:px-8 lg:border-b-0 lg:border-r lg:py-6">
+            <aside className="border-b border-[var(--accent-color)] md:border-foreground px-6 py-14 md:px-8 lg:border-b-0 lg:border-r lg:py-2">
               <div className="max-w-full">
                 <p
-                  className="mb-10 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                  className="mb-5 text-xs md:text-base text-center md:text-right font-semibold uppercase tracking-[0.18em] text-[var(--accent-color)] border-b border-foreground/20 pb-1"
                   style={MONO}
                 >
                   Informasi Kontak Kami
                 </p>
 
-                <div className="space-y-9">
+                <div className="space-y-2">
                   {contactDetails.map((item) => {
                     const Icon = item.icon;
 
                     return (
                       <div key={item.label} className="flex gap-4">
-                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[var(--accent-color)]" />
 
                         <div className="w-full">
                           <p
@@ -100,38 +101,125 @@ export default function ContactPage() {
 
                 <div className="mt-16 border-t border-border pt-6">
                   <p
-                    className="text-sm leading-6 text-muted-foreground"
+                    className="text-sm leading-6 text-muted-foreground text-justify"
                     style={BODY}
                   >
-                    Kami biasanya merespons dalam satu hari kerja.
+                    <span className="text-[var(--accent-color)] font-semibold">BlankOn Digital Tech</span> hadir sebagai partner teknologi untuk membantu membangun, memperbaiki, dan mengembangkan kebutuhan digital Anda dengan slogan <span className="text-[var(--accent-color)] font-semibold">“WE TOGETHER, DEPLOY THE FUTURE”.</span> Kami memastikan setiap layanan yang kami berikan mampu berdampak yang terbaik bagi bisnis Anda dalam mencapai kesuksesan pada ranah digital dengan solusi teknologi yang inovatif, aman, dan efisien.
                   </p>
                 </div>
               </div>
             </aside>
 
             {/* Form */}
-            <div className="px-6 py-14 md:px-8 lg:px-16 lg:py-2">
+            <div className="px-6 py-14 md:px-6 lg:px-8 lg:py-2">
               <div className="max-w-full">
                 <div className="mb-10">
                   <p
-                    className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                    className="mb-3 text-xs md:text-base text-center md:text-right font-semibold uppercase tracking-[0.18em] text-[var(--accent-color)]"
                     style={MONO}
                   >
                     Mulai Percakapan Di Sini
                   </p>
 
                   <h2
-                    className="text-3xl font-black tracking-tight md:text-4xl"
+                    className="text-[22px] text-center md:text-left font-black tracking-tight md:text-4xl"
                     style={DISPLAY}
                   >
-                    Ceritakan kebutuhan Anda.
+                    Silakan ceritakan kebutuhan atau Ide Bisnis Anda,
+                  </h2>
+                  <h2
+                    className="text-[22px] text-center md:text-left font-black tracking-tight md:text-4xl"
+                    style={DISPLAY}
+                  >
+                    Kami siap membantu Anda.
                   </h2>
                 </div>
 
                 <ContactForm />
-                  </div>
               </div>
             </div>
+          </div>
+
+          {/* Opsi Alternatif: Pengantar Singkat & Tautan ke Halaman Jadwal Temu */}
+          <div className="mx-auto max-w-8xl px-6 lg:px-28 pb-16">
+            <div
+              className="group relative isolate overflow-hidden border border-border bg-black/[0.03] dark:bg-white/[0.04] p-8 md:p-10 backdrop-blur-xs transition-colors duration-300 hover:border-[var(--accent-color)] shadow-xs"
+            >
+              {/* Lapisan gambar latar */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-no-repeat bg-right opacity-70 dark:opacity-55 transition-opacity duration-500 group-hover:opacity-85"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.04) 45%, rgba(0, 0, 0, 0.12) 100%), url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85")`,
+                  backgroundSize: "cover",
+                  maskImage: "linear-gradient(to left, black 0%, black 15%, transparent 85%)",
+                  WebkitMaskImage: "linear-gradient(to left, black 0%, black 15%, transparent 85%)",
+                }}
+              />
+
+              {/* Lapisan penyeimbang kontras */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/90 to-transparent dark:from-black dark:via-black/90"
+              />
+
+              {/* Konten utama */}
+              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="max-w-2xl space-y-2.5">
+                  <div className="inline-flex items-center gap-2">
+                    <span
+                      className="h-2 w-2 rounded-full inline-block"
+                      style={{ backgroundColor: "var(--accent-color)" }}
+                    />
+
+                    <span
+                      className="text-xs uppercase tracking-widest text-[var(--accent-color)] font-semibold"
+                      style={MONO}
+                    >
+                      Jalur Cepat Diskusi 1-on-1
+                    </span>
+                  </div>
+
+                  <h3
+                    className="text-xl md:text-2xl font-black tracking-tight text-foreground"
+                    style={DISPLAY}
+                  >
+                    Ingin Langsung Berdiskusi Tanpa Mengisi Formulir?
+                  </h3>
+
+                  <p
+                    className="text-sm text-muted-foreground leading-relaxed text-justify"
+                    style={BODY}
+                  >
+                    Lewati formulir di atas jika Anda ingin segera menentukan waktu
+                    diskusi. Anda dapat langsung memilih jadwal temu atau sesi
+                    konsultasi tatap muka maupun daring bersama tim Solution
+                    Architect kami melalui portal reservasi khusus.
+                  </p>
+                </div>
+
+                <div className="relative z-20 shrink-0 w-full lg:w-auto">
+                  <Link
+                    href="/kontak/jadwal-temu"
+                    className="inline-flex w-full lg:w-auto items-center justify-center gap-3 px-6 py-3.5 font-bold text-sm rounded-xl transition-all duration-300 hover:opacity-90 active:scale-[0.99] cursor-pointer shadow-md group/cta"
+                    style={{
+                      ...DISPLAY,
+                      backgroundColor: "var(--accent-color)",
+                      color: "black",
+                    }}
+                  >
+                    <span className="text-xs md:text-sm tracking-tight text-white dark:text-black uppercase">Jadwalkan Janji Temu</span>
+
+                    <ArrowRight
+                      size={16}
+                      className="text-white dark:text-black transition-transform group-hover/cta:translate-x-1"
+                    />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
       </main>
       <div className="relative w-full">

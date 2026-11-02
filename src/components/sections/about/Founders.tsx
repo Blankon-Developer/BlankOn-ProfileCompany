@@ -4,6 +4,8 @@ import { useState } from "react";
 import { DISPLAY, BODY, MONO, LIME, cn } from "@/lib/utils";
 import Image from "next/image";
 import { ChevronDown, Twitter, Linkedin, Globe } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
+import { CiGlobe } from "react-icons/ci";
 
 const founders = [
   {
@@ -12,6 +14,9 @@ const founders = [
     initials: "GA",
     desc: "Memimpin sisi teknologi dan development, dengan fokus pada bagaimana produk dibangun secara terstruktur, stabil, dan dapat dikembangkan sesuai kebutuhan.",
     image: "/foto-galang.jpg",
+    linkedln: "https://www.linkedin.com/in/galang-arsandy-noverdan-putra-00755a198/",
+    website: "https://noverdan.dev/",
+    twitter: "https://twitter.com/galangarsandy",
   },
   {
     name: "Harun Ar Rasyid",
@@ -19,18 +24,25 @@ const founders = [
     initials: "HA",
     desc: "Memimpin proses desain dan pengalaman pengguna, memastikan produk memiliki alur yang jelas dan mudah digunakan.",
     image: "/foto-harun.jpg",
+    linkedln: "https://www.linkedin.com/in/harundarat/",
+    website: "https://www.harun-rasyid.id/",
+    twitter: "https://twitter.com/harundarat",
   },
   {
     name: "Pras Tio Rifki Wijaya",
     role: "Co-Founder & Product Manager",
     initials: "PR",
     desc: "Menghubungkan kebutuhan bisnis, pengguna, dan tim pengembangan agar proses pembangunan produk tetap memiliki arah dan prioritas yang jelas.",
-    image: "/foto-prastio.jpg",
+    image: "/foto-prastioo.jpg",
+    linkedln: "https://www.linkedin.com/in/pras-tio-rifki-wijaya-91715b256/",
+    website: "https://www.prastio-rifki.id/",
+    twitter: "https://twitter.com/prastioo_",
   },
 ];
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa";
 
 const serviceTeams = [
   {
@@ -112,7 +124,7 @@ export default function Founders() {
               className="text-[12px] font-medium tracking-wide"
               style={{
                 ...MONO,
-                color: LIME,
+                color: "var(--accent-color)",
               }}
             >
               BACKGROUND OF BLANKON DIGITAL TECH
@@ -140,24 +152,24 @@ export default function Founders() {
 
           {/* Buttons */}
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button
-              type="button"
+            <Link
+              href={'/layanan'}
               className="rounded-lg border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-muted"
               style={BODY}
             >
-              Tentang Blankon Tech
-            </button>
+              Layanan Blankon Tech
+            </Link>
 
-            <button
-              type="button"
-              className="rounded-lg px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:opacity-90"
+            <Link
+              href={'/kontak'}
+              className="rounded-lg px-5 py-3 text-sm font-medium text-white dark:text-black transition-all duration-200 hover:opacity-90"
               style={{
-                backgroundColor: LIME,
+                backgroundColor: "var(--accent-color)",
                 ...BODY,
               }}
             >
               Hubungi Kami
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -236,9 +248,9 @@ export default function Founders() {
 
                 {/* Social / Meta */}
                 <div className="mt-4 flex items-center gap-4 text-white/90">
-                  <span className="text-sm font-medium">X</span>
-                  <span className="text-sm font-medium">in</span>
-                  <span className="text-sm">◉</span>
+                  <Link href={founder.twitter} className="text-sm font-medium"><FaXTwitter /></Link>
+                  <Link href={founder.linkedln} className="text-sm font-medium"><FaLinkedinIn /></Link>
+                  <Link href={founder.website} className="text-sm"><CiGlobe /></Link>
                 </div>
               </div>
             </article>
@@ -254,14 +266,14 @@ export default function Founders() {
                 className="mb-5 block text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground"
                 style={BODY}
               >
-                BlankOn Digital Tech | Team
+                BlankOn Digital Tech | Division's Team
               </span>
               <h3
                 className="max-w-full text-[clamp(2.75rem,6vw,2rem)] font-medium leading-[0.92] tracking-[-0.055em] text-foreground"
                 style={DISPLAY}
               >
                 Beberapa orang dibalik layar <br />
-                dari BlankOn Digital Tech.
+                dalam setiap Divisi BlankOn Digital Tech.
               </h3>
             </div>
             <p
@@ -376,7 +388,7 @@ export default function Founders() {
                         <div className="overflow-hidden">
                           <div className="px-10 py-6 h-full flex flex-col justify-center">
                             <div className="border-b border-border pb-8 mb-8">
-                              <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Team Overview</p>
+                              <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style={BODY}>Division Overview</p>
                               <h4 className="text-3xl font-medium tracking-tight mb-4" style={DISPLAY}>{team.name}</h4>
                               <p className="text-base leading-7 text-muted-foreground" style={BODY}>{team.desc}</p>
                             </div>

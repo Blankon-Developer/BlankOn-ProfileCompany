@@ -19,7 +19,7 @@ export default function APIManagementSystemIntegrationPortfolioPage() {
                     title="API Management & System Integration"
                     description="API Management untuk mengelola akses ke layanan digital, menentukan batasan penggunaan, dan memastikan keamanan. System Integration untuk menghubungkan sistem yang berbeda sehingga dapat saling bertukar data dengan lancar, mendukung otomasi proses kerja."
                 />
-                <PortfolioClient serviceFilter="api-management-system-integration" />
+                <PortfolioClient serviceFilter="api-management-&-system-integration" />
             </main>
             <CTA />
             <Footer />
