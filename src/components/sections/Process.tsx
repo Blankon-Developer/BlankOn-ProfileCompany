@@ -1,8 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { cn, DISPLAY, BODY, MONO, LIME } from "@/lib/utils";
-import { Search, ListChecks, LayoutTemplate, Code2, RefreshCcw, BadgeCheck, Rocket, Activity } from "lucide-react";
+import Link from "next/link";
+import { cn, DISPLAY, BODY, MONO } from "@/lib/utils";
+import { 
+  Search, 
+  ListChecks, 
+  LayoutTemplate, 
+  Code2, 
+  RefreshCcw, 
+  BadgeCheck, 
+  Rocket, 
+  Activity,
+  Sparkles,
+  ArrowUpRight,
+  BookOpen,
+  Calendar,
+  FileText,
+  Layers
+} from "lucide-react";
+import { servicesProcessData } from "@/lib/services-process-data";
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState(0);
@@ -78,200 +95,355 @@ export default function Process() {
     { left: "77%", top: "78%" },   // 8. Improve (Bottom-Right)
   ];
 
+  const serviceProcessList = Object.values(servicesProcessData);
+
   return (
-    <section id="proses" className="py-20 md:py-12 px-6 md:px-28 max-w-8xl mx-auto border-t border-border">
-      <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 mb-6 w-fit">
-            <span className="w-1.5 h-1.5 rounded-full inline-block bg-foreground" />
-            <span className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold" style={MONO}>
-              CARA KAMI BEKERJA
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6 text-foreground" style={DISPLAY}>
-            Kami tidak langsung membuat tetapi kami mulai dengan memahami.
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-xl" style={BODY}>
-            Proyek digital yang baik biasanya dimulai dari pertanyaan yang tepat. Karena itu, proses kami dibuat sederhana dan transparan agar Anda memahami apa yang sedang dibangun, mengapa hal tersebut dibutuhkan, dan bagaimana prosesnya berjalan.
-          </p>
-        </div>
-      </div>
-
-      {/* Mobile Layout */}
-      <div className="md:hidden flex flex-col gap-8">
-        <div className="flex overflow-x-auto pb-4 gap-4 snap-x [&::-webkit-scrollbar]:hidden">
-          {steps.map((step, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveStep(idx)}
-              className={cn(
-                "flex flex-col items-center justify-center gap-3 shrink-0 snap-center w-24 h-24 border-2 rounded-2xl transition-all duration-300",
-                activeStep === idx
-                  ? "border-foreground bg-foreground text-background shadow-lg scale-105"
-                  : "border-border bg-background text-foreground hover:bg-muted"
-              )}
-            >
-              {step.icon}
-              <span className="text-[10px] font-bold uppercase tracking-wider" style={MONO}>{step.title}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="bg-muted border border-border rounded-2xl p-6 min-h-[220px] shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: "var(--accent-color)" }} />
-          <h3 className="text-2xl font-bold mb-3 text-foreground" style={DISPLAY}>
-            {steps[activeStep].id}. {steps[activeStep].title}
-          </h3>
-          <p className="text-muted-foreground leading-relaxed mb-6" style={BODY}>
-            {steps[activeStep].desc}
-          </p>
-          <div className="inline-block px-4 py-3 bg-background border border-border rounded-lg w-full">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1" style={MONO}>Output:</p>
-            <p className="text-sm font-semibold text-foreground" style={BODY}>{steps[activeStep].output}</p>
+    <section id="proses" className="py-20 md:py-16 px-6 md:px-28 max-w-8xl mx-auto border-t border-border space-y-24">
+      {/* ─────────────────────────────────────────────────────────────
+          1. ALUR PENGEMBANGAN UTAMA (8-STEP INFINITY LOOP)
+          ───────────────────────────────────────────────────────────── */}
+      <div>
+        <div className="mb-16 md:mb-6 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-6 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full inline-block bg-foreground" />
+              <span className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold" style={MONO}>
+                CARA KAMI BEKERJA
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1] mb-6 text-foreground" style={DISPLAY}>
+              Kami tidak langsung membuat tetapi kami mulai dengan memahami.
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-xl" style={BODY}>
+              Proyek digital yang baik biasanya dimulai dari pertanyaan yang tepat. Karena itu, proses kami dibuat sederhana dan transparan agar Anda memahami apa yang sedang dibangun, mengapa hal tersebut dibutuhkan, dan bagaimana prosesnya berjalan.
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Desktop Layout (Infinity Loop) */}
-      <div className="hidden md:flex flex-col items-center w-full mt-4 md:mt-0">
-        <div className="relative w-full max-w-8xl aspect-[2/1] mx-auto mb-16 md:mb-0">
-          {/* Background SVG Path */}
-          <svg viewBox="0 0 800 400" className="absolute inset-0 w-full h-full drop-shadow-sm">
-            <path
-              d="M 750 200 C 750 350, 500 350, 400 200 C 300 50, 50 50, 50 200 C 50 350, 300 350, 400 200 C 500 50, 750 50, 750 200"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="6"
-              strokeLinecap="round"
-              className="text-border dark:text-background/10"
-            />
-            {/* Animated glowing path over it */}
-            <path
-              d="M 750 200 C 750 350, 500 350, 400 200 C 300 50, 50 50, 50 200 C 50 350, 300 350, 400 200 C 500 50, 750 50, 750 200"
-              fill={"none"}
-              stroke={"var(--accent-color)"}
-              strokeWidth="8"
-              strokeLinecap="round"
-              className="opacity-60 animate-[infinity-dash_8s_linear_infinite]"
-              pathLength="100"
-              strokeDasharray="15 85"
-            />
-          </svg>
-
-          {/* Nodes */}
-          {steps.map((step, idx) => {
-            const pos = positions[idx];
-            const isActive = activeStep === idx;
-            const isBottom = parseInt(pos.top) > 50;
-            return (
+        {/* Mobile Layout */}
+        <div className="md:hidden flex flex-col gap-8">
+          <div className="flex overflow-x-auto pb-4 gap-4 snap-x [&::-webkit-scrollbar]:hidden">
+            {steps.map((step, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveStep(idx)}
                 className={cn(
-                  "absolute flex flex-col items-center justify-center w-20 h-20 rounded-full -translate-x-1/2 -translate-y-1/2 border-4 transition-all duration-500 z-10 shadow-lg group focus:outline-none cursor-pointer",
-                  isActive
-                    ? "bg-foreground text-background border-background scale-[1.15] shadow-2xl"
-                    : "bg-background text-foreground border-border hover:border-foreground hover:scale-110"
+                  "flex flex-col items-center justify-center gap-3 shrink-0 snap-center w-24 h-24 border-2 rounded-2xl transition-all duration-300",
+                  activeStep === idx
+                    ? "border-foreground bg-foreground text-background shadow-lg scale-105"
+                    : "border-border bg-background text-foreground hover:bg-muted"
                 )}
-                style={{ left: pos.left, top: pos.top }}
-                title={step.title}
               >
                 {step.icon}
-                <span className={cn(
-                  "absolute whitespace-nowrap text-xs font-bold uppercase tracking-widest transition-opacity duration-300",
-                  isBottom ? "-top-8" : "-bottom-8",
-                  isActive ? "opacity-100 text-foreground" : "opacity-0 group-hover:opacity-100 text-muted-foreground"
-                )} style={MONO}>
-                  {step.title}
-                </span>
-
-                {/* Ping animation for active */}
-                {isActive && (
-                  <span className="absolute inset-0 rounded-full bg-foreground opacity-20 animate-ping -z-10" />
-                )}
+                <span className="text-[10px] font-bold uppercase tracking-wider" style={MONO}>{step.title}</span>
               </button>
-            );
-          })}
+            ))}
+          </div>
+
+          <div className="bg-muted border border-border rounded-2xl p-6 min-h-[220px] shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: "var(--accent-color)" }} />
+            <h3 className="text-2xl font-bold mb-3 text-foreground" style={DISPLAY}>
+              {steps[activeStep].id}. {steps[activeStep].title}
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-6" style={BODY}>
+              {steps[activeStep].desc}
+            </p>
+            <div className="inline-block px-4 py-3 bg-background border border-border rounded-lg w-full">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1" style={MONO}>Output:</p>
+              <p className="text-sm font-semibold text-foreground" style={BODY}>{steps[activeStep].output}</p>
+            </div>
+          </div>
         </div>
 
-        {/* Content Box below the loop */}
-        <div className="w-full max-w-8xl mt-2">
-          <div className="relative overflow-hidden border border-border bg-background rounded-2xl">
-            {/* Active indicator */}
-            <div
-              className="absolute left-0 top-0 bottom-0 w-1"
-              style={{ backgroundColor: LIME }}
-            />
+        {/* Desktop Layout (Infinity Loop) */}
+        <div className="hidden md:flex flex-col items-center w-full mt-4 md:mt-0">
+          <div className="relative w-full max-w-8xl aspect-[2/1] mx-auto mb-16 md:mb-0">
+            {/* Background SVG Path */}
+            <svg viewBox="0 0 800 400" className="absolute inset-0 w-full h-full drop-shadow-sm">
+              <path
+                d="M 750 200 C 750 350, 500 350, 400 200 C 300 50, 50 50, 50 200 C 50 350, 300 350, 400 200 C 500 50, 750 50, 750 200"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                className="text-border dark:text-background/10"
+              />
+              {/* Animated glowing path over it */}
+              <path
+                d="M 750 200 C 750 350, 500 350, 400 200 C 300 50, 50 50, 50 200 C 50 350, 300 350, 400 200 C 500 50, 750 50, 750 200"
+                fill={"none"}
+                stroke={"var(--accent-color)"}
+                strokeWidth="8"
+                strokeLinecap="round"
+                className="opacity-60 animate-[infinity-dash_8s_linear_infinite]"
+                pathLength="100"
+                strokeDasharray="15 85"
+              />
+            </svg>
 
-            <div className="grid md:grid-cols-[120px_1fr] gap-0">
-              {/* Phase Number */}
-              <div className="hidden md:flex items-start justify-center pt-10 border-r border-border">
-                <span
-                  className="text-sm font-bold tracking-[0.2em] text-muted-foreground"
-                  style={MONO}
+            {/* Nodes */}
+            {steps.map((step, idx) => {
+              const pos = positions[idx];
+              const isActive = activeStep === idx;
+              const isBottom = parseInt(pos.top) > 50;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveStep(idx)}
+                  className={cn(
+                    "absolute flex flex-col items-center justify-center w-20 h-20 rounded-full -translate-x-1/2 -translate-y-1/2 border-4 transition-all duration-500 z-10 shadow-lg group focus:outline-none cursor-pointer",
+                    isActive
+                      ? "bg-foreground text-background border-background scale-[1.15] shadow-2xl"
+                      : "bg-background text-foreground border-border hover:border-foreground hover:scale-110"
+                  )}
+                  style={{ left: pos.left, top: pos.top }}
+                  title={step.title}
                 >
-                  {steps[activeStep].id}
-                </span>
-              </div>
-
-              {/* Main Content */}
-              <div className="p-7 md:p-10">
-                <div className="flex items-start justify-between gap-6 mb-6">
-                  <div>
-                    <p
-                      className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 md:hidden"
-                      style={MONO}
-                    >
-                      Phase {steps[activeStep].id}
-                    </p>
-
-                    <h3
-                      className="text-2xl md:text-3xl font-black tracking-tight text-foreground"
-                      style={DISPLAY}
-                    >
-                      {steps[activeStep].title}
-                    </h3>
-                  </div>
-
-                  {/* Active Icon */}
-                  <div className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl border border-border bg-muted/40 text-foreground">
-                    {steps[activeStep].icon}
-                  </div>
-                </div>
-
-                <p
-                  className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-8"
-                  style={BODY}
-                >
-                  {steps[activeStep].desc}
-                </p>
-
-                {/* Output */}
-                <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-5 pt-5 border-t border-border">
-                  <span
-                    className="shrink-0 text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground"
-                    style={MONO}
-                  >
-                    Output
+                  {step.icon}
+                  <span className={cn(
+                    "absolute whitespace-nowrap text-xs font-bold uppercase tracking-widest transition-opacity duration-300",
+                    isBottom ? "-top-8" : "-bottom-8",
+                    isActive ? "opacity-100 text-foreground" : "opacity-0 group-hover:opacity-100 text-muted-foreground"
+                  )} style={MONO}>
+                    {step.title}
                   </span>
 
-                  <div className="flex flex-wrap gap-2">
-                    {steps[activeStep].output.split(" · ").map((item, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center px-3 py-1.5 rounded-md border border-border bg-muted/30 text-xs font-medium text-foreground"
-                        style={BODY}
+                  {/* Ping animation for active */}
+                  {isActive && (
+                    <span className="absolute inset-0 rounded-full bg-foreground opacity-20 animate-ping -z-10" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Content Box below the loop */}
+          <div className="w-full max-w-8xl mt-2">
+            <div className="relative overflow-hidden border border-border bg-background">
+              {/* Active indicator */}
+              <div
+                className="absolute left-0 top-0 bottom-0 w-1"
+                style={{ backgroundColor: "var(--accent-color)" }}
+              />
+
+              <div className="grid md:grid-cols-[120px_1fr] gap-0">
+                {/* Phase Number */}
+                <div className="hidden md:flex items-start justify-center pt-10 border-r border-border">
+                  <span
+                    className="text-sm font-bold tracking-[0.2em] text-muted-foreground"
+                    style={MONO}
+                  >
+                    {steps[activeStep].id}
+                  </span>
+                </div>
+
+                {/* Main Content */}
+                <div className="p-7 md:p-10">
+                  <div className="flex items-start justify-between gap-6 mb-6">
+                    <div>
+                      <p
+                        className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 md:hidden"
+                        style={MONO}
                       >
-                        {item}
-                      </span>
-                    ))}
+                        Phase {steps[activeStep].id}
+                      </p>
+
+                      <h3
+                        className="text-2xl md:text-3xl font-black tracking-tight text-foreground"
+                        style={DISPLAY}
+                      >
+                        {steps[activeStep].title}
+                      </h3>
+                    </div>
+
+                    {/* Active Icon */}
+                    <div className="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl border border-border bg-muted/40 text-foreground">
+                      {steps[activeStep].icon}
+                    </div>
+                  </div>
+
+                  <p
+                    className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-8"
+                    style={BODY}
+                  >
+                    {steps[activeStep].desc}
+                  </p>
+
+                  {/* Output */}
+                  <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-5 pt-5 border-t border-border">
+                    <span
+                      className="shrink-0 text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground"
+                      style={MONO}
+                    >
+                      Output
+                    </span>
+
+                    <div className="flex flex-wrap gap-2">
+                      {steps[activeStep].output.split(" · ").map((item, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center px-3 py-1.5 rounded-md border border-border bg-muted/30 text-xs font-medium text-foreground"
+                          style={BODY}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
+      {/* ─────────────────────────────────────────────────────────────
+          2. DIREKTORI METODOLOGI IMPLEMENTASI BERDASARKAN LAYANAN
+          ───────────────────────────────────────────────────────────── */}
+      <div className="space-y-10 pt-12 border-t border-border">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <span
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[var(--accent-color)]"
+              style={MONO}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              DIREKTORI METODOLOGI BERDASARKAN LAYANAN
+            </span>
+            <h2
+              className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground"
+              style={DISPLAY}
+            >
+              Alur Kerja Teknis & Tata Kelola Setiap Disiplin
+            </h2>
+            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed" style={BODY}>
+              Setiap domain teknologi memerlukan kerangka kerja terarah, gerbang pengujian kualitas (quality gates), serta pembagian peran klien yang jelas. Pilih bidang layanan di bawah ini untuk mempelajari alur implementasi lengkapnya:
+            </p>
+          </div>
+
+          <div className="text-xs text-muted-foreground font-mono" style={MONO}>
+            TERSEDIA 11 BIDANG IMPLEMENTASI
+          </div>
+        </div>
+
+        {/* Grid 11 Kartu Proses Layanan */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {serviceProcessList.map((item) => (
+            <div
+              key={item.slug}
+              className="p-6 border border-border bg-card/60 backdrop-blur-xs flex flex-col justify-between gap-6 transition-all duration-300 hover:border-[var(--accent-color)] hover:shadow-lg group relative"
+            >
+              <div className="space-y-3.5">
+                <div className="flex items-center justify-between">
+                  <span
+                    className="text-xs font-mono font-bold text-[var(--accent-color)] px-2.5 py-0.5 rounded-full border border-[var(--accent-color)]/30 bg-[var(--accent-color)]/10"
+                    style={MONO}
+                  >
+                    METODE LAYANAN {item.id}
+                  </span>
+                  <span className="text-[11px] font-mono text-muted-foreground">
+                    {item.phases.length} Fase Kerja
+                  </span>
+                </div>
+
+                <div>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium mb-1" style={MONO}>
+                    {item.eyebrow}
+                  </p>
+                  <h3
+                    className="text-lg font-bold text-foreground leading-snug group-hover:text-[var(--accent-color)] transition-colors"
+                    style={DISPLAY}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+
+                <div className="p-2.5 rounded-lg border border-border/80 bg-muted/40">
+                  <p className="text-[11px] font-semibold text-foreground leading-snug" style={BODY}>
+                    {item.methodologyName}
+                  </p>
+                </div>
+
+                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 text-justify" style={BODY}>
+                  {item.shortDesc}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-border flex items-center justify-between gap-3">
+                <Link
+                  href={`/proses/${item.slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground group-hover:text-[var(--accent-color)] transition-colors cursor-pointer"
+                  style={MONO}
+                >
+                  <span>PELAJARI ALUR KERJA</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
+                <div className="flex items-center gap-1">
+                  <Link
+                    href={`/layanan/${item.relatedServiceSlug}`}
+                    title="Lihat spesifikasi layanan"
+                    className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  >
+                    <BookOpen className="h-3.5 w-3.5" />
+                  </Link>
+                  <Link
+                    href={`/faq/${item.relatedFaqSlug}`}
+                    title="Buka FAQ layanan ini"
+                    className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  >
+                    <Layers className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          3. KONSULTASI LANGSUNG (BOTTOM CTA CARD)
+          ───────────────────────────────────────────────────────────── */}
+      <div className="border border-foreground bg-card p-6 md:p-10 space-y-6 relative overflow-hidden shadow-xl">
+        <div className="space-y-3 max-w-3xl">
+          <span
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-color)]/40 bg-[var(--accent-color)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent-color)]"
+            style={MONO}
+          >
+            KONSULTASI IMPLEMENTASI PROYEK
+          </span>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight" style={DISPLAY}>
+            Ingin Membedah Alur Kerja Khusus untuk Arsitektur Anda?
+          </h2>
+          <p className="text-xs md:text-sm text-muted-foreground leading-relaxed" style={BODY}>
+            Setiap sistem enterprise memiliki regulasi keamanan, ketergantungan database, dan timeline rilis yang unik. Diskusikan alur sprint, standar kepatuhan, serta integrasi teknologi bersama Solution Architect kami dalam sesi discovery teknis.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            href="/kontak/jadwal-temu"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-xs md:text-sm transition-all hover:opacity-90 shadow-md cursor-pointer"
+            style={{
+              ...DISPLAY,
+              backgroundColor: "var(--accent-color)",
+              color: "black",
+            }}
+          >
+            <Calendar className="h-4 w-4 text-black" />
+            <span>Jadwalkan Janji Temu Konsultasi</span>
+            <ArrowUpRight className="h-4 w-4 text-black" />
+          </Link>
+
+          <Link
+            href="/kontak"
+            className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-border bg-background hover:border-foreground/40 font-semibold text-xs md:text-sm text-foreground transition-colors cursor-pointer"
+            style={BODY}
+          >
+            <FileText className="h-4 w-4 text-foreground" />
+            <span>Konsultasi Melalui Formulir</span>
+          </Link>
+        </div>
       </div>
 
       <style>{`

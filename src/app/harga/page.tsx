@@ -7,6 +7,9 @@ import { BODY, DISPLAY, MONO } from "@/lib/utils";
 import {
   CheckCircle2,
   ArrowRight,
+  ArrowUpRight,
+  Sparkles,
+  BookOpen,
   User,
   Store,
   Building2,
@@ -24,6 +27,86 @@ import {
 import { IoIosGitMerge } from "react-icons/io";
 import { IoGameControllerOutline } from "react-icons/io5";
 import Link from "next/link";
+
+const serviceSpecializations = [
+  {
+    slug: "api-management-system-integration",
+    title: "API Management & Integrasi Sistem",
+    icon: <IoIosGitMerge size={20} />,
+    desc: "Integrasi sistem legacy, custom API middleware, gateway pembayaran, dan antrean data.",
+    startingPrice: "Mulai dari Rp 6 Juta",
+  },
+  {
+    slug: "blockchain",
+    title: "Blockchain & Smart Contract",
+    icon: <Blocks size={20} />,
+    desc: "Audit smart contract aman, dApp Web3, tokenomik ERC-20, NFT, dan private consortium.",
+    startingPrice: "Mulai dari Rp 15 Juta",
+  },
+  {
+    slug: "cloud-computing",
+    title: "Cloud Computing & DevOps",
+    icon: <Cloud size={20} />,
+    desc: "Otomasi pipeline CI/CD, migrasi server tanpa downtime, Kubernetes, dan audit FinOps.",
+    startingPrice: "Mulai dari Rp 8 Juta",
+  },
+  {
+    slug: "creative-content-digital-media",
+    title: "Konten Kreatif & Media Digital",
+    icon: <Video size={20} />,
+    desc: "Brand identity guidelines, Figma design system interaktif, dan video motion graphics 3D.",
+    startingPrice: "Mulai dari Rp 5 Juta",
+  },
+  {
+    slug: "data-science",
+    title: "Data Science & BI Dashboard",
+    icon: <BarChart3 size={20} />,
+    desc: "Gudang data terpusat (ETL), dashboard KPI eksekutif, dan model analitik prediktif churn.",
+    startingPrice: "Mulai dari Rp 12 Juta",
+  },
+  {
+    slug: "game-development",
+    title: "Game Development & Interaktif",
+    icon: <IoGameControllerOutline size={20} />,
+    desc: "Game web HTML5 promosi brand, game 2D mobile/PC, dan simulasi 3D pelatihan kerja.",
+    startingPrice: "Mulai dari Rp 12 Juta",
+  },
+  {
+    slug: "internet-of-things",
+    title: "Internet of Things & Hardware",
+    icon: <Cpu size={20} />,
+    desc: "Prototipe sensor mikrokontroler, telemetri pemantauan realtime, dan otomasi industri.",
+    startingPrice: "Mulai dari Rp 12 Juta",
+  },
+  {
+    slug: "machine-learning-ai",
+    title: "AI & Machine Learning",
+    icon: <Brain size={20} />,
+    desc: "Chatbot RAG dokumen internal, computer vision OCR, dan fine-tuning LLM on-premise.",
+    startingPrice: "Mulai dari Rp 15 Juta",
+  },
+  {
+    slug: "mobile-development",
+    title: "Aplikasi Mobile (iOS & Android)",
+    icon: <Smartphone size={20} />,
+    desc: "Aplikasi loyalitas member, layanan on-demand kurir/booking, dan integrasi ERP mobile.",
+    startingPrice: "Mulai dari Rp 10 Juta",
+  },
+  {
+    slug: "quality-assurance-qa-testing",
+    title: "Quality Assurance & QA Testing",
+    icon: <Verified size={20} />,
+    desc: "Audit manual matriks uji, otomasi E2E Playwright/Cypress, uji beban k6, dan audit VAPT.",
+    startingPrice: "Mulai dari Rp 5 Juta",
+  },
+  {
+    slug: "web-development",
+    title: "Web Development & Enterprise",
+    icon: <Monitor size={20} />,
+    desc: "Landing page Next.js kilat, portal internal dashboard admin, e-commerce, dan SaaS.",
+    startingPrice: "Mulai dari Rp 3.5 Juta",
+  },
+];
 
 export const metadata = {
   title: "Harga & Layanan ",
@@ -538,125 +621,109 @@ export default function PricingPage() {
         </section>
 <span className="w-full h-px inline-block" style={{ backgroundColor: "var(--accent-color)" }} />
         {/* SERVICE SPECIALIZATION */}
-        <section className="py-16 md:py-12 px-6 md:px-28">
-          <div className="max-w-8xl mx-auto">
-            <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-start">
-              <div>
-                <p
-                  className="text-xs uppercase tracking-widest font-semibold mb-3"
-                  style={MONO}
-                >
-                  Layanan Khusus
-                </p>
+        <section className="py-20 md:py-16 px-6 md:px-28 max-w-8xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-3xl">
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[var(--accent-color)]"
+                style={MONO}
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                ESTIMASI HARGA BERDASARKAN DISIPLIN TEKNOLOGI
+              </span>
+              <h2
+                className="text-2xl md:text-4xl font-extrabold tracking-tight text-foreground"
+                style={DISPLAY}
+              >
+                Butuh Estimasi Biaya untuk Disiplin Khusus?
+              </h2>
+              <p
+                className="text-xs md:text-sm text-muted-foreground leading-relaxed text-justify"
+                style={BODY}
+              >
+                Tidak semua kebutuhan sistem dapat dimasukkan ke dalam paket standar. Setiap domain teknologi—seperti integrasi API, AI, IoT, Blockchain, hingga Cloud—memiliki model implementasi, variabel kompleksitas, serta katalog proyek nyata yang berbeda. Pilih disiplin di bawah untuk melihat rincian biaya, contoh proyek yang bisa dibuat, dan edukasi teknisnya:
+              </p>
+            </div>
 
-                <h2
-                  className="text-3xl md:text-4xl font-black mb-5"
-                  style={DISPLAY}
-                >
-                  Butuh teknologi yang lebih spesifik?
-                </h2>
+            <div className="text-xs text-muted-foreground font-mono shrink-0" style={MONO}>
+              TERSEDIA 11 BIDANG SPESIALISASI
+            </div>
+          </div>
 
-                <p
-                  className="text-muted-foreground leading-relaxed"
-                  style={BODY}
-                >
-                  Tidak semua kebutuhan dapat dimasukkan ke dalam
-                  paket standar. Blockchain, AI, IoT, Data Science,
-                  dan cloud infrastructure dapat dikembangkan sebagai
-                  bagian dari proyek custom.
-                </p>
-              </div>
+          {/* Grid 11 Kartu Spesialisasi Layanan dengan Link ke Masing-Masing Halaman */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {serviceSpecializations.map((service, index) => (
+              <div
+                key={service.slug}
+                className="p-6 border border-border bg-card/60 backdrop-blur-xs flex flex-col justify-between gap-6 transition-all duration-300 hover:border-[var(--accent-color)] hover:shadow-lg group relative"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="text-xs font-mono font-bold text-[var(--accent-color)] px-2.5 py-0.5 rounded-full border border-[var(--accent-color)]/30 bg-[var(--accent-color)]/10"
+                      style={MONO}
+                    >
+                      LAYANAN {String(index + 1).padStart(2, "0")}
+                    </span>
 
-              <div className="grid sm:grid-cols-4 gap-4">
-                {[
-                  {
-                    title: "API Management & System Integration",
-                    icon: <IoIosGitMerge size={20} />,
-                    desc: "Desain, fitur, dan integrasi sistem.",
-                  },
-                  {
-                    title: "Blockchain",
-                    icon: <Blocks size={20} />,
-                    desc: "Smart contract, Web3, dan dApp.",
-                  },
-                  {
-                    title: "Cloud Computing",
-                    icon: <Cloud size={20} />,
-                    desc: "Deployment, infrastructure, dan DevOps.",
-                  },
-                  {
-                    title: "Creative Content & Digital Media",
-                    icon: <Video size={20} />,
-                    desc: "Visual storytelling dan content strategy.",
-                  },
-                  {
-                    title: "Data Science",
-                    icon: <BarChart3 size={20} />,
-                    desc: "Analytics, dashboard, dan predictive model.",
-                  },
-                  {
-                    title: "Game Development",
-                    icon: <IoGameControllerOutline size={20} />,
-                    desc: "Pengembangan game dan aplikasi interaktif.",
-                  },
-                  {
-                    title: "Internet of Things",
-                    icon: <Cpu size={20} />,
-                    desc: "Sensor, monitoring, tracking, dan automation.",
-                  },
-                  {
-                    title: "Machine Learning / AI",
-                    icon: <Brain size={20} />,
-                    desc: "AI, LLM, classification, recommendation.",
-                  },
-                  {
-                    title: "Mobile Development",
-                    icon: <Smartphone size={20} />,
-                    desc: "Aplikasi iOS dan Android.",
-                  },
-                  {
-                    title: "Quality Assurance (QA) / Testing",
-                    icon: <Verified size={20} />,
-                    desc: "Functional, performance, automation testing.",
-                  },
-                  {
-                    title: "Web Development",
-                    icon: <Monitor size={20} />,
-                    desc: "Sistem, portal, dan website bisnis.",
-                  },
-                ].map((service) => (
-                  <div
-                    key={service.title}
-                    className="flex gap-4 p-5 border border-border bg-white/50 dark:bg-black/20"
-                  >
-                    <div className="flex-shrink-0">
+                    <span
+                      className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded border border-border bg-muted/40 text-foreground"
+                      style={MONO}
+                    >
+                      {service.startingPrice}
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 rounded-xl border border-border bg-muted/30 text-[var(--accent-color)] shrink-0">
                       {service.icon}
                     </div>
-
                     <div>
                       <h3
-                        className="font-bold mb-1"
+                        className="text-lg font-bold text-foreground leading-snug group-hover:text-[var(--accent-color)] transition-colors"
                         style={DISPLAY}
                       >
                         {service.title}
                       </h3>
-
-                      <p
-                        className="text-sm text-muted-foreground"
-                        style={BODY}
-                      >
-                        {service.desc}
+                      <p className="text-[11px] font-mono text-muted-foreground mt-0.5" style={MONO}>
+                        4 Pilihan Implementasi Proyek
                       </p>
                     </div>
                   </div>
-                ))}
+
+                  <p
+                    className="text-xs text-muted-foreground leading-relaxed text-justify line-clamp-3"
+                    style={BODY}
+                  >
+                    {service.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-border flex items-center justify-between gap-3">
+                  <Link
+                    href={`/harga/${service.slug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground group-hover:text-[var(--accent-color)] transition-colors cursor-pointer"
+                    style={MONO}
+                  >
+                    <span>LIHAT RINCIAN BIAYA PROYEK</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+
+                  <Link
+                    href={`/layanan/${service.slug}`}
+                    title="Buka spesifikasi layanan"
+                    className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  >
+                    <BookOpen className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </section>
 
         {/* CUSTOM PROJECT */}
-        <section className="py-16 md:py-12 px-6 md:px-28">
+        <section className="py-16 md:py-12 px-0">
           <div className="max-w-8xl mx-auto">
             <div className="bg-accent text-background p-8 md:p-12 text-center">
               <p
@@ -696,7 +763,7 @@ export default function PricingPage() {
         </section>
       </main>
 
-      <CTA />
+      
       <Footer />
     </div>
   );

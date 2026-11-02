@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Calendar,
   Clock,
@@ -23,9 +24,13 @@ import {
   Building,
   Navigation,
   Map,
+  Sparkles,
+  X,
+  Tag,
 } from "lucide-react";
 import { FaWhatsapp, FaGoogle, FaEnvelope } from "react-icons/fa";
 import { BODY, DISPLAY, MONO } from "@/lib/utils";
+import { servicesPricingData } from "@/lib/services-pricing-data";
 import {
   Dialog,
   DialogContent,
@@ -162,11 +167,32 @@ const TIME_SLOTS = [
   { id: "slot-5", time: "16:00 - 16:45 WIB", period: "Sore" },
 ];
 
+const SLUG_TO_CATEGORY: Record<string, string> = {
+  "api-management-system-integration": "API Management & Integrasi Sistem",
+  "blockchain": "Blockchain & Smart Contract",
+  "cloud-computing": "Cloud Computing & DevOps",
+  "creative-content-digital-media": "Konten Kreatif & Media Digital",
+  "data-science": "Data Science & BI Dashboard",
+  "game-development": "Game Development & Interaktif",
+  "internet-of-things": "Internet of Things & Smart Hardware",
+  "machine-learning-ai": "Kecerdasan Buatan (AI) & Machine Learning",
+  "mobile-development": "Pengembangan Aplikasi Mobile (iOS & Android)",
+  "quality-assurance-qa-testing": "Quality Assurance & Pengujian Sistem",
+  "web-development": "Web Development & Portal Enterprise",
+};
+
 const CONSULTATION_CATEGORIES = [
-  "Pengembangan Web / Web App Enterprise",
-  "Aplikasi Mobile (Android & iOS)",
-  "Modernisasi Sistem, Cloud & Infrastruktur",
-  "Kecerdasan Buatan (AI) & Otomasi Proses",
+  "Web Development & Portal Enterprise",
+  "Pengembangan Aplikasi Mobile (iOS & Android)",
+  "Kecerdasan Buatan (AI) & Machine Learning",
+  "Cloud Computing & DevOps",
+  "API Management & Integrasi Sistem",
+  "Blockchain & Smart Contract",
+  "Data Science & BI Dashboard",
+  "Internet of Things & Smart Hardware",
+  "Game Development & Interaktif",
+  "Quality Assurance & Pengujian Sistem",
+  "Konten Kreatif & Media Digital",
   "Audit Sistem & Konsultasi Arsitektur",
   "Kemitraan Strategis / Lainnya",
 ];
@@ -227,6 +253,28 @@ const getNextMonday = (baseDate = new Date()) => {
 };
 
 export default function QuickMeetingBooking() {
+  const searchParams = useSearchParams();
+  const paramLayanan = searchParams ? searchParams.get("layanan") || "" : "";
+  const paramProyek = searchParams ? searchParams.get("proyek") || "" : "";
+
+  const [activeLayananSlug, setActiveLayananSlug] = useState<string>("");
+  const [activeProyekId, setActiveProyekId] = useState<string>("");
+
+  useEffect(() => {
+    if (paramLayanan) setActiveLayananSlug(paramLayanan);
+    if (paramProyek) setActiveProyekId(paramProyek);
+  }, [paramLayanan, paramProyek]);
+
+  const matchedService = useMemo(() => {
+    if (!activeLayananSlug) return null;
+    return servicesPricingData[activeLayananSlug] || null;
+  }, [activeLayananSlug]);
+
+  const matchedProject = useMemo(() => {
+    if (!matchedService || !activeProyekId) return null;
+    return matchedService.projects.find((p) => p.id === activeProyekId) || null;
+  }, [matchedService, activeProyekId]);
+
   const [meetingType, setMeetingType] = useState<"online" | "offline">("online");
   const [selectedDate, setSelectedDate] = useState(getNextBusinessDay());
   const [selectedSlot, setSelectedSlot] = useState(TIME_SLOTS[0].time);
@@ -488,6 +536,36 @@ export default function QuickMeetingBooking() {
   const [emailError, setEmailError] = useState("");
   const [copied, setCopied] = useState(false);
 
+  // Synchronize category and notes when matchedService or matchedProject changes
+  useEffect(() => {
+    if (activeLayananSlug && SLUG_TO_CATEGORY[activeLayananSlug]) {
+      setCategory(SLUG_TO_CATEGORY[activeLayananSlug]);
+    } else if (matchedService) {
+      setCategory(matchedService.title);
+    }
+
+    if (matchedProject) {
+      setNotes((prevNotes) => {
+        if (!prevNotes || prevNotes.startsWith("Tertarik konsultasi")) {
+          return `Tertarik konsultasi implementasi: ${matchedProject.name} (Estimasi ${matchedProject.priceRange}, Timeline ${matchedProject.timeline}). Ingin membahas ruang lingkup dan arsitektur teknisnya.`;
+        }
+        return prevNotes;
+      });
+    } else if (matchedService) {
+      setNotes((prevNotes) => {
+        if (!prevNotes || prevNotes.startsWith("Tertarik konsultasi")) {
+          return `Tertarik konsultasi layanan ${matchedService.title} (Estimasi Investasi ${matchedService.startingPrice}). Ingin mendiskusikan kebutuhan sistem kami.`;
+        }
+        return prevNotes;
+      });
+    }
+  }, [activeLayananSlug, matchedService, matchedProject]);
+
+  const handleClearContext = () => {
+    setActiveLayananSlug("");
+    setActiveProyekId("");
+  };
+
   const getFormattedDate = (dateStr: string) => {
     try {
       const { year, month, day } = parseDateParts(dateStr);
@@ -534,6 +612,12 @@ export default function QuickMeetingBooking() {
 • Tautan Pin Google Maps: ${effectiveLoc.mapsUrl}`;
     }
 
+    const projectInfo = matchedProject
+      ? `• Rencana Implementasi: ${matchedProject.name} (Estimasi ${matchedProject.priceRange}, Waktu ${matchedProject.timeline})\n`
+      : matchedService
+      ? `• Layanan Spesifik: ${matchedService.title} (Estimasi Investasi ${matchedService.startingPrice})\n`
+      : "";
+
     const message = `Halo Tim BlankOn Digital Tech,
 Saya ingin mengajukan jadwal janji temu konsultasi teknologi:
 
@@ -544,7 +628,7 @@ ${formatBlock}
 • Tanggal: ${formattedDate}
 • Waktu Sesi: ${selectedSlot}
 • Kategori Konsultasi: ${category}
-${notes.trim() ? `• Catatan Kebutuhan: ${notes.trim()}\n` : ""}
+${projectInfo}${notes.trim() ? `• Catatan Kebutuhan: ${notes.trim()}\n` : ""}
 Mohon informasi konfirmasi ketersediaan slot waktu ini. Terima kasih.`;
 
     const encoded = encodeURIComponent(message);
@@ -555,7 +639,12 @@ Mohon informasi konfirmasi ketersediaan slot waktu ini. Terima kasih.`;
 
   const getEmailData = () => {
     const to = "blankondigitaltech@gmail.com";
-    const subject = `Pengajuan Janji Temu Konsultasi - ${fullName.trim() || "Calon Klien"} (${company.trim() || "Perseorangan"})`;
+    const subjectPrefix = matchedProject
+      ? `[Konsultasi Proyek: ${matchedProject.name}]`
+      : matchedService
+      ? `[Konsultasi: ${matchedService.title}]`
+      : `Pengajuan Janji Temu Konsultasi`;
+    const subject = `${subjectPrefix} - ${fullName.trim() || "Calon Klien"} (${company.trim() || "Perseorangan"})`;
     const effectiveLoc = getEffectiveOfflineLocation();
 
     const formatLines =
@@ -570,6 +659,19 @@ Mohon informasi konfirmasi ketersediaan slot waktu ini. Terima kasih.`;
           `• Tautan Pin Google Maps: ${effectiveLoc.mapsUrl}`,
         ];
 
+    const projectLines = matchedProject
+      ? [
+          `• Rencana Implementasi Proyek: ${matchedProject.name}`,
+          `• Estimasi Biaya Katalog: ${matchedProject.priceRange}`,
+          `• Estimasi Waktu Pengerjaan: ${matchedProject.timeline}`,
+        ]
+      : matchedService
+      ? [
+          `• Layanan Spesifik: ${matchedService.title}`,
+          `• Patokan Investasi Dasar: ${matchedService.startingPrice}`,
+        ]
+      : [];
+
     const lines = [
       "Halo Tim BlankOn Digital Tech,",
       "",
@@ -583,6 +685,7 @@ Mohon informasi konfirmasi ketersediaan slot waktu ini. Terima kasih.`;
       `• Rencana Tanggal: ${getFormattedDate(selectedDate)}`,
       `• Pilihan Waktu: ${selectedSlot}`,
       `• Topik Konsultasi: ${category}`,
+      ...projectLines,
       notes.trim() ? `• Catatan Kebutuhan: ${notes.trim()}` : "",
       "",
       "Mohon informasi konfirmasi ketersediaan slot waktu ini.",
@@ -866,6 +969,46 @@ Mohon informasi konfirmasi ketersediaan slot waktu ini. Terima kasih.`;
                 Silakan lengkapi preferensi waktu dan kontak Anda. Konfirmasi resmi akan dikirim melalui WhatsApp & Email.
               </p>
             </div>
+
+            {/* Banner Integrasi Konteks Layanan & Proyek Dari URL */}
+            {matchedService && (
+              <div className="p-4 rounded-xl border border-[var(--accent-color)]/60 bg-[var(--accent-color)]/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs animate-fade-in">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent-color)] animate-ping" />
+                    <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-[var(--accent-color)]" style={MONO}>
+                      KONSULTASI TERINTEGRASI DARI KATALOG HARGA
+                    </span>
+                  </div>
+                  <h4 className="text-sm font-bold text-foreground" style={DISPLAY}>
+                    Layanan: {matchedService.title}
+                  </h4>
+                  {matchedProject ? (
+                    <p className="text-xs text-muted-foreground leading-relaxed" style={BODY}>
+                      Pilihan Proyek: <strong className="text-foreground">{matchedProject.name}</strong> • Rentang Biaya: <span className="font-mono text-foreground font-semibold">{matchedProject.priceRange}</span> (Estimasi {matchedProject.timeline})
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted-foreground leading-relaxed" style={BODY}>
+                      Patokan Investasi: <span className="font-mono text-foreground font-semibold">{matchedService.startingPrice}</span>
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="px-2.5 py-1 rounded text-[10px] font-mono font-semibold bg-background border border-border text-foreground" style={MONO}>
+                    Terdeteksi Otomatis
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleClearContext}
+                    className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted transition-colors text-xs"
+                    title="Ganti / Reset Pilihan"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            )}
 
             <form onSubmit={handleWhatsAppBooking} className="space-y-7">
               {/* Langkah 1: Format Pertemuan */}

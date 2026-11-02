@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -135,7 +136,13 @@ export default function ContactPage() {
                   </h2>
                 </div>
 
-                <ContactForm />
+                <Suspense fallback={
+                  <div className="p-12 text-center text-muted-foreground font-mono" style={MONO}>
+                    Menyiapkan formulir kontak...
+                  </div>
+                }>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
           </div>

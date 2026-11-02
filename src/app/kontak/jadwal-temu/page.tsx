@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import QuickMeetingBooking from "../QuickMeetingBooking";
@@ -106,7 +107,13 @@ export default function JadwalTemuPage() {
           </div>
 
           {/* Portal Booking Engine */}
-          <QuickMeetingBooking />
+          <Suspense fallback={
+            <div className="p-12 text-center text-muted-foreground font-mono" style={MONO}>
+              Menyiapkan formulir janji temu...
+            </div>
+          }>
+            <QuickMeetingBooking />
+          </Suspense>
         </div>
       </main>
 
